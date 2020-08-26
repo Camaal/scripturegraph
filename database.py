@@ -10,6 +10,7 @@ Base = declarative_base()
 # Book of the Bible
 class Books(Base):
     __tablename__ = "books"
+
     book_name = Column(String(250), nullable=False)
     testament = Column(String(2), nullable=False)
     genre_name = Column(String(250), nullable=False)
@@ -18,13 +19,17 @@ class Books(Base):
 # Cross-references between scripture
 class References(Base):
     __tablename__ = "references"
+
     Id = Column(Integer, primary_key=True)
-    Source = Column(Integer, nullable=False)
-    Target = Column(Integer, nullable=False)
+    Source = Column(Integer, ForeignKey('scripture.Id'))
+    Target = Column(Integer, ForeignKey('scripture.Id'))
+
+    scriptures = relationship('scripture', back_populates="references")
 
 # The actual scripture
 class Scripture(Base):
     __tablename__ = "scripture"
+
     Id = Column(Integer, primary_key=True)
     red_letter = Column(Boolean, nullable=False)
     Author = Column(String(250), nullable=False)
@@ -69,6 +74,6 @@ class Scripture(Base):
 #     Id = Column(Integer, primary_key=True)
 
 
-engine = create_engine('sqlite:///bible.db')
+engine = create_engine('sqlite:///bible.db', echo=True)
 
 Base.metadata.create_all(engine)

@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+import sqlalchemy as db
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func
@@ -41,6 +43,8 @@ def showBooks():
     #List chapters, verses, and text for a given book
     dverses = session.query(Scripture.chapter, Scripture.verse, Scripture.text, Scripture.Degree).filter_by(book=1)
 
+    #references = session.query(References).join(Scripture).filter(Scripture.book==1).all()
+
     #Return the data to list.html
     return render_template('list.html',
                            books=books,
@@ -50,7 +54,8 @@ def showBooks():
                            dverses=dverses,
                            avgdegree=avgdegree,
                            mindegree=mindegree,
-                           maxdegree=maxdegree
+                           maxdegree=maxdegree,
+                           #references=references
                            )
 
 
