@@ -7,7 +7,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func
 from database import Books, References, Sources, Targets, Base
 
-
 engine = create_engine('sqlite:///cm_bible.db')
 Base.metadata.bind = engine
 
@@ -41,7 +40,12 @@ def showBooks():
     # List chapters, verses, and text for a given book
     dverses = session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree).filter_by(book=1)
 
+    joins = session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
+                          Targets.degree).join(References).filter(References.Source == 1001001).all()
+    tbooks = session.query(Targets.book, Targets.chapter).distinct().join(References).filter(References.Source == 1001001).count()
+
     # Return the data to list.html
+
     return render_template('list.html',
                            books=books,
                            chapters=chapters,
@@ -50,7 +54,9 @@ def showBooks():
                            dverses=dverses,
                            avgdegree=avgdegree,
                            mindegree=mindegree,
-                           maxdegree=maxdegree
+                           maxdegree=maxdegree,
+                           joins=joins,
+                           tbooks=tbooks
                            )
 
 
@@ -60,4 +66,3 @@ def home():
 
 
 app.run(host='0.0.0.0', port=5001)
-

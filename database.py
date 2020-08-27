@@ -44,6 +44,8 @@ class Sources(Base):
     text = Column(Text, nullable=False)
     degree = Column(Integer, nullable=False)
 
+    targets = relationship('References')
+
 # The source scripture
 
 
@@ -61,6 +63,8 @@ class Targets(Base):
     verse = Column(Integer, nullable=False)
     text = Column(Text, nullable=False)
     degree = Column(Integer, nullable=False)
+
+    sources = relationship('References')
 
 
 engine = create_engine('sqlite:///cm_bible.db')
