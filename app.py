@@ -40,9 +40,11 @@ def showBooks():
     # List chapters, verses, and text for a given book
     dverses = session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree).filter_by(book=1)
 
+    # List book, book name, and chapter for cross-references related to Gen 1:1
     tbooks = session.query(Targets.book, Targets.book_name, Targets.chapter).distinct().join(References).filter(
         References.Source == 1001001).all()
 
+    # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
     joins = session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                           Targets.degree).join(References).filter(References.Source == 1001001).all()
 
