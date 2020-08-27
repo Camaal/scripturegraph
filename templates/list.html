@@ -35,7 +35,7 @@
                      <svg height="40" width="40">
                        <circle cx="20" cy="20" r="20" fill="#a1abb2" />
                      </svg>
-                     <div class="authorName">{{author.Author}}</div>
+                     <div class="authorName">{{author.author}}</div>
                   </li>
                   {% endfor %}
                </ul>
@@ -50,7 +50,7 @@
                      {% for verse in dverses%}
                         {% if verse.chapter==i%}
                         <span class="scripture">
-                           <span {% if verse.Degree > avgdegree[0][0] %} class="high_degree"{% endif %}>
+                           <span {% if verse.degree > avgdegree[0][0] %} class="high_degree"{% endif %}>
                               <span class="verse_num">{{verse.verse}}</span>
                               {{verse.text}}
                            </span>
@@ -68,7 +68,7 @@
                      {% for verse in dverses%}
                         {% if verse.chapter==i%}
                         <span class="scripture">
-                           <span {% if verse.Degree > avgdegree[0][0] %} class="high_degree"{% endif %}>
+                           <span {% if verse.degree > avgdegree[0][0] %} class="high_degree"{% endif %}>
                               <span class="verse_num">{{verse.verse}}</span>
                               {{verse.text}}
                            </span>
