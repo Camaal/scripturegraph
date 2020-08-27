@@ -40,13 +40,15 @@ def showBooks():
     # List chapters, verses, and text for a given book
     dverses = session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree).filter_by(book=1)
 
+    tbooks = session.query(Targets.book, Targets.book_name, Targets.chapter).distinct().join(References).filter(
+        References.Source == 1001001).all()
+
     joins = session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                           Targets.degree).join(References).filter(References.Source == 1001001).all()
-    tbooks = session.query(Targets.book, Targets.chapter).distinct().join(References).filter(References.Source == 1001001).count()
 
-    # Return the data to list.html
+    # Return the data to list.html.jinja
 
-    return render_template('list.html',
+    return render_template('list.html.jinja',
                            books=books,
                            chapters=chapters,
                            authors=authors,
@@ -62,7 +64,7 @@ def showBooks():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html.jinja')
 
 
-app.run(host='0.0.0.0', port=5001)
+app.run(host='0.0.0.0', port=5000)

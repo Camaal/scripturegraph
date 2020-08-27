@@ -62,17 +62,23 @@
             </div>
         </div>
         <div class="verses">
-            <h4>Cross-references</h4>
+            <h4>Gen 1:1 Cross-references</h4>
             <div>
-               {% for join in joins%}
-               <h5>{{join.book_name}} - {{join.chapter}}</h5>
-                   <span class="scripture">
-                        <span>
-                           <span class="verse_num">{{join.verse}}</span>
-                           {{join.text}}
-                        </span>
-                   </span>
+               {% for b in tbooks %}
+               <h4>{{b.book_name}} {{b.chapter}}</h4>
+               {% for item in joins%}
+               {% if b.book == item.book %}
+               {% if b.chapter == item.chapter %}
+                <span class="scripture">
+                     <p>
+                        <span class="verse_num">{{item.verse}}</span>
+                        {{item.text}}
+                     </p>
+                </span>
+               {% endif %}
+               {% endif %}
                 {% endfor %}
+               {% endfor %}
             </div>
         </div>
     </div>
