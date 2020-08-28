@@ -1,11 +1,15 @@
 from flask import Flask, render_template, url_for, request
 
+
 app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func
 from database import Books, References, Sources, Targets, Base
+
+from pyvis.network import Network
+import networkx as nx
 
 engine = create_engine('sqlite:///cm_bible.db')
 Base.metadata.bind = engine
@@ -16,6 +20,9 @@ session = DBSession()
 @app.template_filter()
 def numberFormat(value):
     return format(int(value), ',d')
+
+def flat_list(l):
+    return ["%s" % v for v in l]
 
 @app.route('/list')
 def showBooks():
@@ -63,6 +70,29 @@ def showBooks():
     joins = session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                           Targets.degree).join(References).filter(References.Source == 1001001).all()
 
+    # Return a list of nodes
+    nodes = flat_list(session.query(Sources.Id).filter_by(book=1, chapter=1).all())
+
+    # Network view
+    nx_graph = nx.Graph()
+    nx_graph.add_nodes_from(nodes)
+    # height = "500px",
+    # width = "500px",
+    # directed = False,
+    # notebook = False,
+    # bgcolor = "#ffffff",
+    # font_color = False,
+    # layout = None,
+    # heading = ""
+    nt = Network("100%", "100%", heading=" ")
+
+    # populates the nodes and edges data structures
+    nt.from_nx(nx_graph)
+    p = nt.show("static/nx.html")
+
+
+
+
     # Return the data to list.html.jinja
 
     return render_template('list.html.jinja',
@@ -78,7 +108,8 @@ def showBooks():
                            tbooks=tbooks,
                            bookDegrees=bookDegrees,
                            chapterDegrees=chapterDegrees,
-                           authorDegrees=authorDegrees
+                           authorDegrees=authorDegrees,
+                           p=p
                            )
 
 
