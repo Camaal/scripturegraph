@@ -1,6 +1,7 @@
 html, body{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
+    margin: 0;
 }
 
 .TableauPlaceholder{
@@ -12,15 +13,16 @@ html, body{
 .container{
     display: grid;
     grid-template-columns: 250px auto;
+    padding-top: 1em;
     margin: auto 200px;
 }
 
 .sidenav{
     display: grid;
-    grid-template-rows: 600px auto auto;
+    grid-template-rows: 600px 200px 200px;
     grid-row-gap: 1em;
     margin-right: 2em;
-    height: 100vh;
+    height: 90vh;
 }
 
 #book, #chapter, #author{
@@ -29,9 +31,9 @@ html, body{
 
 .content{
     display: grid;
-    grid-template-rows: 600px 400px;
+    grid-template-rows: 600px 415px;
     grid-row-gap: 1em;
-    height: 100vh;
+    height: 90vh;
 }
 
 .graph{
@@ -46,13 +48,6 @@ html, body{
 
 .verses{
     overflow-y: scroll;
-}
-
-h4{
-    font-weight: 900;
-    margin:0;
-    margin-top: 1em;
-    margin-bottom: 1em;
 }
 
 .verse_num{
@@ -81,4 +76,17 @@ ul > li{
     grid-template-columns: auto auto;
     justify-content: space-between;
     align-content: center;
+}
+
+///Typography
+
+h4{
+    font-weight: 900;
+    margin:0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.degreeNumber{
+    font-size: .75em;
 }

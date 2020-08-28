@@ -13,6 +13,9 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.template_filter()
+def numberFormat(value):
+    return format(int(value), ',d')
 
 @app.route('/list')
 def showBooks():
