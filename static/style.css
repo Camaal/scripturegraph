@@ -10,35 +10,35 @@ html, body{
 }
 
 .container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 250px auto;
     margin: auto 200px;
 }
 
 .sidenav{
-    min-width: 250px;
-    display: block;
+    display: grid;
+    grid-row-gap: 1em;
     margin-right: 2em;
+    height: 100vh;
 }
 
-.author{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 4px;
+#book, #chapter, #author{
+    overflow-y: scroll;
 }
 
-.authorName{
-    flex-grow: 2;
-    padding-top: 10px;
-    padding-left: 4px;
+.parallel{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 2em;
+    height: 100vh;
+}
+
+.verses{
+    overflow-y: scroll;
 }
 
 h4{
     font-weight: 900;
-}
-
-.parallel{
-    display: flex;
-    gap: 2em;
 }
 
 .verse_num{
@@ -61,15 +61,10 @@ ul > li{
    list-style: none;
 }
 
-.verses{
-    flex: 1;
-}
 
 .degreeItem{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: auto auto;
     justify-content: space-between;
-    align-items: center;
     align-content: center;
 }

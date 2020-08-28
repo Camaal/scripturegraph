@@ -9,7 +9,6 @@
 <div class="container">
     <div class="sidenav">
         <div id="book">
-            <h4>Book</h4>
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
@@ -19,7 +18,6 @@
             </ul>
         </div>
         <div id="chapter">
-            <h4>Chapter</h4>
             <ul>
                 {% for chapter in chapterDegrees %}
                 <li class="degreeItem">
@@ -29,7 +27,6 @@
             </ul>
         </div>
         <div id="author">
-            <h4>Author</h4>
             <ul>
                 {% for author in authorDegrees %}
                 <li class="degreeItem">
@@ -41,7 +38,6 @@
     </div>
     <div class="parallel">
         <div class="verses">
-            <h4>Verses</h4>
             <div>
                 {% for i in range(1, dchapters)%}
                     <h4>Chapter {{i}}</h4>
@@ -59,7 +55,6 @@
             </div>
         </div>
         <div class="verses">
-            <h4>Gen 1:1 Cross-references</h4>
             <div>
                {% for b in tbooks %}
                    <h4>{{b.book_name}} {{b.chapter}}</h4>

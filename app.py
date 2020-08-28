@@ -21,21 +21,21 @@ def showBooks():
 
     # Sum degree for each book
     bookDegrees = session.query(Sources.book_name, func.sum(Sources.degree).label('total')).group_by(
-        Sources.book_name).all()
+        Sources.book_name).order_by(Sources.book).all()
 
     # List all the chapters in order
     chapters = session.query(Sources.chapter).distinct().order_by(Sources.chapter)
 
     # Sum degree for each chapter
     chapterDegrees = session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).all()
+        Sources.chapter).order_by(Sources.chapter).all()
 
     # List all the authors of each book and chapter
     authors = session.query(Sources.author).distinct().order_by(Sources.author)
 
     # Sum degree for each chapter
     authorDegrees = session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).all()
+        Sources.author).order_by(Sources.author).all()
 
     # Calculate the average degree of a given book (eventually replace the book with a variable triggered by a button)
     avgdegree = session.query(func.avg(Sources.degree)).filter_by(book=1).all()
