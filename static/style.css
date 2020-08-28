@@ -1,6 +1,6 @@
 html, body{
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
     margin: 0;
 }
 
@@ -14,26 +14,31 @@ html, body{
     display: grid;
     grid-template-columns: 250px auto;
     padding-top: 1em;
-    margin: auto 200px;
+    margin: 0 200px 0 2em;
 }
 
 .sidenav{
     display: grid;
-    grid-template-rows: 600px 200px 200px;
-    grid-row-gap: 1em;
-    margin-right: 2em;
+    grid-template-rows: auto 500px auto 200px auto 200px;
+    margin-right: 1em;
     height: 90vh;
 }
 
 #book, #chapter, #author{
     overflow-y: scroll;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 8px 1em 8px 0;
 }
 
 .content{
     display: grid;
-    grid-template-rows: 600px 415px;
+    //grid-template-rows: 600px 415px;
+    grid-template-rows: 100%;
     grid-row-gap: 1em;
-    height: 90vh;
+    align-content: center;
+    margin-left: 200px;
+    height: 95vh;
 }
 
 .map{
@@ -49,15 +54,7 @@ html, body{
 
 .verses{
     overflow-y: scroll;
-}
-
-.verse_num{
-    font-weight:700;
-    padding-right: 4px;
-}
-
-.scripture{
-    line-height: 1.5em;
+    padding-right: 1em;
 }
 
 .high_degree{
@@ -77,17 +74,44 @@ ul > li{
     grid-template-columns: auto auto;
     justify-content: space-between;
     align-content: center;
+    margin-bottom: .5em;
 }
 
 ///Typography
 
 h4{
-    font-weight: 900;
+    font-weight: 600;
     margin:0;
     margin-top: 1em;
     margin-bottom: 1em;
+    color: #1c1c1c;
+}
+
+h6{
+    margin:0;
+    margin-top: 2em;
+    margin-bottom: .5em;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #1c1c1c;
+}
+
+.name{
+    font-size: .875em;
 }
 
 .degreeNumber{
     font-size: .75em;
+    color: #606060;
+}
+
+.scripture{
+    line-height: 2.25em;
+    font-size: .875em;
+    color: #414141;
+}
+
+.verse_num{
+    font-weight: 600;
+    padding-right: 2px;
 }

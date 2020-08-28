@@ -1,44 +1,47 @@
 <!doctype html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="container">
     <div class="sidenav">
+        <h6>Book</h6>
         <div id="book">
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
-                    <div>{{book.book_name}}</div><div class="degreeNumber">{{book.total | numberFormat}}</div>
+                    <div class="name">{{book.book_name}}</div><div class="degreeNumber">{{book.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
+        <h6>Chapter</h6>
         <div id="chapter">
             <ul>
                 {% for chapter in chapterDegrees %}
                 <li class="degreeItem">
-                    <div>{{chapter.chapter}}</div><div class="degreeNumber">{{chapter.total | numberFormat}}</div>
+                    <div class="name">{{chapter.chapter}}</div><div class="degreeNumber">{{chapter.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
+        <h6>Author</h6>
         <div id="author">
             <ul>
                 {% for author in authorDegrees %}
                 <li class="degreeItem">
-                    <div>{{author.author}}</div><div class="degreeNumber">{{author.total | numberFormat}}</div>
+                    <div class="name">{{author.author}}</div><div class="degreeNumber">{{author.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
     <div class="content">
-        <div class="graph">
+        <!--<div class="graph">
             <iframe class="map" src="{{ url_for('static', filename='nx.html') }}" frameborder="0" scrolling="auto"></iframe>
-        </div>
+        </div>-->
         <div class="parallel">
         <div class="verses">
             <div>

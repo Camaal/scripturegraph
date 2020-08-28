@@ -67,7 +67,7 @@ class Targets(Base):
     sources = relationship('References')
 
 
-engine = create_engine('sqlite:///cm_bible.db')
+engine = create_engine('sqlite:///cm_bible.db', connect_args={'check_same_thread': False})
 
 
 Base.metadata.create_all(engine)

@@ -11,7 +11,7 @@ from database import Books, References, Sources, Targets, Base
 from pyvis.network import Network
 import networkx as nx
 
-engine = create_engine('sqlite:///cm_bible.db')
+engine = create_engine('sqlite:///cm_bible.db', connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
