@@ -36,7 +36,9 @@
             </ul>
         </div>
     </div>
-    <div class="parallel">
+    <div class="content">
+        <dive class="graph"></dive>
+        <div class="parallel">
         <div class="verses">
             <div>
                 {% for i in range(1, dchapters)%}
@@ -57,15 +59,15 @@
         <div class="verses">
             <div>
                {% for b in tbooks %}
-                   <h4>{{b.book_name}} {{b.chapter}}</h4>
+                   <h4>{{b.author}} - {{b.book_name}} {{b.chapter}}</h4>
                    {% for item in joins%}
                        {% if b.book == item.book %}
                            {% if b.chapter == item.chapter %}
                             <span class="scripture">
-                                 <p>
+                                 <div>
                                     <span class="verse_num" data-degree="{{item.degree}}">{{item.verse}}</span>
                                     {{item.text}}
-                                 </p>
+                                 </div>
                             </span>
                            {% endif %}
                        {% endif %}
@@ -73,6 +75,7 @@
                {% endfor %}
             </div>
         </div>
+    </div>
     </div>
 </div>
 </body>

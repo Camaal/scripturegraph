@@ -53,7 +53,7 @@ def showBooks():
     dverses = session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree).filter_by(book=1)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
-    tbooks = session.query(Targets.book, Targets.book_name, Targets.chapter).distinct().join(References).filter(
+    tbooks = session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(References).filter(
         References.Source == 1001001).all()
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1

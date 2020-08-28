@@ -17,6 +17,7 @@ html, body{
 
 .sidenav{
     display: grid;
+    grid-template-rows: 600px auto auto;
     grid-row-gap: 1em;
     margin-right: 2em;
     height: 100vh;
@@ -26,11 +27,21 @@ html, body{
     overflow-y: scroll;
 }
 
+.content{
+    display: grid;
+    grid-template-rows: 600px 400px;
+    grid-row-gap: 1em;
+    height: 100vh;
+}
+
+.graph{
+    background-color: #333;
+}
+
 .parallel{
     display: grid;
     grid-template-columns: auto auto;
     grid-column-gap: 2em;
-    height: 100vh;
 }
 
 .verses{
@@ -39,6 +50,9 @@ html, body{
 
 h4{
     font-weight: 900;
+    margin:0;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .verse_num{
