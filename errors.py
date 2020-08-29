@@ -1,5 +1,5 @@
 from flask import render_template
-import app, database
+from app import app, db
 
 @app.errorhandler(404)
 def not_found_error(error):
@@ -7,5 +7,5 @@ def not_found_error(error):
 
 @app.errorhandler(500)
 def internal_error(error):
-    database.session.rollback()
+    db.session.rollback()
     return render_template('500.html'), 500
