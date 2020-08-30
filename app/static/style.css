@@ -11,13 +11,27 @@ html, body{
     padding-top: 1em;
     grid-column-gap: 2em;
     margin: 0 2em 0 2em;
+    height: 96vh;
+}
+
+.person{
+    display: grid;
+    grid-template-columns: 20px auto;
+    align-content: center;
+    margin-bottom: 1em;
+}
+
+.section-title{
+    display: grid;
+    align-content: end;
 }
 
 .sidenav{
     display: grid;
     grid-template-rows: auto 400px auto 200px auto 200px;
-    margin-right: 1em;
-    height: 90vh;
+    padding-right: 1em;
+    height: 100%;
+    border-right: 1px solid #eee;
 }
 
 #book, #chapter, #author{
@@ -83,6 +97,20 @@ h4{
     color: #1c1c1c;
 }
 
+.section-title h6{
+    margin: 0;
+    margin-bottom: 4px;
+    align-content: end;
+    display: grid;
+}
+
+.person h4{
+    margin: 0;
+    padding-left: 8px;
+    align-content: center;
+    display: grid;
+}
+
 .reference-name{
     color: #d0d0d0;
     font-weight: 600;
@@ -121,4 +149,9 @@ h6{
 .verse_num{
     font-weight: 600;
     padding-right: 2px;
+}
+
+sup{
+    vertical-align: baseline;
+    padding: 3px;
 }

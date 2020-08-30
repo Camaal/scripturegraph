@@ -7,12 +7,13 @@
       <title>Welcome to ScriptureGraph</title>
       {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="container">
     <div class="sidenav">
-        <h6>Author</h6>
+        <div class="section-title"><h6>Author</h6></div>
         <div id="author">
             <ul>
                 {% for author in authorDegrees %}
@@ -22,7 +23,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <h6>Book</h6>
+        <div class="section-title"><h6>Book</h6></div>
         <div id="book">
             <ul>
                 {% for book in bookDegrees %}
@@ -32,7 +33,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <h6>Chapter</h6>
+        <div class="section-title"><h6>Chapter</h6></div>
         <div id="chapter">
             <ul>
                 {% for chapter in chapterDegrees %}
