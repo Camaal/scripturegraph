@@ -37,6 +37,8 @@ class Sources(db.Model):
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
+    norm_degree = db.Column(db.Float, nullable=True)
+    color = db.Column(db.String(250), nullable=False)
 
     targets = db.relationship('References')
 
@@ -61,5 +63,7 @@ class Targets(db.Model):
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
+    norm_degree = db.Column(db.Float, nullable=True)
+    color = db.Column(db.String(250), nullable=False)
 
     sources = db.relationship('References')

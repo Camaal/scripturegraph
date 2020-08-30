@@ -12,10 +12,10 @@
             {% for verse in dverses%}
                 {% if verse.chapter==i%}
                 <span class="scripture">
-                           <span>
-                              <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                              {{verse.text}}
-                           </span>
+                       <span style="color:rgba{{verse.norm_degree | degreeColor}};">
+                          <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
+                          {{verse.text}}<sup>{{verse.degree}}</sup>
+                       </span>
                 </span>
                 {% endif %}
             {% endfor %}
@@ -30,9 +30,9 @@
                {% if b.book == item.book %}
                    {% if b.chapter == item.chapter %}
                     <span class="scripture">
-                         <div>
+                         <div style="color:rgba{{item.norm_degree | degreeColor}};">
                             <span class="verse_num" data-degree="{{item.degree}}">{{item.verse}}</span>
-                            {{item.text}}
+                            {{item.text}}<sup>{{item.degree}}</sup>
                          </div>
                     </span>
                    {% endif %}
