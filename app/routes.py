@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, flash, redirect
 
 from app import app, db
 from sqlalchemy import func
-from app.models import References, Sources, Targets
+from app.models import Books, Authors, References, Sources, Targets
 import matplotlib as mpl
 import matplotlib.cm as cm
 
@@ -27,13 +27,10 @@ def flat_list(l):
 def index():
 
     # List all books in order they were written
-    books = db.session.query(Sources.book_name).distinct().order_by(Sources.book)
+    books = db.session.query(Books.book_name).distinct().order_by(Books.book)
 
-    # List all the chapters in order
-    chapters = db.session.query(Sources.chapter).distinct().order_by(Sources.chapter)
-
-    # List all the authors of each book and chapter
-    authors = db.session.query(Sources.author).distinct().order_by(Sources.author)
+    authors = db.session.query(Authors.author, Authors.book_name, Authors.book, Authors.chapter)\
+        .order_by(Authors.book).all()
 
     # Sum degree for each book
     bookDegrees = db.session.query(Sources.book_name, func.sum(Sources.degree).label('total')).group_by(
@@ -51,23 +48,28 @@ def index():
     dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=1).count()
 
     # List chapters, verses, and text for a given book
-    dverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color, Sources.norm_degree).filter_by(book=1)
+    dverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
+                               Sources.norm_degree).filter_by(book=1)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
     tbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(
         References).filter(
-        References.Source == 1001001).all()
+        References.Source == 1001001).order_by(Targets.book).distinct()
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
     joins = db.session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
-                    Targets.degree, Targets.color, Targets.norm_degree).join(References).filter(References.Source == 1001001).all()
+                             Targets.degree, Targets.color, Targets.norm_degree).join(References)\
+        .filter(References.Source == 1001001).all()
+
+    # List authors related to Gen 1:1
+    tauthors = db.session.query(Targets.author).join(References) \
+        .filter(References.Source == 1001001).distinct()
 
     # Return the data to index.html
 
     return render_template('index.html',
                            title='Home',
                            books=books,
-                           chapters=chapters,
                            authors=authors,
                            dchapters=dchapters,
                            dverses=dverses,
@@ -75,5 +77,6 @@ def index():
                            tbooks=tbooks,
                            bookDegrees=bookDegrees,
                            chapterDegrees=chapterDegrees,
-                           authorDegrees=authorDegrees
+                           authorDegrees=authorDegrees,
+                           tauthors=tauthors
                            )

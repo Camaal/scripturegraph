@@ -83,6 +83,17 @@ h4{
     color: #1c1c1c;
 }
 
+.reference-name{
+    color: #d0d0d0;
+    font-weight: 600;
+    margin: 0px 0 32px 0;
+    text-align: left;
+}
+
+.reference-name:hover{
+    color: #1c1c1c;
+}
+
 h6{
     margin:0;
     margin-top: 2em;

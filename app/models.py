@@ -11,6 +11,22 @@ class Books(db.Model):
     def __repr__(self):
         return '<Books {}>'.format(self.body)
 
+class Authors(db.Model):
+    __tablename__ = "authors"
+
+    id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String(250), nullable=False)
+    book_name = db.Column(db.String(250), nullable=False)
+    testament = db.Column(db.String(2), nullable=False)
+    genre_name = db.Column(db.String(250), nullable=False)
+    book = db.Column(db.Integer, primary_key=True)
+    chapter = db.Column(db.Integer, nullable=False)
+    degree = db.Column(db.Integer, nullable=False)
+    norm_degree = db.Column(db.Float, nullable=True)
+
+    def __repr__(self):
+        return '<Books {}>'.format(self.body)
+
 
 class References(db.Model):
     __tablename__ = "references"
