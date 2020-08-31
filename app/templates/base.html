@@ -28,7 +28,7 @@
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
-                    <div class="name">{{book.book_name}}</div><div class="degreeNumber">{{book.total | numberFormat}}</div>
+                    <div class="name"><a href="/book/{{book.book}}/verse/1001001" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a></div><div class="degreeNumber">{{book.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>

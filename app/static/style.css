@@ -5,6 +5,22 @@ html, body{
     color: #1c1c1c;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
 .container{
     display: grid;
     grid-template-columns: 250px auto;

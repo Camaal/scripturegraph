@@ -14,7 +14,7 @@
                 <span class="scripture">
                        <span style="color:rgba{{verse.norm_degree | degreeColor}};">
                           <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                          {{verse.text}}<sup>{{verse.degree}}</sup>
+                           <a href="/book/{{verse.book}}/verse/{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
                        </span>
                 </span>
                 {% endif %}
