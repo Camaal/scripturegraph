@@ -25,6 +25,7 @@ $(document).ready(function () {
     });
 
     $('.bookFilter').on('click', function (){
+
         const book_id = $(this).attr('book_id');
 
         let getSourceByBook = $.ajax({
@@ -49,6 +50,7 @@ $(document).ready(function () {
     });
 
     $('.verseFilter').on('click', function (){
+
         const verse_id = $(this).attr('verse_id');
 
         let getSourceByBook = $.ajax({

@@ -83,6 +83,7 @@ a:active {
     display: grid;
     grid-template-rows: 20px 20px 600px ;
     grid-row-gap: .5em;
+    min-width: 571px;
 }
 
 .verses{
