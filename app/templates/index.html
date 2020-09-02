@@ -5,7 +5,7 @@
     <iframe class="map" src="{{ url_for('static', filename='nx.html') }}" frameborder="0" scrolling="auto"></iframe>
 </div>-->
 <div class="parallel">
-    <div class="collection"><h6 class="collection-title">Genesis</h6><div class="color-scale"></div><div class="verses">
+    <div id="source_text" class="collection"><h6 class="collection-title">Genesis</h6><div class="color-scale"></div><div class="verses">
     <div>
         {% for i in range(1, dchapters)%}
             <h4>Chapter {{i}}</h4>
@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
 </div></div>
-    <div class="collection"><h6 class="collection-title">Cross-References</h6><div class="color-scale"></div><div class="verses">
+    <div id="target_text" class="collection"><h6 class="collection-title">Cross-References</h6><div class="color-scale"></div><div class="verses">
     <div class="cross-references">
         {% for author in tauthors %}
             <div class="person">
@@ -47,4 +47,5 @@
     </div>
 </div></div>
 </div>
+
 {% endblock %}
