@@ -1,0 +1,8 @@
+<ul>
+  {% for chapter in filterchapers %}
+  <li class="degreeItem">
+    <div class="name">{{chapter.chapter}}</div>
+    <div class="degreeNumber">{{chapter.total | numberFormat}}</div>
+  </li>
+  {% endfor %}
+</ul>

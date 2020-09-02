@@ -17,7 +17,7 @@
 <div class="container">
     <div class="sidenav">
         <div class="section-title"><h6>Author</h6></div>
-        <div id="author_menu">
+        <div id="author_menu" menu_name="author">
             <ul>
                 {% for author in authorDegrees %}
                 <li class="degreeItem">
@@ -27,17 +27,20 @@
             </ul>
         </div>
         <div class="section-title"><h6>Book</h6></div>
-        <div id="book_menu">
+        <div id="book_menu" menu_name="book">
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
-                    <div class="name"><a href="/book/{{book.book}}/verse/1001001" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a></div><div class="degreeNumber">{{book.total | numberFormat}}</div>
+                    <div class="name">
+                        <a href="#" class="filterSource" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
+                    </div>
+                    <div class="degreeNumber">{{book.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
         <div class="section-title"><h6>Chapter</h6></div>
-        <div id="chapter_menu">
+        <div id="chapter_menu" menu_name="chapter">
             <ul>
                 {% for chapter in chapterDegrees %}
                 <li class="degreeItem">

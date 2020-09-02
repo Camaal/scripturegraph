@@ -1,7 +1,31 @@
 <ul>
   {% for book in filteredbooks %}
   <li class="degreeItem">
-      <div class="name"><a href="/book/{{book.book}}/verse/1001001" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a></div><div class="degreeNumber">{{book.total | numberFormat}}</div>
+      <div class="name">
+        <a href="#" class="filterSource" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
+      </div>
+    <div class="degreeNumber">{{book.total | numberFormat}}</div>
   </li>
   {% endfor %}
 </ul>
+
+{% block script %}
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        $('.filterSource').on('click', function (){
+            const book_id = $(this).attr('book_id');
+
+            let getSourceByBook = $.ajax({
+                url: '/filter_source',
+                type: 'POST',
+                data: {book: book_id}
+            });
+
+            getSourceByBook.done(function (data) {
+                $('#source_text').html(data);
+            })
+        });
+    });
+</script>
+{% endblock %}

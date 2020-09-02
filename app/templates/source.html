@@ -1,0 +1,34 @@
+{% for i in range(1, fschapters)%}
+    <h4>Chapter {{i}}</h4>
+    {% for verse in fsverses%}
+        {% if verse.chapter==i%}
+        <span class="scripture">
+               <span style="color:rgba{{verse.norm_degree | degreeColor}};">
+                  <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
+                   <a href="#" class="filterVerse" verse_id="{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
+               </span>
+        </span>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% block script %}
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        $('.filterVerse').on('click', function (){
+            const verse_id = $(this).attr('verse_id');
+
+            let getSourceByBook = $.ajax({
+                url: '/filter_target',
+                type: 'POST',
+                data: {Id: verse_id}
+            });
+
+            getSourceByBook.done(function (data) {
+                $('#target_text').html(data);
+            })
+        });
+    });
+</script>
+{% endblock %}

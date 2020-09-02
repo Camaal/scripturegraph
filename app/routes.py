@@ -88,3 +88,39 @@ def filter_book_menu():
         Sources.book_name).order_by(Sources.book).filter_by(author = request.form['author'])
 
     return render_template('book_menu.html', filteredbooks=filteredbooks)
+
+
+@app.route('/filter_chapter_menu', methods=['POST'])
+def filter_chapter_menu():
+
+    filterchapers = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
+        Sources.chapter).order_by(Sources.chapter).filter_by(author = request.form['author'])
+
+    return render_template('chapter_menu.html', filterchapers=filterchapers)
+
+
+@app.route('/filter_source', methods=['POST'])
+def filter_source():
+
+    fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=request.form['book']).count()
+
+    fsverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
+                               Sources.norm_degree, Sources.Id).filter_by(book=request.form['book'])
+
+    return render_template('source.html', fschapters=fschapters, fsverses=fsverses)
+
+@app.route('/filter_target', methods=['POST'])
+def filter_target():
+
+    ftbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(
+        References).filter(
+        References.Source == request.form['Id']).order_by(Targets.book).distinct()
+
+    ftverses = db.session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
+                             Targets.degree, Targets.color, Targets.norm_degree).join(References) \
+        .filter(References.Source == request.form['Id']).all()
+
+    ftauthors = db.session.query(Targets.author).join(References) \
+        .filter(References.Source == request.form['Id']).distinct()
+
+    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors )
