@@ -29,7 +29,7 @@ def index():
     books = db.session.query(Books.book_name).distinct().order_by(Books.book)
 
     authors = db.session.query(Authors.author, Authors.book_name, Authors.book, Authors.chapter)\
-        .order_by(Authors.book).all()
+        .order_by(Authors.degree).all()
 
     # Sum degree for each book
     bookDegrees = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total')).group_by(
@@ -41,7 +41,7 @@ def index():
 
     # Sum degree for each chapter
     authorDegrees = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).order_by(Sources.author).all()
+        Sources.author).order_by(func.sum(Sources.degree).desc()).all()
 
     # List distinct chapters for a given book
     dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=1).count()
@@ -128,6 +128,6 @@ def filter_target():
 @app.route('/filter_author_menu', methods=['POST'])
 def filter_author_menu():
     filteredauthors = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).order_by(Sources.author).filter_by(book=request.form['book'])
+        Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=request.form['book'])
 
     return render_template('author_menu.html', filteredauthors=filteredauthors)
