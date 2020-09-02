@@ -2,7 +2,7 @@
   {% for book in filteredbooks %}
   <li class="degreeItem">
       <div class="name">
-        <a href="#" class="filterSource" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
+        <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
       </div>
     <div class="degreeNumber">{{book.total | numberFormat}}</div>
   </li>
@@ -13,7 +13,7 @@
 <script type="application/javascript">
     $(document).ready(function () {
 
-        $('.filterSource').on('click', function (){
+        $('.bookFilter').on('click', function (){
             const book_id = $(this).attr('book_id');
 
             let getSourceByBook = $.ajax({
@@ -24,6 +24,16 @@
 
             getSourceByBook.done(function (data) {
                 $('#source_text').html(data);
+            })
+
+            let getAuthors = $.ajax({
+                url: '/filter_author_menu',
+                type: 'POST',
+                data: {book: book_id}
+            });
+
+            getAuthors.done(function (data) {
+                $('#author_menu').html(data);
             })
         });
     });

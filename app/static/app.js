@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('.filterBook').on('click', function (){
+    $('.authorFilter').on('click', function (){
         const author_name = $(this).attr('author_name');
 
         let getBookByAuthor = $.ajax({
@@ -24,7 +24,7 @@ $(document).ready(function () {
         })
     });
 
-    $('.filterSource').on('click', function (){
+    $('.bookFilter').on('click', function (){
         const book_id = $(this).attr('book_id');
 
         let getSourceByBook = $.ajax({
@@ -36,9 +36,19 @@ $(document).ready(function () {
         getSourceByBook.done(function (data) {
             $('#source_text').html(data);
         })
+
+        let getAuthors = $.ajax({
+            url: '/filter_author_menu',
+            type: 'POST',
+            data: {book: book_id}
+        });
+
+        getAuthors.done(function (data) {
+            $('#author_menu').html(data);
+        })
     });
 
-    $('.filterVerse').on('click', function (){
+    $('.verseFilter').on('click', function (){
         const verse_id = $(this).attr('verse_id');
 
         let getSourceByBook = $.ajax({

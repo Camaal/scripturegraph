@@ -124,3 +124,10 @@ def filter_target():
         .filter(References.Source == request.form['Id']).distinct()
 
     return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors )
+
+@app.route('/filter_author_menu', methods=['POST'])
+def filter_author_menu():
+    filteredauthors = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
+        Sources.author).order_by(Sources.author).filter_by(book=request.form['book'])
+
+    return render_template('author_menu.html', filteredauthors=filteredauthors)
