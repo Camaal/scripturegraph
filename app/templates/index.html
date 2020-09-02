@@ -5,47 +5,82 @@
     <iframe class="map" src="{{ url_for('static', filename='nx.html') }}" frameborder="0" scrolling="auto"></iframe>
 </div>-->
 <div class="parallel">
-    <div class="collection"><h6 class="collection-title">Source</h6><div class="color-scale"></div><div class="verses">
-    <div id="source_text">
-        {% for i in range(1, dchapters)%}
-            <h4>Chapter {{i}}</h4>
-            {% for verse in dverses%}
-                {% if verse.chapter==i%}
-                <span class="scripture">
-                       <span style="color:rgba{{verse.norm_degree | degreeColor}};">
-                          <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                           <a href="#" class="filterVerse" verse_id="{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
-                       </span>
-                </span>
-                {% endif %}
+    <div class="collection">
+      <h6 class="collection-title">Source Connections</h6>
+      <div class="color-scale">
+        <div class="min">1</div>
+        <div class="max">436</div>
+      </div>
+      <div class="verses">
+        <div id="source_text">
+            {% for i in range(1, dchapters)%}
+                <h4>Chapter {{i}}</h4>
+                {% for verse in dverses%}
+                    {% if verse.chapter==i%}
+                    <span class="scripture">
+                           <span style="color:rgba{{verse.norm_degree | degreeColor}};">
+                              <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
+                               <a href="#" class="filterVerse" verse_id="{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
+                           </span>
+                    </span>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
+      </div>
     </div>
-</div></div>
-    <div class="collection"><h6 class="collection-title">Cross-References</h6><div class="color-scale"></div><div class="verses">
-    <div id="target_text" class="cross-references">
-        {% for author in tauthors %}
-            <div class="person">
-                <span class="material-icons">account_circle</span>
-                <h4>{{author.author}}</h4>
-            </div>
-            {% for b in tbooks if b.author == author.author %}
-                   {% for item in joins%}
-                       {% if b.book == item.book %}
-                           {% if b.chapter == item.chapter %}
-                            <span class="scripture">
-                                 <span style="color:rgba{{item.norm_degree | degreeColor}};">
-                                    {{item.text}}<sup>{{item.degree}}</sup>
-                                 </span>
-                            </span>
-                            <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
+    <div class="collection">
+      <h6 class="collection-title">Cross-References Connections</h6>
+      <div class="color-scale">
+        <div class="min">1</div>
+        <div class="max">436</div>
+      </div>
+      <div class="verses">
+        <div id="target_text" class="cross-references">
+            {% for author in tauthors %}
+                <div class="person">
+                    <span class="material-icons">account_circle</span>
+                    <h4>{{author.author}}</h4>
+                </div>
+                {% for b in tbooks if b.author == author.author %}
+                       {% for item in joins%}
+                           {% if b.book == item.book %}
+                               {% if b.chapter == item.chapter %}
+                                <span class="scripture">
+                                     <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                                        {{item.text}}<sup>{{item.degree}}</sup>
+                                     </span>
+                                </span>
+                                <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
+                               {% endif %}
                            {% endif %}
-                       {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
+      </div>
     </div>
-</div></div>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        $('.filterVerse').on('click', function (){
+            const verse_id = $(this).attr('verse_id');
+
+            let getSourceByBook = $.ajax({
+                url: '/filter_target',
+                type: 'POST',
+                data: {Id: verse_id}
+            });
+
+            getSourceByBook.done(function (data) {
+                $('#target_text').html(data);
+            })
+        });
+    });
+</script>
 {% endblock %}

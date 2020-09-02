@@ -47,8 +47,8 @@ def index():
     dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=1).count()
 
     # List chapters, verses, and text for a given book
-    dverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
-                               Sources.norm_degree).filter_by(book=1)
+    dverses = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
+                               Sources.norm_degree, Sources.Id).filter_by(book=1)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
     tbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(

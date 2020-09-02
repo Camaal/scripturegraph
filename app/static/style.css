@@ -113,13 +113,26 @@ ul > li{
 }
 
 .color-scale{
-    height: .5em;
     width: 100%;
     background: #4a7d70;
     background-image: linear-gradient(90deg, #440154, #482475, #414487, #355f8d, #2a788e, #21908d, #22a884, #42be71, #7ad151, #bddf26, #bddf26);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
 }
 
 /*Typography*/
+
+.min, .max{
+    color: #fff;
+    font-size: .75em;
+    font-weight: 600;
+    padding: 0 8px;
+}
+
+.max{
+    text-align: right;
+}
 
 h4{
     font-weight: 600;
