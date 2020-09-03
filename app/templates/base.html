@@ -21,9 +21,8 @@
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
-                    <div class="name">
-                        <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
-                    </div>
+                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">
+                        <div class="name">{{book.book_name}}</div></a>
                     <div class="degreeNumber">{{book.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
@@ -34,7 +33,11 @@
             <ul>
                 {% for chapter in chapterDegrees %}
                 <li class="degreeItem">
-                    <div class="name"><a href="#" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="text-decoration: none; color: #1c1c1c;">{{chapter.chapter}}</a></div><div class="degreeNumber">{{chapter.total | numberFormat}}</div>
+
+                    <a href="#" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="text-decoration: none; color: #1c1c1c;">
+                        <div class="name">{{chapter.chapter}}</div>
+                    </a>
+                    <div class="degreeNumber">{{chapter.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
@@ -44,7 +47,10 @@
             <ul>
                 {% for author in authorDegrees %}
                 <li class="degreeItem">
-                    <div class="name"><a href="#" class="authorFilter" author_name="{{author.author}}" style="text-decoration: none; color: #1c1c1c;">{{author.author}}</a></div><div class="degreeNumber">{{author.total | numberFormat}}</div>
+                    <a href="#" class="authorFilter" author_name="{{author.author}}" style="text-decoration: none; color: #1c1c1c;">
+                        <div class="name">{{author.author}}</div>
+                    </a>
+                    <div class="degreeNumber">{{author.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>

@@ -1,9 +1,8 @@
 <ul>
   {% for book in filteredbooks %}
   <li class="degreeItem">
-      <div class="name">
-        <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">{{book.book_name}}</a>
-      </div>
+
+    <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;"><div class="name">{{book.book_name}}</div></a>
     <div class="degreeNumber">{{book.total | numberFormat}}</div>
   </li>
   {% endfor %}

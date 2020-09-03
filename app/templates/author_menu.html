@@ -1,7 +1,10 @@
 <ul>
     {% for author in filteredauthors %}
     <li class="degreeItem">
-        <div class="name"><a href="#" class="authorFilter" author_name="{{author.author}}">{{author.author}}</a></div><div class="degreeNumber">{{author.total | numberFormat}}</div>
+        <a href="#" class="authorFilter" author_name="{{author.author}}">
+            <div class="name">{{author.author}}</div>
+        </a>
+        <div class="degreeNumber">{{author.total | numberFormat}}</div>
     </li>
     {% endfor %}
 </ul>
