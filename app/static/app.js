@@ -23,7 +23,6 @@ $(document).ready(function () {
             $('#chapter_menu').html(data);
         })
     });
-
     $('.bookFilter').on('click', function (){
 
         const book_id = $(this).attr('book_id');
@@ -36,7 +35,17 @@ $(document).ready(function () {
 
         getSourceByBook.done(function (data) {
             $('#source_text').html(data);
-        })
+        });
+
+        let getSourceBookName = $.ajax({
+            url: '/filter_book_name',
+            type: 'POST',
+            data: {book: book_id}
+        });
+
+        getSourceBookName.done(function (data) {
+            $('#sourceBookName').html(data);
+        });
 
         let getAuthors = $.ajax({
             url: '/filter_author_menu',
@@ -46,9 +55,8 @@ $(document).ready(function () {
 
         getAuthors.done(function (data) {
             $('#author_menu').html(data);
-        })
+        });
     });
-
     $('.verseFilter').on('click', function (){
 
         const verse_id = $(this).attr('verse_id');
@@ -63,5 +71,41 @@ $(document).ready(function () {
             $('#target_text').html(data);
         })
     });
+
+    const authorContainer = document.getElementById('author_menu');
+    const authorbtns = authorContainer.getElementsByClassName('authorFilter');
+    for (let i = 0; i < authorbtns.length; i++){
+        authorbtns[i].addEventListener('click',function () {
+            const current = document.getElementsByClassName('active');
+            if (current.length > 0){
+                current[0].className = current[0].className.replace(' active', '');
+            }
+            this.className += ' active';
+        });
+    }
+
+    const bookContainer = document.getElementById('book_menu');
+    const bookbtns = bookContainer.getElementsByClassName('bookFilter');
+    for (let i = 0; i < bookbtns.length; i++){
+        bookbtns[i].addEventListener('click',function () {
+            const current = document.getElementsByClassName('active');
+            if (current.length > 0){
+                current[0].className = current[0].className.replace(' active', '');
+            }
+            this.className += ' active';
+        });
+    }
+
+    const chapterContainer = document.getElementById('chapter_menu');
+    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    for (let i = 0; i < chapterbtns.length; i++){
+        chapterbtns[i].addEventListener('click',function () {
+            const current = document.getElementsByClassName('active');
+            if (current.length > 0){
+                current[0].className = current[0].className.replace(' active', '');
+            }
+            this.className += ' active';
+        });
+    }
 
 });

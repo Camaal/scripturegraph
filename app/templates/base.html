@@ -16,16 +16,6 @@
 <body>
 <div class="container">
     <div class="sidenav">
-        <div class="section-title"><h6>Author</h6></div>
-        <div id="author_menu" menu_name="author">
-            <ul>
-                {% for author in authorDegrees %}
-                <li class="degreeItem">
-                    <div class="name"><a href="#" class="authorFilter" author_name="{{author.author}}" style="text-decoration: none; color: #1c1c1c;">{{author.author}}</a></div><div class="degreeNumber">{{author.total | numberFormat}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
         <div class="section-title"><h6>Book</h6></div>
         <div id="book_menu" menu_name="book">
             <ul>
@@ -45,6 +35,16 @@
                 {% for chapter in chapterDegrees %}
                 <li class="degreeItem">
                     <div class="name"><a href="#" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="text-decoration: none; color: #1c1c1c;">{{chapter.chapter}}</a></div><div class="degreeNumber">{{chapter.total | numberFormat}}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="section-title"><h6>Author</h6></div>
+        <div id="author_menu" menu_name="author">
+            <ul>
+                {% for author in authorDegrees %}
+                <li class="degreeItem">
+                    <div class="name"><a href="#" class="authorFilter" author_name="{{author.author}}" style="text-decoration: none; color: #1c1c1c;">{{author.author}}</a></div><div class="degreeNumber">{{author.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>

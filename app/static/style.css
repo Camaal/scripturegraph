@@ -3,6 +3,7 @@ html, body{
     font-weight: 300;
     margin: 0;
     color: #1c1c1c;
+    background-color: #eeeeee;
 }
 
 a:link {
@@ -19,6 +20,11 @@ a:hover {
 
 a:active {
   text-decoration: underline;
+}
+
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
 }
 
 .container{
@@ -47,25 +53,25 @@ a:active {
     grid-template-rows: 40px 400px 50px 200px 50px 200px;
     padding-right: 1em;
     height: 100%;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #ccc;
 }
 
 #book_menu, #chapter_menu, #author_menu{
     overflow-y: scroll;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding: 8px 1em 8px 0;
 }
 
 .content{
     display: grid;
     //grid-template-rows: 600px 415px;
-    grid-template-rows: 100%;
+    //grid-template-rows: 100%;
     grid-row-gap: 1em;
     align-content: center;
     padding: 200px;
     height: 600px;
-    //border: 1px solid #eee;
+    //border: 1px solid #ccc;
 }
 
 .map{
@@ -89,7 +95,7 @@ a:active {
 .verses{
     overflow-y: scroll;
     padding-right: 1em;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
 }
 
 .cross-references{
@@ -124,8 +130,12 @@ ul > li{
 
 /*Typography*/
 
+h1{
+    font-weight: 400;
+}
+
 .min, .max{
-    color: #fff;
+    color: #eeeeee;
     font-size: .75em;
     font-weight: 600;
     padding: 0 8px;
@@ -133,6 +143,7 @@ ul > li{
 
 .max{
     text-align: right;
+    color: #1c1c1c !important;
 }
 
 h4{

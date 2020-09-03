@@ -27,7 +27,18 @@
 
             getSourceByBook.done(function (data) {
                 $('#source_text').html(data);
-            })
+            });
+
+            let getSourceBookName = $.ajax({
+                url: '/filter_book_name',
+                type: 'POST',
+                data: {book: book_id}
+            });
+
+            getSourceBookName.done(function (data) {
+                $('#sourceBookName').html(data);
+            });
+
 
             let getAuthors = $.ajax({
                 url: '/filter_author_menu',
@@ -37,8 +48,20 @@
 
             getAuthors.done(function (data) {
                 $('#author_menu').html(data);
-            })
+            });
         });
+
+        const bookContainer = document.getElementById('book_menu');
+        const bookbtns = bookContainer.getElementsByClassName('bookFilter');
+        for (let i = 0; i < bookbtns.length; i++){
+            bookbtns[i].addEventListener('click',function () {
+                const current = document.getElementsByClassName('active');
+                if (current.length > 0){
+                    current[0].className = current[0].className.replace(' active', '');
+                }
+                this.className += ' active';
+            });
+        }
     });
 </script>
 {% endblock %}

@@ -6,3 +6,20 @@
   </li>
   {% endfor %}
 </ul>
+
+{% block script %}
+<script type="application/javascript">
+  const chapterContainer = document.getElementById('chapter_menu');
+    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    for (let i = 0; i < chapterbtns.length; i++){
+        chapterbtns[i].addEventListener('click',function () {
+            const current = document.getElementsByClassName('active');
+            if (current.length > 0){
+                current[0].className = current[0].className.replace(' active', '');
+            }
+            this.className += ' active';
+        });
+    }
+
+</script>
+{% endblock %}
