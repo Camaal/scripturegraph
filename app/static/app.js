@@ -56,6 +56,16 @@ $(document).ready(function () {
         getAuthors.done(function (data) {
             $('#author_menu').html(data);
         });
+
+        let getChapters = $.ajax({
+            url: '/filter_chapter_menu',
+            type: 'POST',
+            data: {book: book_id}
+        });
+
+        getChapters.done(function (data) {
+            $('#chapter_menu').html(data);
+        });
     });
     $('.verseFilter').on('click', function (){
 

@@ -100,7 +100,7 @@ def filter_book_menu():
 def filter_chapter_menu():
 
     filteredchapters = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).order_by(Sources.chapter).filter_by(author = request.form['author'])
+        Sources.chapter).order_by(Sources.chapter).filter_by(book = request.form['book'])
 
     return render_template('chapter_menu.html', filteredchapters=filteredchapters)
 
