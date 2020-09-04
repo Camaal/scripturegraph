@@ -3,7 +3,7 @@ html, body{
     font-weight: 300;
     margin: 0;
     color: #1c1c1c;
-    background-color: #eeeeee;
+    background-color: #efefef;
 }
 
 #top-nav-container{
@@ -13,8 +13,8 @@ html, body{
 
 .top-nav-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 40%;
     margin: 0 auto;
 }
 

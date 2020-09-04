@@ -22,8 +22,8 @@ def flat_list(l):
     return ["%s" % v for v in l]
 
 @app.route('/')
-@app.route('/index')
-def index():
+@app.route('/parallel')
+def parallel():
 
     defaultbookname = 'Genesis'
     defaultbook = 1
