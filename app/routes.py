@@ -24,6 +24,7 @@ def flat_list(l):
 @app.route('/')
 @app.route('/index')
 def index():
+
     defaultbookname = 'Genesis'
     defaultbook = 1
     defaultsource = 1001001
@@ -35,28 +36,27 @@ def index():
         .order_by(Authors.degree).all()
 
     # Sum degree for each book
-    bookDegrees = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total')).group_by(
-        Sources.book_name).order_by(Sources.book).all()
+    bookDegrees = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total'))\
+        .group_by(Sources.book_name).order_by(Sources.book).all()
 
     # Sum degree for each chapter
-    authorDegrees = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).order_by(func.sum(Sources.degree).desc()).all()
+    authorDegrees = db.session.query(Sources.author, func.sum(Sources.degree).label('total'))\
+        .group_by(Sources.author).order_by(func.sum(Sources.degree).desc()).all()
 
     # Sum degree for each chapter
-    chapterDegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).order_by(Sources.chapter).filter_by(book=defaultbook)
+    chapterDegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total'))\
+        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=defaultbook)
 
     # List distinct chapters for a given book
     dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=defaultbook).count()
 
     # List chapters, verses, and text for a given book
-    dverses = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
-                               Sources.norm_degree, Sources.Id).filter_by(book=defaultbook)
+    dverses = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.text, Sources.degree,
+                               Sources.color, Sources.norm_degree, Sources.Id).filter_by(book=defaultbook)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
-    tbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(
-        References).filter(
-        References.Source == defaultsource).order_by(Targets.book).distinct()
+    tbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author)\
+        .distinct().join(References).filter(References.Source == defaultsource).order_by(Targets.book).distinct()
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
     joins = db.session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
@@ -68,7 +68,6 @@ def index():
         .filter(References.Source == defaultsource).distinct()
 
     # Return the data to index.html
-
     return render_template('index.html',
                            title='Home',
                            defaultbookname=defaultbookname,
@@ -90,8 +89,9 @@ def index():
 @app.route('/filter_book_menu', methods=['POST'])
 def filter_book_menu():
 
-    filteredbooks = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total')).group_by(
-        Sources.book_name).order_by(func.sum(Sources.degree).desc()).filter_by(author = request.form['author'])
+    filteredbooks = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total'))\
+        .group_by(Sources.book_name).order_by(func.sum(Sources.degree).desc())\
+        .filter_by(author=request.form['author'])
 
     return render_template('book_menu.html', filteredbooks=filteredbooks)
 
@@ -100,7 +100,7 @@ def filter_book_menu():
 def filter_chapter_menu():
 
     filteredchapters = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).order_by(Sources.chapter).filter_by(book = request.form['book'])
+        Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
 
     return render_template('chapter_menu.html', filteredchapters=filteredchapters)
 
@@ -108,8 +108,8 @@ def filter_chapter_menu():
 @app.route('/filter_source', methods=['POST'])
 def filter_source():
 
-    fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
+    fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total'))\
+        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
 
     fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=request.form['book']).count()
 
@@ -126,12 +126,12 @@ def filter_book_name():
 
     return render_template('source_book_name.html', defaultsbookname=defaultsbookname)
 
+
 @app.route('/filter_target', methods=['POST'])
 def filter_target():
 
     ftbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(
-        References).filter(
-        References.Source == request.form['Id']).order_by(Targets.book).distinct()
+        References).filter(References.Source == request.form['Id']).order_by(Targets.book).distinct()
 
     ftverses = db.session.query(Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                              Targets.degree, Targets.color, Targets.norm_degree).join(References) \
@@ -140,10 +140,12 @@ def filter_target():
     ftauthors = db.session.query(Targets.author).join(References) \
         .filter(References.Source == request.form['Id']).distinct()
 
-    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors )
+    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors)
+
 
 @app.route('/filter_author_menu', methods=['POST'])
 def filter_author_menu():
+
     filteredauthors = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
         Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=request.form['book'])
 

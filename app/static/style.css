@@ -6,6 +6,18 @@ html, body{
     background-color: #eeeeee;
 }
 
+#top-nav-container{
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+}
+
+.top-nav-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 500px;
+    margin: 0 auto;
+}
+
 a:link {
   text-decoration: none;
 }
@@ -30,10 +42,8 @@ a:active {
 .container{
     display: grid;
     grid-template-columns: 250px auto;
-    padding-top: 1em;
     grid-column-gap: 2em;
-    margin: 0 2em 0 2em;
-    height: 96vh;
+    height: calc(100vh - 32px);
 }
 
 .person{
@@ -51,7 +61,7 @@ a:active {
 .sidenav{
     display: grid;
     grid-template-rows: 40px 400px 50px 200px 50px 200px;
-    padding-right: 1em;
+    padding: 0 1.5em;
     height: 100%;
     border-right: 1px solid #ccc;
 }
@@ -129,6 +139,15 @@ ul > li{
 }
 
 /*Typography*/
+
+.top-nav-item{
+    text-transform: uppercase;
+    font-size: .75em;
+    font-weight: 400;
+    letter-spacing: .05em;
+    padding: 8px;
+    text-align: center;
+}
 
 h1{
     font-weight: 400;
