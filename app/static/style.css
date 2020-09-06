@@ -11,9 +11,13 @@ html, body{
     border-bottom: 1px solid #cccccc;
 }
 
+#top-nav-container .material-icons{
+    font-size: 1.5em;
+}
+
 .top-nav-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 40%;
     margin: 0 auto;
 }
@@ -41,8 +45,7 @@ a:active {
 
 .container{
     display: grid;
-    grid-template-columns: 250px auto;
-    grid-column-gap: 2em;
+    grid-template-columns: auto auto;
     height: calc(100vh - 32px);
 }
 
@@ -63,6 +66,7 @@ a:active {
     grid-template-rows: 40px 400px 50px 200px 50px 200px;
     padding: 0 1.5em;
     height: 100%;
+    width: 250px;
     border-right: 1px solid #ccc;
 }
 
@@ -76,12 +80,8 @@ a:active {
 .content{
     display: grid;
     grid-template-rows: 70px 480px auto;
-    //grid-template-rows: 100%;
     grid-row-gap: 1em;
     align-content: start;
-    padding: 20px 200px;
-    //height: 600px;
-    //border: 1px solid #ccc;
 }
 
 #graph{
@@ -94,6 +94,7 @@ a:active {
     display: grid;
     grid-template-columns: auto auto;
     grid-column-gap: 2em;
+    padding: 0 200px;
 }
 
 .collection{
@@ -101,6 +102,7 @@ a:active {
     grid-template-rows: 20px 20px 300px ;
     grid-row-gap: .5em;
     min-width: 571px;
+    margin-top: 2em;
 }
 
 .verses{
@@ -152,6 +154,7 @@ ul > li{
 
 h1{
     font-weight: 400;
+    padding: 0 200px;
 }
 
 .min, .max{

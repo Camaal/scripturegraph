@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+    $('.menu').on('click', function showNav (){
+        const x = document.getElementById("sidenav");
+        if (x.style.display === "none") {
+            x.style.display = "grid";
+        } else {
+            x.style.display = "none";
+        }
+    });
+
+
     $('.authorFilter').on('click', function (){
         const author_name = $(this).attr('author_name');
 
