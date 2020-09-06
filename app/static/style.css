@@ -75,18 +75,19 @@ a:active {
 
 .content{
     display: grid;
-    //grid-template-rows: 600px 415px;
+    grid-template-rows: 70px 600px 415px;
     //grid-template-rows: 100%;
     grid-row-gap: 1em;
-    align-content: center;
-    padding: 200px;
-    height: 600px;
+    align-content: start;
+    padding: 20px 200px;
+    //height: 600px;
     //border: 1px solid #ccc;
 }
 
-.map{
+#graph{
     width: 100%;
     height: 100%;
+    background-color: #1c1c1c;
 }
 
 .parallel{
