@@ -75,7 +75,7 @@ a:active {
 
 .content{
     display: grid;
-    grid-template-rows: 70px 600px 415px;
+    grid-template-rows: 70px 480px auto;
     //grid-template-rows: 100%;
     grid-row-gap: 1em;
     align-content: start;
@@ -98,7 +98,7 @@ a:active {
 
 .collection{
     display: grid;
-    grid-template-rows: 20px 20px 600px ;
+    grid-template-rows: 20px 20px 300px ;
     grid-row-gap: .5em;
     min-width: 571px;
 }
