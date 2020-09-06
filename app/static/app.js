@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('.menu').on('click', function showNav (){
+    $('.menu').on('click', function (){
         const x = document.getElementById("sidenav");
         if (x.style.display === "none") {
             x.style.display = "grid";

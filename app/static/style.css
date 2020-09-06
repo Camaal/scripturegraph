@@ -22,6 +22,10 @@ html, body{
     margin: 0 auto;
 }
 
+.top-nav-item .menu{
+    cursor: pointer;
+}
+
 a:link {
   text-decoration: none;
 }
