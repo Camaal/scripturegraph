@@ -33,102 +33,102 @@
       <h6 class="collection-title">Cross-References Connections</h6>
       <div id="graph"></div>
       <script>
-    // Add a method to the graph model that returns an
-  // object with every neighbors of a node inside:
-  sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-    let k,
-        neighbors = {},
-        index = this.allNeighborsIndex[nodeId] || {};
+          // Add a method to the graph model that returns an
+          // object with every neighbors of a node inside:
+          sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+              let k,
+                  neighbors = {},
+                  index = this.allNeighborsIndex[nodeId] || {};
 
-    for (k in index)
-      neighbors[k] = this.nodesIndex[k];
+              for (k in index)
+                  neighbors[k] = this.nodesIndex[k];
 
-    return neighbors;
-  });
+              return neighbors;
+          });
 
-  // Eventually replace this with dynamically built network
-  s = sigma.parsers.gexf(
-    '../static/data/bible.gexf',
-    {
-      container: 'graph',
-      type: 'webgl',
-      settings: {
-          labelThreshold: 10,
-          defaultLabelSize: 12,
-          defaultLabelColor: "#fff",
-          defaultLabelBGColor: "#ddd",
-          defaultHoverLabelBGColor: "#002147",
-          defaultLabelHoverColor: "#fff",
-          font: 'Source Serif Pro',
-          singleHover: true,
-          drawEdges: true,
-          drawEdgeLabels: false,
-          webglEdgesBatchSize: 10000,
-          minNodeSize: 1,
-          maxNodeSize: 7,
-          minEdgeSize: 0.2,
-          maxEdgeSize: 0.5,
-          batchEdgesDrawing: true
-      }
-    },
-      function(s) {
-      // We first need to save the original colors of our
-      // nodes and edges, like this:
-      s.graph.nodes().forEach(function(n) {
-        n.originalColor = n.color;
-      });
-      s.graph.edges().forEach(function(e) {
-        e.originalColor = e.color;
-      });
+          // Eventually replace this with dynamically built network
+          s = sigma.parsers.gexf(
+              '../static/data/bible.gexf',
+              {
+                  container: 'graph',
+                  type: 'webgl',
+                  settings: {
+                      labelThreshold: 10,
+                      defaultLabelSize: 12,
+                      defaultLabelColor: "#fff",
+                      defaultLabelBGColor: "#ddd",
+                      defaultHoverLabelBGColor: "#002147",
+                      defaultLabelHoverColor: "#fff",
+                      font: 'Source Serif Pro',
+                      singleHover: true,
+                      drawEdges: true,
+                      drawEdgeLabels: false,
+                      webglEdgesBatchSize: 10000,
+                      minNodeSize: 1,
+                      maxNodeSize: 7,
+                      minEdgeSize: 0.2,
+                      maxEdgeSize: 0.5,
+                      batchEdgesDrawing: true
+                  }
+              },
+              function(s) {
+                  // We first need to save the original colors of our
+                  // nodes and edges, like this:
+                  s.graph.nodes().forEach(function(n) {
+                      n.originalColor = n.color;
+                  });
+                  s.graph.edges().forEach(function(e) {
+                      e.originalColor = e.color;
+                  });
 
-      // When a node is clicked, we check for each node
-      // if it is a neighbor of the clicked one. If not,
-      // we set its color as grey, and else, it takes its
-      // original color.
-      // We do the same for the edges, and we only keep
-      // edges that have both extremities colored.
-      s.bind('clickNode', function(e) {
-        let nodeId = e.data.node.id,
-            toKeep = s.graph.neighbors(nodeId);
-        toKeep[nodeId] = e.data.node;
+                  // When a node is clicked, we check for each node
+                  // if it is a neighbor of the clicked one. If not,
+                  // we set its color as grey, and else, it takes its
+                  // original color.
+                  // We do the same for the edges, and we only keep
+                  // edges that have both extremities colored.
+                  s.bind('clickNode', function(e) {
+                      let nodeId = e.data.node.id,
+                          toKeep = s.graph.neighbors(nodeId);
+                      toKeep[nodeId] = e.data.node;
 
-        s.graph.nodes().forEach(function(n) {
-          if (toKeep[n.id])
-            n.color = n.originalColor;
-          else
-            n.color = '#1c1c1c';
-        });
+                      s.graph.nodes().forEach(function(n) {
+                          if (toKeep[n.id])
+                              n.color = n.originalColor;
+                          else
+                              n.color = '#efefef';
+                      });
 
-        s.graph.edges().forEach(function(e) {
-          if (toKeep[e.source] && toKeep[e.target])
-            e.color = e.originalColor;
-          else
-            e.color = '#1c1c1c';
-        });
+                      s.graph.edges().forEach(function(e) {
+                          if (toKeep[e.source] && toKeep[e.target])
+                              e.color = e.originalColor;
+                          else
+                              e.color = '#efefef';
+                      });
 
-        // Since the data has been modified, we need to
-        // call the refresh method to make the colors
-        // update effective.
-        s.refresh();
-      });
+                      // Since the data has been modified, we need to
+                      // call the refresh method to make the colors
+                      // update effective.
+                      s.refresh();
+                  });
 
-      // When the stage is clicked, we just color each
-      // node and edge with its original color.
-      s.bind('clickStage', function(e) {
-        s.graph.nodes().forEach(function(n) {
-          n.color = n.originalColor;
-        });
+                  // When the stage is clicked, we just color each
+                  // node and edge with its original color.
+                  s.bind('clickStage', function(e) {
+                      s.graph.nodes().forEach(function(n) {
+                          n.color = n.originalColor;
+                      });
 
-        s.graph.edges().forEach(function(e) {
-          e.color = e.originalColor;
-        });
+                      s.graph.edges().forEach(function(e) {
+                          e.color = e.originalColor;
+                      });
 
-        // Same as in the previous event:
-        s.refresh();
-      });
-    }
-  );
-</script>
+                      // Same as in the previous event:
+                      s.refresh();
+                  });
+              }
+          );
+      </script>
       <div class="color-scale">
         <div class="min">1</div>
         <div class="max">436</div>
