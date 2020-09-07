@@ -9,7 +9,7 @@
     // Add a method to the graph model that returns an
   // object with every neighbors of a node inside:
   sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-    var k,
+    let k,
         neighbors = {},
         index = this.allNeighborsIndex[nodeId] || {};
 
@@ -19,6 +19,7 @@
     return neighbors;
   });
 
+  // Eventually replace this with dynamically built network
   s = sigma.parsers.gexf(
     '../static/data/bible.gexf',
     {
@@ -60,7 +61,7 @@
       // We do the same for the edges, and we only keep
       // edges that have both extremities colored.
       s.bind('clickNode', function(e) {
-        var nodeId = e.data.node.id,
+        let nodeId = e.data.node.id,
             toKeep = s.graph.neighbors(nodeId);
         toKeep[nodeId] = e.data.node;
 
