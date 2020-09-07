@@ -98,7 +98,7 @@ a:active {
 .parallel{
     display: grid;
     grid-template-columns: auto auto;
-    grid-column-gap: 2em;
+    grid-column-gap: 4em;
     padding: 0 200px;
 }
 
@@ -163,6 +163,8 @@ ul > li{
     letter-spacing: .05em;
     padding: 8px;
     text-align: center;
+    display: grid;
+    align-content: center;
 }
 
 h1{
