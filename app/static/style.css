@@ -86,6 +86,7 @@ a:active {
     grid-template-rows: 70px 480px auto;
     grid-row-gap: 1em;
     align-content: start;
+    padding-top: 3em;
 }
 
 #graph{
