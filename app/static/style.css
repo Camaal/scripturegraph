@@ -103,7 +103,15 @@ a:active {
 
 .collection{
     display: grid;
-    grid-template-rows: 20px 20px 300px ;
+    grid-template-rows: 20px 20px 700px ;
+    grid-row-gap: .5em;
+    min-width: 571px;
+    margin-top: 2em;
+}
+
+.collection-target{
+    display: grid;
+    grid-template-rows: 400px 20px 20px 300px ;
     grid-row-gap: .5em;
     min-width: 571px;
     margin-top: 2em;
