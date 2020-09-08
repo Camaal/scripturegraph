@@ -52,7 +52,7 @@ def getNeighborNetwork(verse):
     #Set the default color
     colors = {}
     for node in neighbor_net.nodes():
-        colors[node] = '008cc2'
+        colors[node] = '313131'
 
     #Set the node size
     node_size = {}
@@ -67,8 +67,8 @@ def getNeighborNetwork(verse):
     # Nodes
     for n in neighbor_net.nodes:
         data['nodes'].append({
-            "id": n,
-            "label": n,
+            "id": str(n),
+            "label": str(n),
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
@@ -79,8 +79,8 @@ def getNeighborNetwork(verse):
     for i, e in enumerate(neighbor_net.edges):
         data['edges'].append({
             "id": str(i),
-            "source": e[0],
-            "target": e[1],
+            "source": str(e[0]),
+            "target": str(e[1]),
             "color": "rgba(190,190,190,0.4)"
         })
 

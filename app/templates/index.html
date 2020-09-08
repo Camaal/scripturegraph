@@ -54,7 +54,7 @@
               graph: obj,
               renderer: {
                   container: 'graph',
-                  type: 'webgl',
+                  type: 'canvas',
                   settings: {
                       labelThreshold: 10,
                       defaultLabelSize: 12,
@@ -66,7 +66,7 @@
                       singleHover: true,
                       drawEdges: true,
                       drawEdgeLabels: false,
-                      webglEdgesBatchSize: 10000,
+                      webglEdgesBatchSize: 5,
                       minNodeSize: 1,
                       maxNodeSize: 7,
                       minEdgeSize: 0.2,
