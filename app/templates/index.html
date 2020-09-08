@@ -33,9 +33,8 @@
       <h6 class="collection-title">Cross-References Connections</h6>
       <div id="graph"></div>
       <script>
-          var text = '{{data}}';
-          console.log(text)
-          var obj = JSON.parse(text);
+          let obj = JSON.parse('{{ data|safe }}');
+          console.log(obj)
 
           // Add a method to the graph model that returns an
           // object with every neighbors of a node inside:

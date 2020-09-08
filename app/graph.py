@@ -1,4 +1,3 @@
-import csv
 import json
 import networkx as net
 from itertools import permutations
