@@ -33,6 +33,9 @@
       <h6 class="collection-title">Cross-References Connections</h6>
       <div id="graph"></div>
       <script>
+          var text = '{% raw data %}';
+          var obj = JSON.parse(text);
+
           // Add a method to the graph model that returns an
           // object with every neighbors of a node inside:
           sigma.classes.graph.addMethod('neighbors', function(nodeId) {
@@ -47,12 +50,12 @@
           });
 
           // Eventually replace this with dynamically built network
-          s = sigma.parsers.gexf(
-              '../static/data/bible.gexf',
-              {
-                  container: 'graph',
-                  type: 'webgl',
-                  settings: {
+          s = new sigma({
+            graph: obj,
+            renderer: {
+              container: 'graph',
+              type: 'webgl',
+                settings: {
                       labelThreshold: 10,
                       defaultLabelSize: 12,
                       defaultLabelColor: "#fff",
@@ -70,7 +73,9 @@
                       maxEdgeSize: 0.5,
                       batchEdgesDrawing: true
                   }
-              },
+            },
+          //s = sigma.parsers.gexf(
+              //'../static/data/bible.gexf',
               function(s) {
                   // We first need to save the original colors of our
                   // nodes and edges, like this:

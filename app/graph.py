@@ -1,7 +1,9 @@
 import csv
+import json
 import networkx as net
 from itertools import permutations
 import matplotlib.pyplot as plt
+from networkx.algorithms.community import greedy_modularity_communities
 
 in_file = csv.reader(open('static/data/bible_study_edges.csv', 'r'), delimiter=',')
 
@@ -41,7 +43,53 @@ for i in list(perm):
     else:
         pass
 
-net.draw(neighbor_net)
+#Get the degree for each node
+node_sizes = dict(neighbor_net.degree)
+
+print(node_sizes)
+
+#Set the position of each node using a Spring Layout
+pos = net.spring_layout(neighbor_net)
+
+#Set the default color
+colors = {}
+for node in neighbor_net.nodes():
+    colors[node] = '008cc2'
+
+#Set the node size
+node_size = {}
+for node in neighbor_net.nodes():
+    for n in node_sizes:
+        if n == node:
+            node_size[node] = node_sizes[n]
+
+# Init JSON
+data = {'nodes': [], 'edges': []}
+
+# Nodes
+for n in neighbor_net.nodes:
+    data['nodes'].append({
+        "id": n,
+        "label": n,
+        "x": pos[n][0],
+        "y": pos[n][1],
+        "size": node_size[n],
+        "color": "#" + colors[n]
+    })
+
+# Edges
+for i, e in enumerate(neighbor_net.edges):
+    data['edges'].append({
+        "id": str(i),
+        "source": e[0],
+        "target": e[1],
+        "color": "rgba(190,190,190,0.4)"
+    })
+
+print(data)
+
+#return json.dumps(data)
+
+net.draw(neighbor_net, pos=pos, nodelist=node_sizes.keys(), node_size=[v * 100 for v in node_sizes.values()])
+#net.write_gexf(neighbor_net, "static/data/bible.gexf")
 plt.show()
-
-
