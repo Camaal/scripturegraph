@@ -4,12 +4,10 @@ from itertools import permutations
 from app import db
 from app.models import References
 
+# Create a network using sources and targets in DB
 in_file = db.session.query(References.Source, References.Target).all()
-
-# print(in_file)
-
-# Create a network
 g = net.Graph()
+
 
 for edge in in_file:
     # Use the first and second value to define the edges
@@ -49,10 +47,6 @@ def getNeighborNetwork(verse):
     #Set the position of each node using a Spring Layout
     pos = net.spring_layout(neighbor_net)
 
-    #Set the default color
-    colors = {}
-    for node in neighbor_net.nodes():
-        colors[node] = '313131'
 
     #Set the node size
     node_size = {}
@@ -67,12 +61,12 @@ def getNeighborNetwork(verse):
     # Nodes
     for n in neighbor_net.nodes:
         data['nodes'].append({
-            "id": str(n),
+            "id": n,
             "label": str(n),
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
-            "color": "#" + colors[n]
+            "color": "#1c1c1c"
         })
 
     # Edges
@@ -84,9 +78,4 @@ def getNeighborNetwork(verse):
             "color": "rgba(190,190,190,0.4)"
         })
 
-    print(data)
     return json.dumps(data)
-
-#net.draw(neighbor_net, pos=pos, nodelist=node_sizes.keys(), node_size=[v * 100 for v in node_sizes.values()])
-#net.write_gexf(neighbor_net, "static/data/bible.gexf")
-#plt.show()

@@ -33,9 +33,6 @@
       <h6 class="collection-title">Cross-References Connections</h6>
       <div id="graph"></div>
       <script>
-          let obj = JSON.parse('{{ data|safe }}');
-          console.log(obj)
-
           // Add a method to the graph model that returns an
           // object with every neighbors of a node inside:
           sigma.classes.graph.addMethod('neighbors', function(nodeId) {
@@ -49,38 +46,39 @@
               return neighbors;
           });
 
-          // Eventually replace this with dynamically built network
-          s = new sigma({
+
+          let obj = JSON.parse('{{ data|safe }}');
+          let s = new sigma({
               graph: obj,
-              renderer: {
+              renderers: [{
                   container: 'graph',
                   type: 'canvas',
-                  settings: {
-                      labelThreshold: 10,
-                      defaultLabelSize: 12,
-                      defaultLabelColor: "#fff",
-                      defaultLabelBGColor: "#ddd",
-                      defaultHoverLabelBGColor: "#002147",
-                      defaultLabelHoverColor: "#fff",
-                      font: 'Source Serif Pro',
-                      singleHover: true,
-                      drawEdges: true,
-                      drawEdgeLabels: false,
-                      webglEdgesBatchSize: 5,
-                      minNodeSize: 1,
-                      maxNodeSize: 7,
-                      minEdgeSize: 0.2,
-                      maxEdgeSize: 0.5,
-                      batchEdgesDrawing: true
-                  }
+              }],
+              settings: {
+                  labelThreshold: 10,
+                  defaultLabelSize: 12,
+                  defaultLabelColor: "#fff",
+                  defaultLabelBGColor: "#ddd",
+                  defaultHoverLabelBGColor: "#002147",
+                  defaultLabelHoverColor: "#fff",
+                  font: 'Source Serif Pro',
+                  singleHover: true,
+                  drawEdges: true,
+                  drawEdgeLabels: false,
+                  webglEdgesBatchSize: 5,
+                  minNodeSize: 1,
+                  maxNodeSize: 7,
+                  minEdgeSize: 0.2,
+                  maxEdgeSize: 0.5,
+                  batchEdgesDrawing: true
               },
               function(s) {
                   // We first need to save the original colors of our
                   // nodes and edges, like this:
-                  s.graph.nodes().forEach(function (n) {
+                  s.graph.nodes().forEach(function(n) {
                       n.originalColor = n.color;
                   });
-                  s.graph.edges().forEach(function (e) {
+                  s.graph.edges().forEach(function(e) {
                       e.originalColor = e.color;
                   });
 
@@ -90,23 +88,23 @@
                   // original color.
                   // We do the same for the edges, and we only keep
                   // edges that have both extremities colored.
-                  s.bind('clickNode', function (e) {
-                      let nodeId = e.data.node.id,
+                  s.bind('clickNode', function(e) {
+                      var nodeId = e.data.node.id,
                           toKeep = s.graph.neighbors(nodeId);
                       toKeep[nodeId] = e.data.node;
 
-                      s.graph.nodes().forEach(function (n) {
+                      s.graph.nodes().forEach(function(n) {
                           if (toKeep[n.id])
                               n.color = n.originalColor;
                           else
-                              n.color = '#efefef';
+                              n.color = '#eee';
                       });
 
-                      s.graph.edges().forEach(function (e) {
+                      s.graph.edges().forEach(function(e) {
                           if (toKeep[e.source] && toKeep[e.target])
                               e.color = e.originalColor;
                           else
-                              e.color = '#efefef';
+                              e.color = '#eee';
                       });
 
                       // Since the data has been modified, we need to
@@ -117,12 +115,12 @@
 
                   // When the stage is clicked, we just color each
                   // node and edge with its original color.
-                  s.bind('clickStage', function (e) {
-                      s.graph.nodes().forEach(function (n) {
+                  s.bind('clickStage', function(e) {
+                      s.graph.nodes().forEach(function(n) {
                           n.color = n.originalColor;
                       });
 
-                      s.graph.edges().forEach(function (e) {
+                      s.graph.edges().forEach(function(e) {
                           e.color = e.originalColor;
                       });
 
@@ -131,6 +129,7 @@
                   });
               }
           });
+          s.refresh();
       </script>
       <div class="color-scale">
         <div class="min">1</div>
