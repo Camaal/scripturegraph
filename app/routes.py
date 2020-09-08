@@ -1,10 +1,12 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
 
+import json
 from app import app, db
 from sqlalchemy import func
 from app.models import Books, Authors, References, Sources, Targets
 import matplotlib as mpl
 import matplotlib.cm as cm
+from app.graph import getNeighborNetwork
 
 
 @app.template_filter()
@@ -67,6 +69,8 @@ def parallel():
     tauthors = db.session.query(Targets.author).join(References) \
         .filter(References.Source == defaultsource).distinct()
 
+    data = jsonify({getNeighborNetwork(defaultsource)})
+
     # Return the data to index.html
     return render_template('index.html',
                            title='Home',
@@ -82,7 +86,8 @@ def parallel():
                            dverses=dverses,
                            tbooks=tbooks,
                            joins=joins,
-                           tauthors=tauthors
+                           tauthors=tauthors,
+                           data=data
                            )
 
 
