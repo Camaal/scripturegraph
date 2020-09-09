@@ -17,9 +17,9 @@ html, body{
 
 .top-nav-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 40%;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    align-content: space-between;
 }
 
 .top-nav-item .menu{
@@ -162,9 +162,17 @@ ul > li{
     font-weight: 400;
     letter-spacing: .05em;
     padding: 8px;
-    text-align: center;
     display: grid;
     align-content: center;
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+    padding-right: 16px;
 }
 
 h1{
