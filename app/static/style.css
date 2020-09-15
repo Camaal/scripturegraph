@@ -62,7 +62,7 @@ a:active {
 
 .section-title{
     display: grid;
-    align-content: end;
+    grid-template-columns: 2fr 1fr;
 }
 
 .sidenav{
@@ -204,11 +204,20 @@ h4{
     font-size: 40px;
 }
 
-.section-title h6{
+
+
+.section-title h6, .section-title a{
     margin: 0;
     margin-bottom: 4px;
     align-content: end;
     display: grid;
+}
+
+.section-title a{
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #1c1c1c;
+    font-size: 0.67em;
 }
 
 .person h4{
