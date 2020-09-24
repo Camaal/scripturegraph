@@ -3,6 +3,8 @@ import networkx as net
 from itertools import permutations
 from app import db
 from app.models import References, Sources
+import matplotlib as mpl
+import matplotlib.cm as cm
 
 # Create a network using sources and targets in DB
 in_file = db.session.query(References.Source, References.Target).all()
@@ -14,6 +16,12 @@ for edge in in_file:
 
 # Show the degree for each node
 node_degree = [n for n in g.degree()]
+
+def degreeColor(value):
+    norm = mpl.colors.Normalize(vmin=.04, vmax=1)
+    cmap = cm.viridis
+    m = cm.ScalarMappable(norm=norm, cmap=cmap)
+    return format(m.to_rgba(value, bytes=True))
 
 
 def getNeighborNetwork(verse):
@@ -57,14 +65,15 @@ def getNeighborNetwork(verse):
 
     # Nodes
     for n in neighbor_net.nodes:
-        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse).filter(Sources.Id == n).first()
+        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree).filter(Sources.Id == n).first()
+        color = degreeColor(node_name[3])
         data['nodes'].append({
             "id": n,
             "label": str(node_name[0])+" "+str(node_name[1])+":"+str(node_name[2]),
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
-            "color": "#1c1c1c"
+            "color": "rgba"+str(color)
         })
 
     # Edges
