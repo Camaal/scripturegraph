@@ -2,7 +2,7 @@ import json
 import networkx as net
 from itertools import permutations
 from app import db
-from app.models import References
+from app.models import References, Sources
 
 # Create a network using sources and targets in DB
 in_file = db.session.query(References.Source, References.Target).all()
@@ -57,9 +57,10 @@ def getNeighborNetwork(verse):
 
     # Nodes
     for n in neighbor_net.nodes:
+        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse).filter(Sources.Id == n).first()
         data['nodes'].append({
             "id": n,
-            "label": str(n),
+            "label": str(node_name[0])+" "+str(node_name[1])+":"+str(node_name[2]),
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
