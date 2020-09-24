@@ -17,7 +17,7 @@
     $(document).ready(function () {
 
         $('.verseFilter').on('click', function (){
-            $('#target_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+            $('#graph-container').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
             const verse_id = $(this).attr('verse_id');
 
             let getSourceByBook = $.ajax({
@@ -27,7 +27,7 @@
             });
 
             getSourceByBook.done(function (data) {
-                $('#target_text').html(data);
+                $('#graph-container').html(data);
             })
         });
     });

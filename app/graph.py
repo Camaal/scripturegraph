@@ -4,20 +4,19 @@ from itertools import permutations
 from app import db
 from app.models import References
 
+# Create a network using sources and targets in DB
+in_file = db.session.query(References.Source, References.Target).all()
+g = net.Graph()
+
+for edge in in_file:
+    # Use the first and second value to define the edges
+    g.add_edge(edge[0], edge[1])
+
+# Show the degree for each node
+node_degree = [n for n in g.degree()]
 
 
 def getNeighborNetwork(verse):
-
-    # Create a network using sources and targets in DB
-    in_file = db.session.query(References.Source, References.Target).all()
-    g = net.Graph()
-
-    for edge in in_file:
-        # Use the first and second value to define the edges
-        g.add_edge(edge[0], edge[1])
-
-    # Show the degree for each node
-    node_degree = [n for n in g.degree()]
 
     #Create a new network just for 01001001 and it's network of neighbors
     neighbor_net = net.Graph()
