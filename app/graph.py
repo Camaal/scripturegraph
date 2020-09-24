@@ -4,35 +4,33 @@ from itertools import permutations
 from app import db
 from app.models import References
 
-# Create a network using sources and targets in DB
-in_file = db.session.query(References.Source, References.Target).all()
-g = net.Graph()
-
-
-for edge in in_file:
-    # Use the first and second value to define the edges
-    g.add_edge(edge[0], edge[1])
-
-#Show the degree for each node
-node_degree = [n for n in g.degree()]
 
 
 def getNeighborNetwork(verse):
 
-    source_scripture = verse
+    # Create a network using sources and targets in DB
+    in_file = db.session.query(References.Source, References.Target).all()
+    g = net.Graph()
+
+    for edge in in_file:
+        # Use the first and second value to define the edges
+        g.add_edge(edge[0], edge[1])
+
+    # Show the degree for each node
+    node_degree = [n for n in g.degree()]
 
     #Create a new network just for 01001001 and it's network of neighbors
     neighbor_net = net.Graph()
 
     #Get neighbor of source
-    node_neighbors = [n for n in g.neighbors(source_scripture)]
+    node_neighbors = [n for n in g.neighbors(verse)]
 
     #Get permutations of edges between neighbors
     perm = permutations(node_neighbors, 2)
 
     #Loop over each neighbor and add it to a new graph
-    for n in g.neighbors(source_scripture):
-        neighbor_net.add_edge(source_scripture, n)
+    for n in g.neighbors(verse):
+        neighbor_net.add_edge(verse, n)
 
     #Loop over each permutation as see if an edge exists in the original network, if so add it to the new one
     for i in list(perm):

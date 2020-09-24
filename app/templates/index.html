@@ -29,14 +29,42 @@
         </div>
       </div>
     </div>
-    <div class="collection-target">
+    <div id="graph-container" class="collection-target">
       <h6 class="collection-title">Cross-References</h6>
       <div id="graph"></div>
+      <div class="color-scale">
+        <div class="min">1</div>
+        <div class="max">436</div>
+      </div>
+      <div class="verses">
+        <div id="target_text" class="cross-references">
+            {% for author in tauthors %}
+                <div class="person">
+                    <span class="material-icons">account_circle</span>
+                    <h4>{{author.author}}</h4>
+                </div>
+                {% for b in tbooks if b.author == author.author %}
+                       {% for item in joins%}
+                           {% if b.book == item.book %}
+                               {% if b.chapter == item.chapter %}
+                                <span class="scripture">
+                                     <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                                        {{item.text}}<sup>{{item.degree}}</sup>
+                                     </span>
+                                </span>
+                                <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
+                               {% endif %}
+                           {% endif %}
+                        {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+      </div>
       <script>
           // Add a method to the graph model that returns an
           // object with every neighbors of a node inside:
           sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-              let k,
+              var k,
                   neighbors = {},
                   index = this.allNeighborsIndex[nodeId] || {};
 
@@ -47,8 +75,8 @@
           });
 
 
-          let obj = JSON.parse('{{ data|safe }}');
-          let s = new sigma({
+          var obj = JSON.parse('{{ data|safe }}');
+          var s = new sigma({
               graph: obj,
               renderers: [{
                   container: 'graph',
@@ -130,34 +158,6 @@
               }
           });
       </script>
-      <div class="color-scale">
-        <div class="min">1</div>
-        <div class="max">436</div>
-      </div>
-      <div class="verses">
-        <div id="target_text" class="cross-references">
-            {% for author in tauthors %}
-                <div class="person">
-                    <span class="material-icons">account_circle</span>
-                    <h4>{{author.author}}</h4>
-                </div>
-                {% for b in tbooks if b.author == author.author %}
-                       {% for item in joins%}
-                           {% if b.book == item.book %}
-                               {% if b.chapter == item.chapter %}
-                                <span class="scripture">
-                                     <span style="color:rgba{{item.norm_degree | degreeColor}};">
-                                        {{item.text}}<sup>{{item.degree}}</sup>
-                                     </span>
-                                </span>
-                                <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
-                               {% endif %}
-                           {% endif %}
-                        {% endfor %}
-                {% endfor %}
-            {% endfor %}
-        </div>
-      </div>
     </div>
 </div>
 
@@ -177,7 +177,7 @@
             });
 
             getSourceByBook.done(function (data) {
-                $('#target_text').html(data);
+                $('#graph-container').html(data);
             })
         });
     });

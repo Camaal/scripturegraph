@@ -88,8 +88,9 @@ $(document).ready(function () {
         });
 
         getSourceByBook.done(function (data) {
-            $('#target_text').html(data);
+            $('#graph-container').html(data);
         })
+
     });
 
     const authorContainer = document.getElementById('author_menu');

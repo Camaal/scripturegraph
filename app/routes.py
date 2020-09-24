@@ -24,8 +24,8 @@ def flat_list(l):
     return ["%s" % v for v in l]
 
 @app.route('/')
-@app.route('/parallel')
-def parallel():
+@app.route('/index', methods=['POST'])
+def index():
 
     defaultbookname = 'Genesis'
     defaultbook = 1
@@ -145,7 +145,9 @@ def filter_target():
     ftauthors = db.session.query(Targets.author).join(References) \
         .filter(References.Source == request.form['Id']).distinct()
 
-    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors)
+    fdata = getNeighborNetwork(int(request.form['Id']))
+
+    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors, fdata=fdata)
 
 
 @app.route('/filter_author_menu', methods=['POST'])
