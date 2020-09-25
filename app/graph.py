@@ -74,7 +74,8 @@ def getNeighborNetwork(verse):
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
-            "color": "rgba"+str(color)
+            "color": "#fff",
+            #"color": "rgba"+str(color)
         })
 
     # Edges
@@ -83,7 +84,10 @@ def getNeighborNetwork(verse):
             "id": str(i),
             "source": str(e[0]),
             "target": str(e[1]),
-            "color": "rgba(0,0,0,0.07)",
+            #"color": "rgba(255,255,255,0.007)",
+            "size": 10,
+            "type": "dotted", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
+            "edgeColor": 'default',
         })
 
     return json.dumps(data)
