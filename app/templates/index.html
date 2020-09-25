@@ -17,7 +17,7 @@
                 <h4>Chapter {{i}}</h4>
                 {% for verse in dverses%}
                     {% if verse.chapter==i%}
-                    <span class="scripture">
+                    <span id="{{verse.Id}}" class="scripture">
                            <span style="color:rgba{{verse.norm_degree | degreeColor}};">
                               <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
                                <a href="#" class="verseFilter" verse_id="{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
@@ -39,7 +39,7 @@
       <div class="verses">
         <div id="target_text" class="cross-references">
             {% for item in joins%}
-                    <span class="scripture">
+                    <span id="{{item.Id}}" class="scripture">
                          <span style="color:rgba{{item.norm_degree | degreeColor}};">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
@@ -47,7 +47,7 @@
                     <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
             {% endfor %}
           {% for item in source_joins%}
-                    <span class="scripture">
+                    <span id="{{item.Id}}" class="scripture">
                          <span style="color:rgba{{item.norm_degree | degreeColor}};">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>

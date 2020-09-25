@@ -7,7 +7,7 @@
 <div class="verses">
   <div id="target_text" class="cross-references">
     {% for item in ftverses%}
-    <span class="scripture">
+    <span id="{{item.Id}}" class="scripture">
                          <span style="color:rgba{{item.norm_degree | degreeColor}};">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
@@ -16,7 +16,7 @@
     {% endfor %}
 
     {% for item in fsverses%}
-    <span class="scripture">
+    <span id="{{item.Id}}" class="scripture">
                          <span style="color:rgba{{item.norm_degree | degreeColor}};">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
