@@ -65,6 +65,10 @@ def index():
                              Targets.degree, Targets.color, Targets.norm_degree).join(References) \
         .filter(References.Source == defaultsource).all()
 
+    source_joins = db.session.query(Sources.book_name, Sources.book, Sources.chapter, Sources.verse, Sources.text,
+                             Sources.degree, Sources.color, Sources.norm_degree).join(References) \
+        .filter(References.Target == defaultsource).all()
+
     # List authors related to Gen 1:1
     tauthors = db.session.query(Targets.author).join(References) \
         .filter(References.Source == defaultsource).distinct()
@@ -86,6 +90,7 @@ def index():
                            dverses=dverses,
                            tbooks=tbooks,
                            joins=joins,
+                           source_joins = source_joins,
                            tauthors=tauthors,
                            data=data
                            )
@@ -142,12 +147,16 @@ def filter_target():
                              Targets.degree, Targets.color, Targets.norm_degree).join(References) \
         .filter(References.Source == request.form['Id']).all()
 
+    fsverses = db.session.query(Sources.book_name, Sources.book, Sources.chapter, Sources.verse, Sources.text,
+                                Sources.degree, Sources.color, Sources.norm_degree).join(References) \
+        .filter(References.Target == request.form['Id']).all()
+
     ftauthors = db.session.query(Targets.author).join(References) \
         .filter(References.Source == request.form['Id']).distinct()
 
     fdata = getNeighborNetwork(int(request.form['Id']))
 
-    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors, fdata=fdata)
+    return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors, fdata=fdata, fsverses=fsverses)
 
 
 @app.route('/filter_author_menu', methods=['POST'])

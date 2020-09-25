@@ -6,25 +6,22 @@
 </div>
 <div class="verses">
   <div id="target_text" class="cross-references">
-    {% for author in ftauthors %}
-    <div class="person">
-      <span class="material-icons">account_circle</span>
-      <h4>{{author.author}}</h4>
-    </div>
-    {% for b in ftbooks if b.author == author.author %}
     {% for item in ftverses%}
-    {% if b.book == item.book %}
-    {% if b.chapter == item.chapter %}
     <span class="scripture">
                          <span style="color:rgba{{item.norm_degree | degreeColor}};">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-    <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
-    {% endif %}
-    {% endif %}
+    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
     {% endfor %}
-    {% endfor %}
+
+    {% for item in fsverses%}
+    <span class="scripture">
+                         <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                            {{item.text}}<sup>{{item.degree}}</sup>
+                         </span>
+                    </span>
+    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
     {% endfor %}
   </div>
 </div>

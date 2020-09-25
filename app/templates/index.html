@@ -38,25 +38,21 @@
       </div>
       <div class="verses">
         <div id="target_text" class="cross-references">
-            {% for author in tauthors %}
-                <div class="person">
-                    <span class="material-icons">account_circle</span>
-                    <h4>{{author.author}}</h4>
-                </div>
-                {% for b in tbooks if b.author == author.author %}
-                       {% for item in joins%}
-                           {% if b.book == item.book %}
-                               {% if b.chapter == item.chapter %}
-                                <span class="scripture">
-                                     <span style="color:rgba{{item.norm_degree | degreeColor}};">
-                                        {{item.text}}<sup>{{item.degree}}</sup>
-                                     </span>
-                                </span>
-                                <h6 class="reference-name">{{b.book_name}} {{b.chapter}}: {{item.verse}}</h6>
-                               {% endif %}
-                           {% endif %}
-                        {% endfor %}
-                {% endfor %}
+            {% for item in joins%}
+                    <span class="scripture">
+                         <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                            {{item.text}}<sup>{{item.degree}}</sup>
+                         </span>
+                    </span>
+                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
+            {% endfor %}
+          {% for item in source_joins%}
+                    <span class="scripture">
+                         <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                            {{item.text}}<sup>{{item.degree}}</sup>
+                         </span>
+                    </span>
+                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
             {% endfor %}
         </div>
       </div>
