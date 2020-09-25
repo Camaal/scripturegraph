@@ -90,9 +90,10 @@
                   defaultHoverLabelBGColor: "#002147",
                   defaultLabelHoverColor: "#fff",
                   font: 'Source Serif Pro',
-                  singleHover: true,
+                  singleHover: false,
                   drawEdges: true,
                   drawEdgeLabels: false,
+                  defaultEdgeType: "curvedArrow",
                   webglEdgesBatchSize: 5,
                   minNodeSize: 1,
                   maxNodeSize: 7,
@@ -172,6 +173,22 @@
           dragListener.bind('dragend', function(event) {
             console.log(event);
           });
+
+          // Bind the events:
+          s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
+            console.log(e.type, e.data.node.label, e.data.captor);
+          });
+          s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
+            console.log(e.type, e.data.edge, e.data.captor);
+          });
+          s.bind('clickStage', function(e) {
+            console.log(e.type, e.data.captor);
+          });
+          s.bind('doubleClickStage rightClickStage', function(e) {
+            console.log(e.type, e.data.captor);
+          });
+
+          // s.startForceAtlas2({worker: true, barnesHutOptimize: false});
       </script>
     </div>
 </div>

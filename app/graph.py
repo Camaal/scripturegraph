@@ -65,7 +65,8 @@ def getNeighborNetwork(verse):
 
     # Nodes
     for n in neighbor_net.nodes:
-        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree).filter(Sources.Id == n).first()
+        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree)\
+            .filter(Sources.Id == n).first()
         color = degreeColor(node_name[3])
         data['nodes'].append({
             "id": n,
@@ -82,7 +83,7 @@ def getNeighborNetwork(verse):
             "id": str(i),
             "source": str(e[0]),
             "target": str(e[1]),
-            "color": "rgba(190,190,190,0.4)"
+            "color": "rgba(0,0,0,0.07)",
         })
 
     return json.dumps(data)

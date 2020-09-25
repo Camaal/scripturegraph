@@ -37,22 +37,23 @@
             type: 'canvas',
         }],
         settings: {
-            labelThreshold: 5,
-            defaultLabelSize: 12,
-            defaultLabelColor: "#002147",
-            defaultLabelBGColor: "#ddd",
-            defaultHoverLabelBGColor: "#002147",
-            defaultLabelHoverColor: "#fff",
-            font: 'Source Serif Pro',
-            singleHover: true,
-            drawEdges: true,
-            drawEdgeLabels: false,
-            webglEdgesBatchSize: 5,
-            minNodeSize: 1,
-            maxNodeSize: 7,
-            minEdgeSize: 0.2,
-            maxEdgeSize: 0.5,
-            batchEdgesDrawing: true
+        labelThreshold: 5,
+        defaultLabelSize: 12,
+        defaultLabelColor: "#002147",
+        defaultLabelBGColor: "#ddd",
+        defaultHoverLabelBGColor: "#002147",
+        defaultLabelHoverColor: "#fff",
+        font: 'Source Serif Pro',
+        singleHover: false,
+        drawEdges: true,
+        drawEdgeLabels: false,
+        defaultEdgeType: "curvedArrow",
+        webglEdgesBatchSize: 5,
+        minNodeSize: 1,
+        maxNodeSize: 7,
+        minEdgeSize: 0.2,
+        maxEdgeSize: 0.5,
+        batchEdgesDrawing: true
         },
         function(sf) {
             // We first need to save the original colors of our
@@ -125,4 +126,20 @@
       dragListener.bind('dragend', function(event) {
         console.log(event);
       });
+
+      // Bind the events:
+      sf.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
+        console.log(e.type, e.data.node.label, e.data.captor);
+      });
+      sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
+        console.log(e.type, e.data.edge, e.data.captor);
+      });
+      sf.bind('clickStage', function(e) {
+        console.log(e.type, e.data.captor);
+      });
+      sf.bind('doubleClickStage rightClickStage', function(e) {
+        console.log(e.type, e.data.captor);
+      });
+
+      // sf.startForceAtlas2({worker: true, barnesHutOptimize: false});
 </script>
