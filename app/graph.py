@@ -86,7 +86,7 @@ def getNeighborNetwork(verse):
             "target": str(e[1]),
             #"color": "rgba(255,255,255,0.007)",
             "size": 10,
-            "type": "dotted", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
+            "type": "curve", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
             "edgeColor": 'default',
         })
 
