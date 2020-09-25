@@ -137,6 +137,8 @@
       // Bind the events:
       sf.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
         console.log(e.type, e.data.node.label, e.data.captor);
+        var element = document.getElementById(e.data.node.id);
+              element.scrollIntoView();
       });
       sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
         console.log(e.type, e.data.edge, e.data.captor);
