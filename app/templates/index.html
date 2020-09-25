@@ -184,7 +184,7 @@
           s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
             console.log(e.type, e.data.node.label, e.data.captor);
             var element = document.getElementById(e.data.node.id);
-              element.scrollIntoView();
+              element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
           });
           s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
             console.log(e.type, e.data.edge, e.data.captor);
