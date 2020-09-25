@@ -13,6 +13,10 @@
     <script src="{{ url_for('static', filename='app.js') }}"></script>
     <script src="{{ url_for('static', filename='sigma.min.js') }}"></script>
     <script src="{{ url_for('static', filename='/plugins/sigma.parsers.gexf.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.dragNodes.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.animate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/plugins/sigma.layout.noverlap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/plugins/sigma.layout.forceAtlas2.min.js') }}"></script>
     {% block script %}{% endblock %}
 </head>
 <body>

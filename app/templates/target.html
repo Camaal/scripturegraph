@@ -37,9 +37,9 @@
             type: 'canvas',
         }],
         settings: {
-            labelThreshold: 10,
+            labelThreshold: 5,
             defaultLabelSize: 12,
-            defaultLabelColor: "#fff",
+            defaultLabelColor: "#002147",
             defaultLabelBGColor: "#ddd",
             defaultHoverLabelBGColor: "#002147",
             defaultLabelHoverColor: "#fff",
@@ -111,4 +111,18 @@
             });
         }
     });
+    var dragListener = sigma.plugins.dragNodes(sf, sf.renderers[0]);
+
+      dragListener.bind('startdrag', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('drag', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('drop', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('dragend', function(event) {
+        console.log(event);
+      });
 </script>
