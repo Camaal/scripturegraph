@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('.menu').on('click', function (){
-        const x = document.getElementById("sidenav");
+        var x = document.getElementById("sidenav");
         if (x.style.display === "none") {
             x.style.display = "grid";
         } else {
@@ -79,7 +79,7 @@ $(document).ready(function () {
     });
     $('.verseFilter').on('click', function (){
 
-        const verse_id = $(this).attr('verse_id');
+        var verse_id = $(this).attr('verse_id');
 
         let getSourceByBook = $.ajax({
             url: '/filter_target',
@@ -93,11 +93,11 @@ $(document).ready(function () {
 
     });
 
-    const authorContainer = document.getElementById('author_menu');
-    const authorbtns = authorContainer.getElementsByClassName('authorFilter');
+    var authorContainer = document.getElementById('author_menu');
+    var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -105,11 +105,11 @@ $(document).ready(function () {
         });
     }
 
-    const bookContainer = document.getElementById('book_menu');
-    const bookbtns = bookContainer.getElementsByClassName('bookFilter');
+    var bookContainer = document.getElementById('book_menu');
+    var bookbtns = bookContainer.getElementsByClassName('bookFilter');
     for (let i = 0; i < bookbtns.length; i++){
         bookbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -117,11 +117,11 @@ $(document).ready(function () {
         });
     }
 
-    const chapterContainer = document.getElementById('chapter_menu');
-    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    var chapterContainer = document.getElementById('chapter_menu');
+    var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
