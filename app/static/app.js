@@ -22,16 +22,6 @@ $(document).ready(function () {
         getBookByAuthor.done(function (data) {
             $('#book_menu').html(data);
         })
-
-        let getChapterByAuthor = $.ajax({
-            url: '/filter_chapter_menu',
-            type: 'POST',
-            data: {author: author_name}
-        });
-
-        getChapterByAuthor.done(function (data) {
-            $('#chapter_menu').html(data);
-        })
     });
     $('.bookFilter').on('click', function (){
 

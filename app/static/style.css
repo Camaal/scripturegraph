@@ -81,6 +81,10 @@ a:active {
     padding: 8px 0;
 }
 
+#chapter_menu{
+    padding-right: 1em;
+}
+
 .content{
     display: grid;
     grid-template-rows: 70px 480px auto;
@@ -163,6 +167,10 @@ ul > li{
 }
 
 /*Typography*/
+
+.above_avg{
+    font-weight: 700;
+}
 
 .top-nav-item{
     text-transform: uppercase;

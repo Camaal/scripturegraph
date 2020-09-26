@@ -5,7 +5,7 @@
         <span class="scripture">
                <span>
                   <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                   <a href="#" class="verseFilter" verse_id="{{verse.Id}}" style="text-decoration: none;">{{verse.text}}</a><sup>{{verse.degree}}</sup>
+                   <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %}" verse_id="{{verse.Id}}" style="text-decoration: none;">{{verse.text}}</a><sup>{{verse.degree}}</sup>
                </span>
         </span>
         {% endif %}
