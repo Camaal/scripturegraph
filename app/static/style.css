@@ -78,7 +78,7 @@ a:active {
     overflow-y: scroll;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    padding: 8px 1em 8px 0;
+    padding: 8px 0;
 }
 
 .content{
@@ -97,28 +97,26 @@ a:active {
 
 .parallel{
     display: grid;
-    grid-template-columns: 90px 570px 570px;
-    grid-column-gap: 4em;
+    grid-template-columns: 90px 570px auto;
+    grid-column-gap: 3em;
     padding: 0 50px;
-}
-
-.source-chapter-menu{
-    display: grid;
-    grid-template-rows: 20px 736px ;
-    grid-row-gap: .5em;
 }
 
 .collection{
     display: grid;
-    grid-template-rows: 20px 20px 716px ;
+    grid-template-rows: 763px ;
     grid-row-gap: .5em;
     min-width: 571px;
     /*margin-top: 2em;*/
 }
 
+.collection .verses{
+    border-top: 1px solid #ccc;
+}
+
 .collection-target{
     display: grid;
-    grid-template-rows: 20px 400px 20px 300px ;
+    grid-template-rows: 434px 320px ;
     grid-row-gap: .5em;
     min-width: 571px;
     /*margin-top: 2em;*/
@@ -186,7 +184,7 @@ ul > li{
 }
 
 h1{
-    font-weight: 400;
+    font-weight: 300;
     padding: 0 50px;
 }
 
@@ -208,6 +206,7 @@ h4{
     margin-top: 1em;
     margin-bottom: 1em;
     color: #1c1c1c;
+    font-style: italic;
 }
 
 .material-icons{
@@ -221,6 +220,7 @@ h4{
     margin-bottom: 4px;
     align-content: end;
     display: grid;
+    font-weight: 600;
 }
 
 .section-title a{
@@ -243,6 +243,7 @@ h4{
     margin: 0px 0 32px 0;
     text-align: left;
 }
+
 
 .reference-name:hover{
     color: #1c1c1c;
@@ -267,8 +268,7 @@ h6{
 
 .degreeNumber{
     font-size: .75em;
-    color: #606060;
-    text-align: center;
+    color: rgba(0,0,0,0.3);
 }
 
 .scripture{
@@ -285,4 +285,5 @@ h6{
 sup{
     vertical-align: baseline;
     padding: 3px;
+    color: rgba(0,0,0,0.3);
 }

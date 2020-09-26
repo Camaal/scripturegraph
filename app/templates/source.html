@@ -3,9 +3,9 @@
     {% for verse in fsverses%}
         {% if verse.chapter==i%}
         <span class="scripture">
-               <span style="color:rgba{{verse.norm_degree | degreeColor}};">
+               <span>
                   <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                   <a href="#" class="verseFilter" verse_id="{{verse.Id}}" style="text-decoration: none; color:rgba{{verse.norm_degree | degreeColor}};">{{verse.text}}</a><sup>{{verse.degree}}</sup>
+                   <a href="#" class="verseFilter" verse_id="{{verse.Id}}" style="text-decoration: none;">{{verse.text}}</a><sup>{{verse.degree}}</sup>
                </span>
         </span>
         {% endif %}

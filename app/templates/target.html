@@ -1,27 +1,22 @@
-<h6 class="collection-title">Cross-References</h6>
 <div id="graph"></div>
-<div class="color-scale">
-  <div class="min">1</div>
-  <div class="max">436</div>
-</div>
 <div class="verses">
   <div id="target_text" class="cross-references">
     {% for item in ftverses%}
     <span id="{{item.Id}}" class="scripture">
-                         <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                         <span>
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
+    <h6 class="reference-name">{{item.author}} - {{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
     {% endfor %}
 
     {% for item in fsverses%}
     <span id="{{item.Id}}" class="scripture">
-                         <span style="color:rgba{{item.norm_degree | degreeColor}};">
+                         <span>
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
+    <h6 class="reference-name">{{item.author}} - {{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>
     {% endfor %}
   </div>
 </div>
@@ -56,7 +51,7 @@
         labelThreshold: 4,
         maxEdgeSize: 0.5,
         maxNodeSize: 7,
-        minArrowSize: 10,
+        minArrowSize: 5,
         minEdgeSize: 0.2,
         minNodeSize: 1,
         singleHover: false,
