@@ -43,9 +43,8 @@ a:active {
   text-decoration: underline;
 }
 
-.active, .btn:hover {
-  background-color: #666;
-  color: white;
+.active{
+  text-decoration: underline;
 }
 
 .container{
@@ -68,7 +67,7 @@ a:active {
 
 .sidenav{
     display: grid;
-    grid-template-rows: 40px 400px 50px 200px 50px 200px;
+    grid-template-rows: 40px 600px 50px 250px;
     padding: 0 1.5em;
     height: 100%;
     width: 250px;
@@ -98,9 +97,15 @@ a:active {
 
 .parallel{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 90px 570px 570px;
     grid-column-gap: 4em;
-    padding: 0 200px;
+    padding: 0 50px;
+}
+
+.source-chapter-menu{
+    display: grid;
+    grid-template-rows: 20px 736px ;
+    grid-row-gap: .5em;
 }
 
 .collection{
@@ -108,7 +113,7 @@ a:active {
     grid-template-rows: 20px 20px 716px ;
     grid-row-gap: .5em;
     min-width: 571px;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
 }
 
 .collection-target{
@@ -116,7 +121,7 @@ a:active {
     grid-template-rows: 20px 400px 20px 300px ;
     grid-row-gap: .5em;
     min-width: 571px;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
 }
 
 .verses{
@@ -155,6 +160,10 @@ ul > li{
     align-content: center;
 }
 
+.highlight{
+    text-decoration: underline;
+}
+
 /*Typography*/
 
 .top-nav-item{
@@ -178,7 +187,7 @@ ul > li{
 
 h1{
     font-weight: 400;
-    padding: 0 200px;
+    padding: 0 50px;
 }
 
 .min, .max{

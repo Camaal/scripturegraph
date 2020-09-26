@@ -43,38 +43,24 @@
 </div>
 <div class="container">
     <div id="sidenav" class="sidenav">
-        <div class="section-title"><h6>Book</h6><a href="/">show all</a></div>
+        <div class="section-title"><h6>Book</h6><a href="/">reset</a></div>
         <div id="book_menu" menu_name="book">
             <ul>
                 {% for book in bookDegrees %}
                 <li class="degreeItem">
-                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="text-decoration: none; color: #1c1c1c;">
+                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="color: #1c1c1c;">
                         <div class="name">{{book.book_name}}</div></a>
                     <div class="degreeNumber">{{book.total | numberFormat}}</div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="section-title"><h6>Chapter</h6><a href="/">show all</a></div>
-        <div id="chapter_menu" menu_name="chapter">
-            <ul>
-                {% for chapter in chapterDegrees %}
-                <li class="degreeItem">
-
-                    <a href="#" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="text-decoration: none; color: #1c1c1c;">
-                        <div class="name">{{chapter.chapter}}</div>
-                    </a>
-                    <div class="degreeNumber">{{chapter.total | numberFormat}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="section-title"><h6>Author</h6><a href="/">show all</a></div>
+        <div class="section-title"><h6>Author</h6></div>
         <div id="author_menu" menu_name="author">
             <ul>
                 {% for author in authorDegrees %}
                 <li class="degreeItem">
-                    <a href="#" class="authorFilter" author_name="{{author.author}}" style="text-decoration: none; color: #1c1c1c;">
+                    <a href="#" class="authorFilter" author_name="{{author.author}}" style="color: #1c1c1c;">
                         <div class="name">{{author.author}}</div>
                     </a>
                     <div class="degreeNumber">{{author.total | numberFormat}}</div>

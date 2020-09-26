@@ -34,10 +34,10 @@
             type: 'canvas',
         }],
         settings: {
-        arrowSizeRatio: 2,
+        arrowSizeRatio: 4,
         batchEdgesDrawing: true,
         defaultEdgeColor: "rgba(255,255,255,0.1)",
-        defaultEdgeHoverColor: "rgba(255,255,255,0.3)",
+        defaultEdgeHoverColor: "rgba(255,255,255,0.5)",
         defaultEdgeLabelColor: "#FFFFFF",
         defaultEdgeType: "dotted",
         defaultHoverLabelBGColor: "#FFFFFF",
@@ -56,7 +56,7 @@
         labelThreshold: 4,
         maxEdgeSize: 0.5,
         maxNodeSize: 7,
-        minArrowSize: 4,
+        minArrowSize: 10,
         minEdgeSize: 0.2,
         minNodeSize: 1,
         singleHover: false,
@@ -137,9 +137,16 @@
       // Bind the events:
       sf.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
         console.log(e.type, e.data.node.label, e.data.captor);
+      });
+      sf.bind('overNode clickNode', function(e) {
         var element = document.getElementById(e.data.node.id);
+              element.classList.add("highlight");
               element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
       });
+      sf.bind('outNode', function (e) {
+          var element = document.getElementById(e.data.node.id);
+              element.classList.remove("highlight");
+      })
       sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
         console.log(e.type, e.data.edge, e.data.captor);
       });

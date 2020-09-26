@@ -1,7 +1,7 @@
 <ul>
     {% for author in filteredauthors %}
     <li class="degreeItem">
-        <a href="#" class="authorFilter" author_name="{{author.author}}">
+        <a href="#" class="authorFilter" author_name="{{author.author}}" style="color: #1c1c1c;">
             <div class="name">{{author.author}}</div>
         </a>
         <div class="degreeNumber">{{author.total | numberFormat}}</div>

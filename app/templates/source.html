@@ -1,5 +1,5 @@
 {% for i in range(1, fschapters)%}
-    <h4>Chapter {{i}}</h4>
+    <h4 id="ch{{i}}">Chapter {{i}}</h4>
     {% for verse in fsverses%}
         {% if verse.chapter==i%}
         <span class="scripture">

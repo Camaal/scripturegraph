@@ -58,7 +58,7 @@ def getNeighborNetwork(verse):
     for node in neighbor_net.nodes():
         for n in node_sizes:
             if n == node:
-                node_size[node] = node_sizes[n]
+                node_size[node] = node_sizes[n]*10
 
     # Init JSON
     data = {'nodes': [], 'edges': []}
@@ -86,7 +86,7 @@ def getNeighborNetwork(verse):
             "target": str(e[1]),
             #"color": "rgba(255,255,255,0.007)",
             "size": 10,
-            "type": "curve", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
+            "type": "arrow", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
             "edgeColor": 'default',
         })
 
