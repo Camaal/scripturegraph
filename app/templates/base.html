@@ -38,12 +38,11 @@
 <div id="top-nav-container">
     <div class="top-nav-list">
         <div class="top-nav-item left"><a class="menu"><span class="material-icons">menu</span></a></div>
-        <div class="top-nav-item right">About</div>
     </div>
 </div>
 <div class="container">
     <div id="sidenav" class="sidenav">
-        <div class="section-title"><h6>Book</h6><a href="/">reset</a></div>
+        <div class="section-title"><h6>Book</h6></div>
         <div id="book_menu" menu_name="book">
             <ul>
                 {% for book in bookDegrees %}
@@ -68,6 +67,7 @@
                 {% endfor %}
             </ul>
         </div>
+        <a class="resetBtn" href="/">reset</a>
     </div>
     <div class="content">
       {% block content %}{% endblock %}

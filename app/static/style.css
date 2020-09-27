@@ -67,9 +67,8 @@ a:active {
 
 .sidenav{
     display: grid;
-    grid-template-rows: 40px 600px 50px 250px;
-    padding: 0 1.5em;
-    height: 100%;
+    grid-template-rows: 40px 500px 50px 250px 50px;
+    padding: 1em 1em 0 1em;
     width: 250px;
     border-right: 1px solid #ccc;
 }
@@ -90,7 +89,7 @@ a:active {
     grid-template-rows: 70px 480px auto;
     grid-row-gap: 1em;
     align-content: start;
-    padding-top: 3em;
+    padding-top: 4em;
 }
 
 #graph{
@@ -144,6 +143,29 @@ ul > li{
    list-style: none;
 }
 
+.resetBtn{
+    display: grid;
+    grid-template-rows: auto;
+    align-content: center;
+    text-align: center;
+    padding: .5em;
+    min-width: 85%;
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    text-decoration: none;
+    transition: background-color .5s;
+    height: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .75em;
+    letter-spacing: .025em;
+}
+
+.resetBtn:hover{
+    color: #fff;
+    background-color: #606060;
+    text-decoration: none;
+}
 
 .degreeItem{
     display: grid;
@@ -152,6 +174,7 @@ ul > li{
     align-content: center;
     margin-bottom: .5em;
 }
+
 
 .color-scale{
     width: 100%;
@@ -169,7 +192,7 @@ ul > li{
 /*Typography*/
 
 .above_avg{
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .top-nav-item{
