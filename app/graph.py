@@ -17,6 +17,7 @@ for edge in in_file:
 # Show the degree for each node
 node_degree = [n for n in g.degree()]
 
+
 def degreeColor(value):
     norm = mpl.colors.Normalize(vmin=.04, vmax=1)
     cmap = cm.viridis
@@ -25,57 +26,62 @@ def degreeColor(value):
 
 
 def getNeighborNetwork(verse):
-
-    #Create a new network just for 01001001 and it's network of neighbors
+    # Create a new network just for 01001001 and it's network of neighbors
     neighbor_net = net.Graph()
 
-    #Get neighbor of source
+    # Get neighbor of source
     node_neighbors = [n for n in g.neighbors(verse)]
 
-    #Get permutations of edges between neighbors
+    # Get permutations of edges between neighbors
     perm = permutations(node_neighbors, 2)
 
-    #Loop over each neighbor and add it to a new graph
+    # Loop over each neighbor and add it to a new graph
     for n in g.neighbors(verse):
         neighbor_net.add_edge(verse, n)
 
-    #Loop over each permutation as see if an edge exists in the original network, if so add it to the new one
+    # Loop over each permutation as see if an edge exists in the original network, if so add it to the new one
     for i in list(perm):
         if g.has_edge(i[0], i[1]):
             neighbor_net.add_edge(i[0], i[1])
         else:
             pass
 
-    #Get the degree for each node
+    # Get the degree for each node
     node_sizes = dict(neighbor_net.degree)
 
-    #Set the position of each node using a Spring Layout
+    # Set the position of each node using a Spring Layout
     pos = net.spring_layout(neighbor_net)
 
-
-    #Set the node size
+    # Set the node size
     node_size = {}
     for node in neighbor_net.nodes():
         for n in node_sizes:
             if n == node:
-                node_size[node] = node_sizes[n]*10
+                node_size[node] = node_sizes[n] * 10
 
     # Init JSON
     data = {'nodes': [], 'edges': []}
 
     # Nodes
     for n in neighbor_net.nodes:
-        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree)\
+        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree,
+                                     Sources.red_letter) \
             .filter(Sources.Id == n).first()
+
+        if node_name[4] == "TRUE":
+            ncolor = "rgba(183, 18, 27, 1.00)"
+        else:
+            ncolor = "rgba(255,255,255,0.3)"
+
         color = degreeColor(node_name[3])
         data['nodes'].append({
             "id": n,
-            "label": str(node_name[0])+" "+str(node_name[1])+":"+str(node_name[2]),
+            "label": str(node_name[0]) + " " + str(node_name[1]) + ":" + str(node_name[2]),
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n],
-            "color": "#fff",
-            #"color": "rgba"+str(color)
+            "color": ncolor,
+            # "color": "rgba"+str(color)
         })
 
     # Edges
@@ -84,9 +90,9 @@ def getNeighborNetwork(verse):
             "id": str(i),
             "source": str(e[0]),
             "target": str(e[1]),
-            #"color": "rgba(255,255,255,0.007)",
+            # "color": "rgba(255,255,255,0.007)",
             "size": 10,
-            "type": "tapered", #['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
+            "type": "tapered",  # ['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
             "edgeColor": 'default',
         })
 

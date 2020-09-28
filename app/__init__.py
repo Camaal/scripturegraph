@@ -16,7 +16,7 @@ from app import routes, models
 ui = FlaskUI(app, host="127.0.0.1", port="8000", width=1920, height=1080)
 
 # call the 'run' method
-ui.run()
+# ui.run()
 
 
 

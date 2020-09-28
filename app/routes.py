@@ -62,11 +62,11 @@ def index():
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
     joins = db.session.query(Targets.Id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
-                             Targets.degree, Targets.color, Targets.norm_degree).join(References) \
+                             Targets.degree, Targets.color, Targets.norm_degree, Targets.red_letter).join(References) \
         .filter(References.Source == defaultsource).all()
 
     source_joins = db.session.query(Sources.Id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse,
-                                    Sources.text, Sources.degree, Sources.color, Sources.norm_degree).join(References) \
+                                    Sources.text, Sources.degree, Sources.color, Sources.norm_degree, Sources.red_letter).join(References) \
         .filter(References.Target == defaultsource).all()
 
     # List authors related to Gen 1:1
@@ -124,7 +124,7 @@ def filter_source():
     fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=request.form['book']).count()
 
     fsverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
-                               Sources.norm_degree, Sources.Id).filter_by(book=request.form['book'])
+                               Sources.norm_degree, Sources.Id, Sources.red_letter).filter_by(book=request.form['book'])
 
     return render_template('source.html', fschapters=fschapters, fsverses=fsverses, fchapterdegrees=fchapterdegrees)
 
@@ -144,11 +144,11 @@ def filter_target():
         References).filter(References.Source == request.form['Id']).order_by(Targets.book).distinct()
 
     ftverses = db.session.query(Targets.Id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
-                             Targets.degree, Targets.color, Targets.norm_degree).join(References) \
+                             Targets.degree, Targets.color, Targets.norm_degree, Targets.red_letter).join(References) \
         .filter(References.Source == request.form['Id']).all()
 
     fsverses = db.session.query(Sources.Id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse, Sources.text,
-                                Sources.degree, Sources.color, Sources.norm_degree).join(References) \
+                                Sources.degree, Sources.color, Sources.norm_degree, Sources.red_letter).join(References) \
         .filter(References.Target == request.form['Id']).all()
 
     ftauthors = db.session.query(Targets.author).join(References) \

@@ -32,7 +32,7 @@
                     <span class="scripture">
                            <span>
                               <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %}" verse_id="{{verse.Id}}" style="text-decoration: none;">{{verse.text}}</a><sup>{{verse.degree}}</sup>
+                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.red_letter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.Id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup>{{verse.degree}}</sup>
                            </span>
                     </span>
                     {% endif %}
@@ -47,7 +47,7 @@
         <div id="target_text" class="cross-references">
             {% for item in joins%}
                     <span id="{{item.Id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %}">
+                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
@@ -55,7 +55,7 @@
             {% endfor %}
           {% for item in source_joins%}
                     <span id="{{item.Id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %}">
+                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
@@ -96,15 +96,15 @@
                   defaultLabelBGColor: "#ddd",
                   defaultLabelColor: "#FFFFFF",
                   defaultLabelHoverColor: "#2a2a35",
-                  defaultLabelSize: 12,
+                  defaultLabelSize: 14,
                   defaultNodeColor: "#fff",
                   drawEdgeLabels: false,
                   drawEdges: true,
-                  edgeColor:'default',
+                  edgeColor:'source',
                   edgeHoverColor: 'default',
                   enableEdgeHovering: true,
                   enableHovering: false,
-                  font: 'Source Serif Pro',
+                  font: 'Source Sans Pro',
                   labelThreshold: 4,
                   maxEdgeSize: 0.5,
                   maxNodeSize: 7,

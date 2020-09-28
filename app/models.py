@@ -43,7 +43,7 @@ class Sources(db.Model):
     __tablename__ = "source"
 
     Id = db.Column(db.Integer, primary_key=True)
-    red_letter = db.Column(db.Boolean, nullable=False)
+    red_letter = db.Column(db.String(250), nullable=False)
     author = db.Column(db.String(250), nullable=False)
     book_name = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
@@ -69,7 +69,7 @@ class Targets(db.Model):
     __tablename__ = "target"
 
     Id = db.Column(db.Integer, primary_key=True)
-    red_letter = db.Column(db.Boolean, nullable=False)
+    red_letter = db.Column(db.String(250), nullable=False)
     author = db.Column(db.String(250), nullable=False)
     book_name = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
