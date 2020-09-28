@@ -3,7 +3,8 @@ html, body{
     font-weight: 300;
     margin: 0;
     color: #1c1c1c;
-    background-color: #efefef;
+    /*background-color: #efefef;*/
+    background-color: #ffffff;
     scroll-behavior: smooth;
 }
 
@@ -89,7 +90,7 @@ a:active {
     grid-template-rows: 70px 480px auto;
     grid-row-gap: 1em;
     align-content: start;
-    padding-top: 4em;
+    padding-top: 1em;
 }
 
 #graph{
@@ -107,7 +108,7 @@ a:active {
 
 .collection{
     display: grid;
-    grid-template-rows: 763px ;
+    grid-template-rows: 840px ;
     grid-row-gap: .5em;
     min-width: 571px;
     /*margin-top: 2em;*/
@@ -119,9 +120,10 @@ a:active {
 
 .collection-target{
     display: grid;
-    grid-template-rows: 434px 320px ;
+    grid-template-rows: 512px 320px ;
     grid-row-gap: .5em;
     min-width: 571px;
+    padding-left: 2em;
     /*margin-top: 2em;*/
 }
 
