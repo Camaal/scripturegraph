@@ -1,4 +1,4 @@
-#!/Users/cmoten/PycharmProjects/scripturegraph/venv/bin/python3
+#!/Users/cmoten/PycharmProjects/scripturegraph/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

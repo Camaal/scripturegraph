@@ -1,6 +1,5 @@
-from flask import Flask, render_template, url_for, request, jsonify, json
+from flask import render_template, request
 
-import json
 from app import app, db
 from sqlalchemy import func
 from app.models import Books, Authors, References, Sources, Targets

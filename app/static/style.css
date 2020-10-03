@@ -49,8 +49,8 @@ a:active {
 
 .container{
     display: grid;
-    grid-template-columns: auto auto;
-    height: calc(100vh - 32px);
+    grid-template-columns: 280px auto;
+    height: 100vh;
 }
 
 .person{
@@ -86,7 +86,7 @@ a:active {
 
 .content{
     display: grid;
-    grid-template-rows: 70px 480px auto;
+    grid-template-rows: 70px auto;
     grid-row-gap: 1em;
     align-content: start;
     /*background-color: #f6f6f6;*/
@@ -101,9 +101,10 @@ a:active {
 
 .parallel{
     display: grid;
-    grid-template-columns: 90px 570px auto;
+    grid-template-columns: 90px 570px 570px;
     grid-column-gap: 3em;
     padding: 0 50px;
+    height: 840px;
 }
 
 .collection{
@@ -124,7 +125,6 @@ a:active {
     grid-template-rows: 512px 296px ;
     grid-row-gap: 2em;
     min-width: 571px;
-    padding-left: 2em;
 }
 
 .verses{
