@@ -11,6 +11,21 @@
 
 {% block script %}
 <script type="application/javascript">
+
+    $('.authorFilter').on('click', function (){
+        const author_name = $(this).attr('author_name');
+
+        let getBookByAuthor = $.ajax({
+            url: '/filter_book_menu',
+            type: 'POST',
+            data: {author: author_name}
+        });
+
+        getBookByAuthor.done(function (data) {
+            $('#book_menu').html(data);
+        })
+    });
+
     var authorContainer = document.getElementById('author_menu');
     var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){

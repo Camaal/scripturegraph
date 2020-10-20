@@ -8,8 +8,6 @@ $(document).ready(function () {
             x.style.display = "none";
         }
     });
-
-
     $('.authorFilter').on('click', function (){
         const author_name = $(this).attr('author_name');
 
