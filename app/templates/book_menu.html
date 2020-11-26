@@ -17,9 +17,9 @@
             $('#source_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
             $('#author_menu').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
-            var book_id = $(this).attr('book_id');
+            const book_id = $(this).attr('book_id');
 
-            var getSourceByBook = $.ajax({
+            let getSourceByBook = $.ajax({
                 url: '/filter_source',
                 type: 'POST',
                 data: {book: book_id}
@@ -29,7 +29,7 @@
                 $('#source_text').html(data);
             });
 
-            var getSourceBookName = $.ajax({
+            let getSourceBookName = $.ajax({
                 url: '/filter_book_name',
                 type: 'POST',
                 data: {book: book_id}
@@ -39,8 +39,7 @@
                 $('#sourceBookName').html(data);
             });
 
-
-            var getAuthors = $.ajax({
+            let getAuthors = $.ajax({
                 url: '/filter_author_menu',
                 type: 'POST',
                 data: {book: book_id}
@@ -49,13 +48,23 @@
             getAuthors.done(function (data) {
                 $('#author_menu').html(data);
             });
+
+            let getChapters = $.ajax({
+                url: '/filter_chapter_menu',
+                type: 'POST',
+                data: {book: book_id}
+            });
+
+            getChapters.done(function (data) {
+                $('#chapter_menu').html(data);
+            });
         });
 
         var bookContainer = document.getElementById('book_menu');
         var bookbtns = bookContainer.getElementsByClassName('bookFilter');
         for (let i = 0; i < bookbtns.length; i++){
             bookbtns[i].addEventListener('click',function () {
-                var current = document.getElementsByClassName('active');
+                const current = document.getElementsByClassName('active');
                 if (current.length > 0){
                     current[0].className = current[0].className.replace(' active', '');
                 }

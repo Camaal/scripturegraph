@@ -15,7 +15,7 @@
     var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
+            const current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }

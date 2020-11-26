@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
 
     $('.menu').on('click', function (){
-        var x = document.getElementById("sidenav");
+        const x = document.getElementById("sidenav");
         if (x.style.display === "none") {
             x.style.display = "grid";
         } else {
@@ -76,7 +76,7 @@ $(document).ready(function () {
     });
     $('.verseFilter').on('click', function (){
 
-        var verse_id = $(this).attr('verse_id');
+        const verse_id = $(this).attr('verse_id');
 
         let getSourceByBook = $.ajax({
             url: '/filter_target',
@@ -94,7 +94,7 @@ $(document).ready(function () {
     var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
+            const current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -106,7 +106,7 @@ $(document).ready(function () {
     var bookbtns = bookContainer.getElementsByClassName('bookFilter');
     for (let i = 0; i < bookbtns.length; i++){
         bookbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
+            const current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -118,7 +118,7 @@ $(document).ready(function () {
     var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
+            const current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }

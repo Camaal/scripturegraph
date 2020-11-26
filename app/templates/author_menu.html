@@ -13,9 +13,9 @@
 <script type="application/javascript">
 
     $('.authorFilter').on('click', function (){
-        var author_name = $(this).attr('author_name');
+        const author_name = $(this).attr('author_name');
 
-        var getBookByAuthor = $.ajax({
+        const getBookByAuthor = $.ajax({
             url: '/filter_book_menu',
             type: 'POST',
             data: {author: author_name}
@@ -30,7 +30,7 @@
     var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
+            const current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }

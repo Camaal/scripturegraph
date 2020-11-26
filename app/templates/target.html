@@ -74,7 +74,7 @@
             // We do the same for the edges, and we only keep
             // edges that have both extremities colored.
             sf.bind('clickNode', function (e) {
-                var nodeId = e.data.node.id,
+                const nodeId = e.data.node.id,
                     toKeep = sf.graph.neighbors(nodeId);
                 toKeep[nodeId] = e.data.node;
 
@@ -134,13 +134,13 @@
         console.log(e.type, e.data.node.label, e.data.captor);
       });
       sf.bind('overNode clickNode', function(e) {
-        var element = document.getElementById(e.data.node.id);
-              element.classList.add("highlight");
+          const element = document.getElementById(e.data.node.id);
+          element.classList.add("highlight");
               element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
       });
       sf.bind('outNode', function (e) {
-          var element = document.getElementById(e.data.node.id);
-              element.classList.remove("highlight");
+          const element = document.getElementById(e.data.node.id);
+          element.classList.remove("highlight");
       })
       sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
         console.log(e.type, e.data.edge, e.data.captor);
