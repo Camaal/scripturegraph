@@ -79,7 +79,7 @@ def getNeighborNetwork(verse):
             "label": str(node_name[0]) + " " + str(node_name[1]) + ":" + str(node_name[2]),
             "x": pos[n][0],
             "y": pos[n][1],
-            "size": node_size[n],
+            "size": node_size[n] * 10,
             "color": ncolor,
             # "color": "rgba"+str(color)
         })
