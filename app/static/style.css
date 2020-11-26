@@ -5,6 +5,7 @@ html, body{
     color: #1c1c1c;
     background-color: #f6f6f6;
     scroll-behavior: smooth;
+    line-height: 1.75;
 }
 
 #top-nav-container{
@@ -266,6 +267,7 @@ h4{
     margin-bottom: 4px;
     align-content: end;
     display: grid;
+    font-size: .8rem;
     font-weight: 600;
 }
 
@@ -309,14 +311,14 @@ h6{
 }
 
 .name{
-    font-size: .875em;
+    font-size: 0.8rem;
 }
 
 .degreeNumber{
     font-size: .75em;
     color: #ffffff;
     text-align: center;
-    padding: 8px 0;
+    padding: 4px 0;
     /*color: rgba(0,0,0,0.3);*/
 }
 
