@@ -28,14 +28,14 @@ def authorColor(value):
 
 @app.template_filter()
 def chapterColor(value):
-    norm = mpl.colors.Normalize(vmin=400, vmax=5500)
+    norm = mpl.colors.Normalize(vmin=400, vmax=6500)
     cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     return format(m.to_rgba(value, bytes=True, alpha=1))
 
 @app.template_filter()
 def verseColor(value):
-    norm = mpl.colors.Normalize(vmin=0, vmax=600)
+    norm = mpl.colors.Normalize(vmin=0, vmax=200)
     cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     return format(m.to_rgba(value, bytes=True, alpha=1))

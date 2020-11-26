@@ -68,7 +68,7 @@ a:active {
 .sidenav{
     display: grid;
     grid-template-rows: 70px 500px 50px 290px 50px;
-    padding: 1em 1em 0 1em;
+    padding: 1em 2em 0 2em;
     /*width: 250px;*/
     border-right: 1px solid #ccc;
 }
@@ -95,7 +95,7 @@ a:active {
 #graph{
     width: 100%;
     height: 100%;
-    background-color: #1c1c1c;
+    background-color: #000000;
     /*background-color: #2a2a35;*/
 }
 
@@ -125,6 +125,10 @@ a:active {
     grid-template-rows: 512px 296px ;
     grid-row-gap: 1em;
     min-width: 571px;
+    background-color: #fff;
+    padding: 3em;
+    border: 1px solid #ddd;
+    margin-top: -24px;
 }
 
 .verses{
@@ -226,6 +230,7 @@ ul > li{
 h1{
     font-weight: 300;
     padding: 0 50px;
+    font-size: 2.441rem;
 }
 
 .min, .max{
@@ -246,6 +251,7 @@ h4{
     margin-top: 1em;
     margin-bottom: 1em;
     color: #1c1c1c;
+    font-size: 1.25rem;
     font-style: italic;
 }
 
