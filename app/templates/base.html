@@ -43,6 +43,18 @@
 </div>-->
 <div class="container">
     <div id="sidenav" class="sidenav">
+        <div class="section-title"><h6>Book</h6></div>
+        <div id="book_menu" menu_name="book">
+            <ul>
+                {% for book in bookDegrees %}
+                <li class="degreeItem">
+                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="color: #1c1c1c;">
+                        <div class="name">{{book.book_name}}</div></a>
+                    <div class="degreeNumber" style="background-color: rgb{{book.total | bookColor}};">{{book.total | numberFormat}}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         <div class="section-title"><h6>Author</h6></div>
         <div id="author_menu" menu_name="author">
             <ul>
@@ -56,19 +68,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="section-title"><h6>Book</h6></div>
-        <div id="book_menu" menu_name="book">
-            <ul>
-                {% for book in bookDegrees %}
-                <li class="degreeItem">
-                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="color: #1c1c1c;">
-                        <div class="name">{{book.book_name}}</div></a>
-                    <div class="degreeNumber" style="background-color: rgb{{book.total | bookColor}};">{{book.total | numberFormat}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <a class="resetBtn" href="/">reset</a>
+        <a class="resetBtn" href="/">reset filters</a>
     </div>
     <div class="content">
       {% block content %}{% endblock %}

@@ -14,22 +14,29 @@ def numberFormat(value):
 
 @app.template_filter()
 def bookColor(value):
-    norm = mpl.colors.Normalize(vmin=0, vmax=40000)
-    cmap = cm.Greys
+    norm = mpl.colors.Normalize(vmin=400, vmax=120000)
+    cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     return format(m.to_rgba(value, bytes=True, alpha=1))
 
 @app.template_filter()
 def authorColor(value):
-    norm = mpl.colors.Normalize(vmin=0, vmax=200000)
-    cmap = cm.Greys
+    norm = mpl.colors.Normalize(vmin=600, vmax=220000)
+    cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     return format(m.to_rgba(value, bytes=True, alpha=1))
 
 @app.template_filter()
 def chapterColor(value):
-    norm = mpl.colors.Normalize(vmin=0, vmax=2000)
-    cmap = cm.Greys
+    norm = mpl.colors.Normalize(vmin=400, vmax=5500)
+    cmap = cm.viridis
+    m = cm.ScalarMappable(norm=norm, cmap=cmap)
+    return format(m.to_rgba(value, bytes=True, alpha=1))
+
+@app.template_filter()
+def verseColor(value):
+    norm = mpl.colors.Normalize(vmin=0, vmax=600)
+    cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     return format(m.to_rgba(value, bytes=True, alpha=1))
 

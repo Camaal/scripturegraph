@@ -13,7 +13,7 @@
     {% for item in fsverses%}
     <span id="{{item.Id}}" class="scripture">
                          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
-                            {{item.text}}<sup>{{item.degree}}</sup>
+                            {{item.text}}<sup style="color: rgb{{item.degree | verseColor}}">{{item.degree}}</sup>
                          </span>
                     </span>
     <h6 class="reference-name">{{item.author}} - {{item.book_name}} {{item.chapter}}: {{item.verse}}</h6>

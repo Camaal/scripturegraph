@@ -13,9 +13,9 @@
 <script type="application/javascript">
 
     $('.authorFilter').on('click', function (){
-        const author_name = $(this).attr('author_name');
+        var author_name = $(this).attr('author_name');
 
-        let getBookByAuthor = $.ajax({
+        var getBookByAuthor = $.ajax({
             url: '/filter_book_menu',
             type: 'POST',
             data: {author: author_name}
