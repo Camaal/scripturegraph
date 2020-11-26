@@ -4,7 +4,7 @@
         <a href="#" class="authorFilter" author_name="{{author.author}}" style="color: #1c1c1c;">
             <div class="name">{{author.author}}</div>
         </a>
-        <div class="degreeNumber">{{author.total | numberFormat}}</div>
+        <div class="degreeNumber" style="background-color: rgb{{author.total | authorColor}};">{{author.total | numberFormat}}</div>
     </li>
     {% endfor %}
 </ul>

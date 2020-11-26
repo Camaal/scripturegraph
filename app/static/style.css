@@ -9,7 +9,7 @@ html, body{
 
 #top-nav-container{
     width: 100%;
-    border-bottom: 1px solid #cccccc;
+/*    border-bottom: 1px solid #cccccc;*/
 }
 
 #top-nav-container .material-icons{
@@ -75,8 +75,8 @@ a:active {
 
 #book_menu, #chapter_menu, #author_menu{
     overflow-y: scroll;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    /*border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;*/
     padding: 8px 0;
 }
 
@@ -101,7 +101,7 @@ a:active {
 
 .parallel{
     display: grid;
-    grid-template-columns: 90px 570px 570px;
+    grid-template-columns: 100px 570px 570px;
     grid-column-gap: 3em;
     padding: 0 50px;
     height: 840px;
@@ -117,7 +117,7 @@ a:active {
 
 .collection .verses,
 .collection-target .verses{
-    border-top: 1px solid #ccc;
+    /*border-top: 1px solid #ccc;*/
 }
 
 .collection-target{
@@ -130,7 +130,7 @@ a:active {
 .verses{
     overflow-y: scroll;
     padding-right: 1em;
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
 }
 
 .cross-references{
@@ -178,6 +178,13 @@ ul > li{
     margin-bottom: .5em;
 }
 
+.chapterItem{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: .5em;
+}
 
 .color-scale{
     width: 100%;

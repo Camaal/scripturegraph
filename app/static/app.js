@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    function getTextColor(rgba) {
+        rgba = rgba.match(/\d+/g);
+        if ((rgba[0] * 0.299) + (rgba[1] * 0.587) + (rgba[2] * 0.114) > 186) {
+            return '#111';
+        } else {
+            return '#fff';
+        }
+    }
+
     $('.menu').on('click', function (){
         var x = document.getElementById("sidenav");
         if (x.style.display === "none") {

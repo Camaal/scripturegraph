@@ -13,11 +13,25 @@ def numberFormat(value):
     return format(int(value), ',d')
 
 @app.template_filter()
-def degreeColor(value):
-    norm = mpl.colors.Normalize(vmin=.04, vmax=1)
-    cmap = cm.viridis
+def bookColor(value):
+    norm = mpl.colors.Normalize(vmin=0, vmax=40000)
+    cmap = cm.Greys
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    return format(m.to_rgba(value, bytes=True))
+    return format(m.to_rgba(value, bytes=True, alpha=1))
+
+@app.template_filter()
+def authorColor(value):
+    norm = mpl.colors.Normalize(vmin=0, vmax=200000)
+    cmap = cm.Greys
+    m = cm.ScalarMappable(norm=norm, cmap=cmap)
+    return format(m.to_rgba(value, bytes=True, alpha=1))
+
+@app.template_filter()
+def chapterColor(value):
+    norm = mpl.colors.Normalize(vmin=0, vmax=2000)
+    cmap = cm.Greys
+    m = cm.ScalarMappable(norm=norm, cmap=cmap)
+    return format(m.to_rgba(value, bytes=True, alpha=1))
 
 def flat_list(l):
     return ["%s" % v for v in l]

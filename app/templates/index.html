@@ -12,12 +12,12 @@
   <div id="chapter_menu" menu_name="chapter">
         <ul>
             {% for chapter in chapterDegrees %}
-            <li class="degreeItem">
+            <li class="chapterItem">
 
                 <a href="#ch{{chapter.chapter}}" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
                     <div class="name">{{chapter.chapter}}</div>
                 </a>
-                <div class="degreeNumber">{{chapter.total | numberFormat}}</div>
+                <div class="degreeNumber" style="background-color: rgb{{chapter.total | chapterColor}};">{{chapter.total | numberFormat}}</div>
             </li>
             {% endfor %}
         </ul>
