@@ -52,7 +52,7 @@
                             {{item.text}}
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} references</h6>
+                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
             {% endfor %}
           {% for item in source_joins%}
                     <h6 class="character">{{item.author}}</h6>
@@ -61,7 +61,7 @@
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} references</h6>
+                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
             {% endfor %}
         </div>
       </div>
