@@ -79,6 +79,7 @@ a:active {
     grid-template-columns: 1fr;
     align-content: center;
     text-align: center;
+    cursor: pointer;
 }
 
 .sidenav > .logo h6{
@@ -218,8 +219,7 @@ ul > li{
 }
 
 .highlight{
-    text-decoration: underline;
-    background-color: rgba(255, 255, 191, 1.00);
+    background-color: rgba(250, 237, 39, 1.00);
 }
 
 /*Typography*/
@@ -314,7 +314,7 @@ h4{
     color: #d0d0d0;
     font-weight: 600;
     margin: 0px 0 32px 0;
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -333,6 +333,10 @@ h6{
     text-transform: uppercase;
     letter-spacing: .05em;
     color: #1c1c1c;
+}
+
+h6.character{
+    text-align: center;
 }
 
 .name{
@@ -354,6 +358,10 @@ h6{
     color: #414141;
 }
 
+#source_text > .scripture:hover {
+  text-decoration: underline;
+}
+
 .verse_num{
     font-weight: 600;
     padding-right: 2px;
@@ -367,4 +375,64 @@ sup{
 
 .jesus_words{
     color:#b7121b !important;
+}
+
+/* About Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    display: grid;
+    grid-template-rows: 44px auto;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    color: #1c1c1c;
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.modal-header{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-content: center;
+    border-bottom: 2px solid #808080;
+}
+
+.modal-text{
+    max-height: 508px;
+    overflow: auto;
+    padding: 0 1.5em 1.5em 1.5em;
+}
+
+.modal-content ul > li{
+   list-style: circle;
+}
+
+.close {
+    color: #aaa;
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+    align-content: center;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

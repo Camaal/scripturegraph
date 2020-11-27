@@ -1,14 +1,25 @@
 $(document).ready(function () {
 
-    function getTextColor(rgba) {
-        rgba = rgba.match(/\d+/g);
-        if ((rgba[0] * 0.299) + (rgba[1] * 0.587) + (rgba[2] * 0.114) > 186) {
-            return '#111';
-        } else {
-            return '#fff';
-        }
+    // Modal about
+    const modal = document.getElementById("about");
+    const btn = document.getElementById("about_modal");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
     }
 
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Hide/Show sidenav
     $('.menu').on('click', function (){
         const x = document.getElementById("sidenav");
         if (x.style.display === "none") {
@@ -17,6 +28,8 @@ $(document).ready(function () {
             x.style.display = "none";
         }
     });
+
+    // Main navigation functions
     $('.authorFilter').on('click', function (){
         const author_name = $(this).attr('author_name');
 

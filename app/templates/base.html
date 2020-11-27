@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
 <head>
-      {% if title %}
-      <title>{{ title }} - Scripturegraph</title>
-      {% else %}
-      <title>Welcome to Scripturegraph</title>
-      {% endif %}
+    {% if title %}
+    <title>{{ title }} - Scripturegraph</title>
+    {% else %}
+    <title>Welcome to Scripturegraph</title>
+    {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,7 +43,7 @@
 </div>-->
 <div class="container">
     <div id="sidenav" class="sidenav">
-        <div class="logo"><h6>scripturegraph 2020</h6></div>
+        <div class="logo" id="about_modal"><h6>Scripturegraph 2020 (KJV)</h6></div>
         <div class="section-title"><h6>Books</h6></div>
         <div id="book_menu" menu_name="book">
             <ul>
@@ -69,10 +69,60 @@
                 {% endfor %}
             </ul>
         </div>
-        <a class="resetBtn" href="/">reset filters</a>
+        <a class="resetBtn" href="/">start over</a>
     </div>
     <div class="content">
-      {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+    <div id="about" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Scripturegraph 2020</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-text">
+                <h3>What Is It?</h3>
+
+                <p>Scripturegraph is a data visualization of 340,000 cross references between different parts of the King James Version (KJV) of the Bible. It’s designed to read much like the traditional Bible, but I leveraged the number of cross references for each verse to provide emphasis. The number of references are listed alongside each book, author, chapter, and verse.</p>
+
+                <h3>Why Use It?</h3>
+
+                <p>&quot;It takes hard labor to get the gold, but gold is worth all the labor it costs to get it.&quot; - R.A. Torrey</p>
+
+                <ul>
+                    <li>References based on the Treasury of Scripture Knowledge (TSK)</li>
+                    <li>Takes less time to look up references</li>
+                    <li>Organized in a way that's not visually exhausting</li>
+                    <li>Meditate on a verses meaning in the content of all references</li>
+                    <li>Read in sequential or zig-zag order</li>
+                </ul>
+
+                <h3>How It Works</h3>
+
+                <p>Scripturegraph is best viewed at 1920 x 1060px.</p>
+
+                <p>The interface is divided into three areas; the sidebar, source scripture, and target scripture. The sidebar allows you to navigate by selecting a book or author. Selecting a book will filter the authors and vice versa. You can also reset your selection at the bottom of the sidebar.</p>
+
+                <p>Any selection from the sidebar will load the book and chapters into the source area. The source area lists the name of the book, all the chapters along with their total number of references, and the verses for each chapter of the book. Each verse lists the number of cross-references at the end. Any verses with an “above average” number of references are bolder. You can scroll the verses to read the entire book by chapter. Select a verse to explore its references in the target area.</p>
+
+                <p>The target area comprises a network diagram and a list of verses connected to the source verse. In the network diagram, the center node represents the source verse, and all other nodes are its cross-references. Items colored in red represent verses associated with Jesus. You can zoom, pan, and hover the nodes in the network. As you hover over a verse, the list of connected verses below the diagram will scroll to the verse of interest. Each target verse lists the author, scripture, and number of references.</p>
+
+                <h3>Who Made It?</h3>
+
+                <p>Hi, my name is Camaal Moten. I do not consider myself a Bible scholar or theologian, but I love data visualization and network analysis. During to the COVID-19 pandemic, I applied my network analysis skills to the Bible. It started as a personal Bible study tool for me, but a friend encouraged me to share it with the world.</p>
+
+                <p>My next goal is to integrate other versions of the Bible into the mix:</p>
+
+                <ul>
+                    <li>American Standard-ASV1901 (ASV)</li>
+                    <li>Bible in Basic English (BBE)</li>
+                    <li>Darby English Bible (DARBY)</li>
+                    <li>Webster's Bible (WBT)</li>
+                    <li>World English Bible (WEB)</li>
+                    <li>Young's Literal Translation (YLT)</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 </body>
