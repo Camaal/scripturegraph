@@ -1,39 +1,41 @@
 <!doctype html>
 <html>
 <head>
-    {% if title %}
-    <title>{{ title }} - Scripturegraph</title>
-    {% else %}
-    <title>Welcome to Scripturegraph</title>
-    {% endif %}
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
-    <script src="{{ url_for('static', filename='sigma.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.exporters.svg.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.layout.forceAtlas2.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.layout.noverlap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.neo4j.cypher.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.parsers.gexf.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.parsers.json.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.pathfinding.astar.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.animate.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.dragNodes.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.filter.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.neighborhoods.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.plugins.relativeSize.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.customEdgeShapes.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.customShapes.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.edgeDots.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.edgeLabels.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.parallelEdges.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.renderers.snapshot.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/plugins/sigma.statistics.HITS.min.js') }}"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    {% block script %}{% endblock %}
+  {% if title %}
+  <title>{{ title }} - Scripturegraph</title>
+  {% else %}
+  <title>Welcome to Scripturegraph</title>
+  {% endif %}
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script src="{{ url_for('static', filename='sigma.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.exporters.svg.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.layout.forceAtlas2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.layout.noverlap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.neo4j.cypher.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.parsers.gexf.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.parsers.json.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.pathfinding.astar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.plugins.animate.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.plugins.dragNodes.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.plugins.filter.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.plugins.neighborhoods.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.plugins.relativeSize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.customEdgeShapes.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.customShapes.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.edgeDots.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.edgeLabels.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.parallelEdges.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.renderers.snapshot.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/plugins/sigma.statistics.HITS.min.js') }}"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  {% block script %}{% endblock %}
 </head>
 <body>
 <!--<div id="top-nav-container">
@@ -42,88 +44,111 @@
     </div>
 </div>-->
 <div class="container">
-    <div id="sidenav" class="sidenav">
-        <div class="logo" id="about_modal"><h6>Scripturegraph 2020 (KJV)</h6></div>
-        <div class="section-title"><h6>Books</h6></div>
-        <div id="book_menu" menu_name="book">
-            <ul>
-                {% for book in bookDegrees %}
-                <li class="degreeItem">
-                    <a href="#" class="bookFilter" book_id="{{book.book}}" style="color: #1c1c1c;">
-                        <div class="name">{{book.book_name}}</div></a>
-                    <div class="degreeNumber" style="background-color: rgb{{book.total | bookColor}};">{{book.total | numberFormat}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="section-title"><h6>Authors</h6></div>
-        <div id="author_menu" menu_name="author">
-            <ul>
-                {% for author in authorDegrees %}
-                <li class="degreeItem">
-                    <a href="#" class="authorFilter" author_name="{{author.author}}" style="color: #1c1c1c;">
-                        <div class="name">{{author.author}}</div>
-                    </a>
-                    <div class="degreeNumber" style="background-color: rgb{{author.total | authorColor}};">{{author.total | numberFormat}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <a class="resetBtn" href="/">start over</a>
+  <div id="sidenav" class="sidenav">
+    <div class="logo" id="about_modal"><h6>Scripturegraph 2020 (KJV)</h6></div>
+    <div class="section-title"><h6>Books</h6></div>
+    <div id="book_menu" menu_name="book">
+      <ul>
+        {% for book in bookDegrees %}
+        <li class="degreeItem">
+          <a href="#" class="bookFilter" book_id="{{book.book}}" style="color: #1c1c1c;">
+            <div class="name">{{book.book_name}}</div>
+          </a>
+          <div class="degreeNumber" style="background-color: rgb{{book.total | bookColor}};">{{book.total |
+            numberFormat}}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    <div class="content">
-        {% block content %}{% endblock %}
+    <div class="section-title"><h6>Authors</h6></div>
+    <div id="author_menu" menu_name="author">
+      <ul>
+        {% for author in authorDegrees %}
+        <li class="degreeItem">
+          <a href="#" class="authorFilter" author_name="{{author.author}}" style="color: #1c1c1c;">
+            <div class="name">{{author.author}}</div>
+          </a>
+          <div class="degreeNumber" style="background-color: rgb{{author.total | authorColor}};">{{author.total |
+            numberFormat}}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    <div id="about" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Scripturegraph 2020</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-text">
-                <h3>What Is It?</h3>
+    <a class="resetBtn" href="/">start over</a>
+  </div>
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+  <div id="about" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Scripturegraph 2020</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-text">
+        <h3>What Is It?</h3>
 
-                <p>Scripturegraph is a data visualization of 340,000 cross references between different parts of the King James Version (KJV) of the Bible. It’s designed to read much like the traditional Bible, but I leveraged the number of cross references for each verse to provide emphasis. The number of references are listed alongside each book, author, chapter, and verse.</p>
+        <p>Scripturegraph is a data visualization of 340,000 cross references between different parts of the King James
+          Version (KJV) of the Bible. It’s designed to read much like the traditional Bible, but I leveraged the number
+          of cross references for each verse to provide emphasis. The number of references are listed alongside each
+          book, author, chapter, and verse.</p>
 
-                <h3>Why Use It?</h3>
+        <h3>Why Use It?</h3>
 
-                <p>&quot;It takes hard labor to get the gold, but gold is worth all the labor it costs to get it.&quot; - R.A. Torrey</p>
+        <p>&quot;It takes hard labor to get the gold, but gold is worth all the labor it costs to get it.&quot; - R.A.
+          Torrey</p>
 
-                <ul>
-                    <li>References based on the Treasury of Scripture Knowledge (TSK)</li>
-                    <li>Takes less time to look up references</li>
-                    <li>Organized in a way that's not visually exhausting</li>
-                    <li>Meditate on a verses meaning in the content of all references</li>
-                    <li>Read in sequential or zig-zag order</li>
-                </ul>
+        <ul>
+          <li>References based on the Treasury of Scripture Knowledge (TSK)</li>
+          <li>Takes less time to look up references</li>
+          <li>Organized in a way that's not visually exhausting</li>
+          <li>Meditate on a verses meaning in the context of others</li>
+          <li>See how cross references are connected to each other</li>
+          <li>Read in sequential or in a zig-zag order</li>
+        </ul>
 
-                <h3>How It Works</h3>
+        <h3>How It Works</h3>
 
-                <p>Scripturegraph is best viewed at 1920 x 1060px.</p>
+        <p>Scripturegraph is best viewed at 1920 x 1060px.</p>
 
-                <p>The interface is divided into three areas; the sidebar, source scripture, and target scripture. The sidebar allows you to navigate by selecting a book or author. Selecting a book will filter the authors and vice versa. You can also reset your selection at the bottom of the sidebar.</p>
+        <p>The interface is divided into three areas; the sidebar, source scripture, and target scripture. The sidebar
+          allows you to navigate by selecting a book or author. Selecting a book will filter the authors and vice versa.
+          You can also reset your selection at the bottom of the sidebar.</p>
 
-                <p>Any selection from the sidebar will load the book and chapters into the source area. The source area lists the name of the book, all the chapters along with their total number of references, and the verses for each chapter of the book. Each verse lists the number of cross-references at the end. Any verses with an “above average” number of references are bolder. You can scroll the verses to read the entire book by chapter. Select a verse to explore its references in the target area.</p>
+        <p>Any selection from the sidebar will load the book and chapters into the source area. The source area lists
+          the name of the book, all the chapters along with their total number of references, and the verses for each
+          chapter of the book. Each verse lists the number of cross-references at the end. Any verses with an “above
+          average” number of references are bolder. You can scroll the verses to read the entire book by chapter. Select
+          a verse to explore its references in the target area.</p>
 
-                <p>The target area comprises a network diagram and a list of verses connected to the source verse. In the network diagram, the center node represents the source verse, and all other nodes are its cross-references. Items colored in red represent verses associated with Jesus. You can zoom, pan, and hover the nodes in the network. As you hover over a verse, the list of connected verses below the diagram will scroll to the verse of interest. Each target verse lists the author, scripture, and number of references.</p>
+        <p>The target area comprises a network diagram and a list of verses connected to the source verse. In the
+          network diagram, the center node represents the source verse, and all other nodes are its cross-references.
+          Items colored in red represent verses associated with Jesus. You can zoom, pan, and hover the nodes in the
+          network. As you hover over a verse, the list of connected verses below the diagram will scroll to the verse of
+          interest. Each target verse lists the author, scripture, and number of references.</p>
 
-                <h3>Who Made It?</h3>
+        <h3>Who Made It?</h3>
 
-                <p>Hi, my name is Camaal Moten. I do not consider myself a Bible scholar or theologian, but I love data visualization and network analysis. During to the COVID-19 pandemic, I applied my network analysis skills to the Bible. It started as a personal Bible study tool for me, but a friend encouraged me to share it with the world.</p>
+        <p>Hi, my name is Camaal Moten. I do not consider myself a Bible scholar or theologian, but I love data
+          visualization and network analysis. During to the COVID-19 pandemic, I applied my network analysis skills to
+          the Bible. It started as a personal Bible study tool for me, but a friend encouraged me to share it with the
+          world.</p>
 
-                <p>My next goal is to integrate other versions of the Bible into the mix:</p>
+        <p>My next goal is to integrate other versions of the Bible into the mix:</p>
 
-                <ul>
-                    <li>American Standard-ASV1901 (ASV)</li>
-                    <li>Bible in Basic English (BBE)</li>
-                    <li>Darby English Bible (DARBY)</li>
-                    <li>Webster's Bible (WBT)</li>
-                    <li>World English Bible (WEB)</li>
-                    <li>Young's Literal Translation (YLT)</li>
-                </ul>
-            </div>
-        </div>
+        <ul>
+          <li>American Standard-ASV1901 (ASV)</li>
+          <li>Bible in Basic English (BBE)</li>
+          <li>Darby English Bible (DARBY)</li>
+          <li>Webster's Bible (WBT)</li>
+          <li>World English Bible (WEB)</li>
+          <li>Young's Literal Translation (YLT)</li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 </body>
 <!--<script>
