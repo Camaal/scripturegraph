@@ -174,19 +174,23 @@ ul > li{
     text-align: center;
     padding: .5em;
     min-width: 85%;
-    background-color: rgb(68, 2, 85);
+    color: rgb(68, 2, 85);
     margin-top: 2em;
     text-decoration: none;
-    transition: background-color .5s;
+    transition: color .5s;
     height: 20px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     font-size: .75em;
     letter-spacing: .025em;
+    border-radius: 5px;
+    background: #f6f6f6;
+    box-shadow:  7px 7px 14px #d1d1d1,
+             -7px -7px 14px #ffffff;
 }
 
 .resetBtn:hover{
-    background-color: rgb(62, 73, 137);
+    color: rgb(30, 153, 138);
     text-decoration: none;
 }
 
