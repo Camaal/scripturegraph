@@ -7,7 +7,7 @@ import matplotlib as mpl
 import matplotlib.cm as cm
 
 # Create a network using sources and targets in DB
-in_file = db.session.query(References.Source, References.Target).all()
+in_file = db.session.query(References.source, References.target).all()
 g = net.Graph()
 
 for edge in in_file:
@@ -18,11 +18,11 @@ for edge in in_file:
 node_degree = [n for n in g.degree()]
 
 
-def degreeColor(value):
-    norm = mpl.colors.Normalize(vmin=.04, vmax=1)
-    cmap = cm.viridis
-    m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    return format(m.to_rgba(value, bytes=True))
+# def degreeColor(value):
+#     norm = mpl.colors.Normalize(vmin=0, vmax=1)
+#     cmap = cm.viridis
+#     m = cm.ScalarMappable(norm=norm, cmap=cmap)
+#     return format(m.to_rgba(value, bytes=True))
 
 
 def getNeighborNetwork(verse):
@@ -66,14 +66,14 @@ def getNeighborNetwork(verse):
     for n in neighbor_net.nodes:
         node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree,
                                      Sources.red_letter) \
-            .filter(Sources.Id == n).first()
+            .filter(Sources.id == n).first()
 
         if node_name[4] == "TRUE":
             ncolor = "rgba(183, 18, 27, 1.00)"
         else:
             ncolor = "rgba(255,255,255,0.3)"
 
-        color = degreeColor(node_name[3])
+        # color = degreeColor(node_name[3])
         data['nodes'].append({
             "id": n,
             "label": str(node_name[0]) + " " + str(node_name[1]) + ":" + str(node_name[2]),

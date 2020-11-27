@@ -32,7 +32,7 @@
                     <span class="scripture">
                            <span>
                               <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.red_letter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.Id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
+                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.red_letter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
                            </span>
                     </span>
                     {% endif %}
@@ -47,7 +47,7 @@
         <div id="target_text" class="cross-references">
             {% for item in joins%}
                     <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.Id}}" class="scripture">
+                    <span id="{{item.id}}" class="scripture">
                          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}
                          </span>
@@ -56,7 +56,7 @@
             {% endfor %}
           {% for item in source_joins%}
                     <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.Id}}" class="scripture">
+                    <span id="{{item.id}}" class="scripture">
                          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
@@ -229,7 +229,7 @@
             let getSourceByBook = $.ajax({
                 url: '/filter_target',
                 type: 'POST',
-                data: {Id: verse_id}
+                data: {id: verse_id}
             });
 
             getSourceByBook.done(function (data) {

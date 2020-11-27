@@ -94,7 +94,7 @@ $(document).ready(function () {
         let getSourceByBook = $.ajax({
             url: '/filter_target',
             type: 'POST',
-            data: {Id: verse_id}
+            data: {id: verse_id}
         });
 
         getSourceByBook.done(function (data) {

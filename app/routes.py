@@ -17,21 +17,21 @@ def bookColor(value):
     norm = mpl.colors.Normalize(vmin=400, vmax=120000)
     cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    return format(m.to_rgba(value, bytes=True, alpha=1))
+    return format(m.to_rgba(float(value), bytes=True, alpha=1))
 
 @app.template_filter()
 def authorColor(value):
     norm = mpl.colors.Normalize(vmin=600, vmax=220000)
     cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    return format(m.to_rgba(value, bytes=True, alpha=1))
+    return format(m.to_rgba(float(value), bytes=True, alpha=1))
 
 @app.template_filter()
 def chapterColor(value):
     norm = mpl.colors.Normalize(vmin=400, vmax=6500)
     cmap = cm.viridis
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    return format(m.to_rgba(value, bytes=True, alpha=1))
+    return format(m.to_rgba(float(value), bytes=True, alpha=1))
 
 @app.template_filter()
 def verseColor(value):
@@ -59,7 +59,7 @@ def index():
 
     # Sum degree for each book
     bookDegrees = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total'))\
-        .group_by(Sources.book_name).order_by(Sources.book).all()
+        .group_by(Sources.book, Sources.book_name).order_by(Sources.book, Sources.book_name).all()
 
     # Sum degree for each chapter
     authorDegrees = db.session.query(Sources.author, func.sum(Sources.degree).label('total'))\
@@ -74,24 +74,24 @@ def index():
 
     # List chapters, verses, and text for a given book
     dverses = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.text, Sources.degree,
-                               Sources.color, Sources.norm_degree, Sources.Id).filter_by(book=defaultbook)
+                               Sources.color, Sources.norm_degree, Sources.id).filter_by(book=defaultbook)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
     tbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author)\
-        .distinct().join(References).filter(References.Source == defaultsource).order_by(Targets.book).distinct()
+        .distinct().join(References).filter(References.source == defaultsource).order_by(Targets.book).distinct()
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
-    joins = db.session.query(Targets.Id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
+    joins = db.session.query(Targets.id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                              Targets.degree, Targets.color, Targets.norm_degree, Targets.red_letter).join(References) \
-        .filter(References.Source == defaultsource).all()
+        .filter(References.source == defaultsource).all()
 
-    source_joins = db.session.query(Sources.Id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse,
+    source_joins = db.session.query(Sources.id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse,
                                     Sources.text, Sources.degree, Sources.color, Sources.norm_degree, Sources.red_letter).join(References) \
-        .filter(References.Target == defaultsource).all()
+        .filter(References.target == defaultsource).all()
 
     # List authors related to Gen 1:1
     tauthors = db.session.query(Targets.author).join(References) \
-        .filter(References.Source == defaultsource).distinct()
+        .filter(References.source == defaultsource).distinct()
 
     data = getNeighborNetwork(defaultsource)
 
@@ -120,7 +120,7 @@ def index():
 def filter_book_menu():
 
     filteredbooks = db.session.query(Sources.book, Sources.book_name, func.sum(Sources.degree).label('total'))\
-        .group_by(Sources.book_name).order_by(func.sum(Sources.degree).desc())\
+        .group_by(Sources.book, Sources.book_name).order_by(func.sum(Sources.degree).desc())\
         .filter_by(author=request.form['author'])
 
     return render_template('book_menu.html', filteredbooks=filteredbooks)
@@ -144,7 +144,7 @@ def filter_source():
     fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=request.form['book']).count()
 
     fsverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
-                               Sources.norm_degree, Sources.Id, Sources.red_letter).filter_by(book=request.form['book'])
+                               Sources.norm_degree, Sources.id, Sources.red_letter).filter_by(book=request.form['book'])
 
     return render_template('source.html', fschapters=fschapters, fsverses=fsverses, fchapterdegrees=fchapterdegrees)
 
@@ -161,20 +161,20 @@ def filter_book_name():
 def filter_target():
 
     ftbooks = db.session.query(Targets.book, Targets.book_name, Targets.chapter, Targets.author).distinct().join(
-        References).filter(References.Source == request.form['Id']).order_by(Targets.book).distinct()
+        References).filter(References.source == request.form['id']).order_by(Targets.book).distinct()
 
-    ftverses = db.session.query(Targets.Id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
+    ftverses = db.session.query(Targets.id, Targets.author, Targets.book_name, Targets.book, Targets.chapter, Targets.verse, Targets.text,
                              Targets.degree, Targets.color, Targets.norm_degree, Targets.red_letter).join(References) \
-        .filter(References.Source == request.form['Id']).all()
+        .filter(References.source == request.form['id']).all()
 
-    fsverses = db.session.query(Sources.Id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse, Sources.text,
+    fsverses = db.session.query(Sources.id, Sources.author, Sources.book_name, Sources.book, Sources.chapter, Sources.verse, Sources.text,
                                 Sources.degree, Sources.color, Sources.norm_degree, Sources.red_letter).join(References) \
-        .filter(References.Target == request.form['Id']).all()
+        .filter(References.target == request.form['id']).all()
 
     ftauthors = db.session.query(Targets.author).join(References) \
-        .filter(References.Source == request.form['Id']).distinct()
+        .filter(References.source == request.form['id']).distinct()
 
-    fdata = getNeighborNetwork(int(request.form['Id']))
+    fdata = getNeighborNetwork(int(request.form['id']))
 
     return render_template('target.html', ftbooks=ftbooks, ftverses=ftverses, ftauthors=ftauthors, fdata=fdata, fsverses=fsverses)
 
