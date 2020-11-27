@@ -63,22 +63,35 @@ a:active {
 
 .section-title{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .sidenav{
     display: grid;
-    grid-template-rows: 70px 500px 50px 290px 50px;
+    grid-template-rows: 20px 50px 500px 50px 290px 50px;
     padding: 1em 2em 0 2em;
     /*width: 250px;*/
     border-right: 1px solid #ccc;
+}
+
+.sidenav > .logo{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    text-align: center;
+}
+
+.sidenav > .logo h6{
+    color: #8e8e8e;
+    letter-spacing: .125em;
+    font-weight: 500;
 }
 
 #book_menu, #chapter_menu, #author_menu{
     overflow-y: scroll;
     /*border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;*/
-    padding: 8px 0;
+    /*padding: 8px 0;*/
 }
 
 #chapter_menu{
@@ -126,10 +139,12 @@ a:active {
     grid-template-rows: 512px 296px ;
     grid-row-gap: 1em;
     min-width: 571px;
-    background-color: #fff;
     padding: 3em;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     margin-top: -24px;
+    border-radius: 20px;
+    box-shadow:  11px 11px 22px #d1d1d1,
+             -11px -11px 22px #ffffff;
 }
 
 .verses{
@@ -165,7 +180,7 @@ ul > li{
     transition: background-color .5s;
     height: 20px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     font-size: .75em;
     letter-spacing: .025em;
 }
@@ -232,6 +247,7 @@ h1{
     font-weight: 300;
     padding: 0 50px;
     font-size: 2.441rem;
+    margin-top: .25em;
 }
 
 .min, .max{
@@ -260,6 +276,11 @@ h4{
     font-size: 40px;
 }
 
+
+.sidenav > .section-title h6{
+    margin-bottom: 2px;
+    border-bottom: 2px solid #808080;
+}
 
 
 .section-title h6, .section-title a{
