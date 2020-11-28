@@ -1,5 +1,6 @@
 from app import db
 
+
 class Books(db.Model):
     __tablename__ = "books"
 
@@ -10,6 +11,7 @@ class Books(db.Model):
 
     def __repr__(self):
         return '<Books {}>'.format(self.body)
+
 
 class Authors(db.Model):
     __tablename__ = "authors"
