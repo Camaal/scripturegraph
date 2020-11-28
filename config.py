@@ -6,8 +6,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'j6MWBsR6YNqu!e-YRBLYGBDRiFNm@'
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL' or 'postgresql://postgres:postgres@localhost:5432/biblegraph')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'c3b1ddc124344a8b8bda21e13b722369'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/biblegraph'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
