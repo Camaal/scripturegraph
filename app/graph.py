@@ -3,8 +3,6 @@ import networkx as net
 from itertools import permutations
 from app import db
 from app.models import References, Sources
-import matplotlib as mpl
-import matplotlib.cm as cm
 
 # Create a network using sources and targets in DB
 in_file = db.session.query(References.source, References.target).all()
