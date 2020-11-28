@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn gettingstarted.wsgi; gunicorn scripturegraph:app
+web: flask db upgrade; gunicorn scripturegraph:app
