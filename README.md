@@ -1,4 +1,4 @@
-# Scripturegraph
+# Biblegraph
 
 ## Expanding Bible Study with Graph Theory
 
