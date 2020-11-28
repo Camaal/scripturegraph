@@ -14,6 +14,7 @@ Flask-Migrate==2.5.3
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
 flaskwebgui==0.1.13
+gunicorn==20.0.4
 idna==2.10
 imageio==2.9.0
 importlib-metadata==2.0.0
@@ -39,6 +40,7 @@ pipreqs==0.4.10
 prompt-toolkit==3.0.8
 psutil==5.7.3
 psycopg2==2.8.6
+psycopg2-binary==2.8.6
 ptyprocess==0.6.0
 Pygments==2.7.2
 pyparsing==2.4.7
