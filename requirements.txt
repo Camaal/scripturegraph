@@ -1,5 +1,6 @@
 matplotlib
-sqlalchemy
+flask_sqlalchemy
+flask_migrate
 flask
 networkx
 gunicorn
