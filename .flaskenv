@@ -1,3 +1,3 @@
-FLASK_APP=scripturegraph
+FLASK_APP=scripturegraph.py
 FLASK_RUN_PORT=8000
 FLASK_ENV=production
