@@ -1,1 +1,1 @@
-web: flask db update; gunicorn scripturegraph.wsgi --log-file -
+web: flask db upgrade; gunicorn scripturegraph:app
