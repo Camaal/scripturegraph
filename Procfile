@@ -1,1 +1,1 @@
-web: gunicorn scripturegraph:app
+web: flask db update; gunicorn scripturegraph:app

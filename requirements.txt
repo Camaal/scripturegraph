@@ -3,4 +3,3 @@ sqlalchemy
 flask
 networkx
 gunicorn
-ipython==7.16.0
