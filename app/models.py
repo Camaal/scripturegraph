@@ -27,7 +27,7 @@ class Authors(db.Model):
     norm_degree = db.Column(db.Numeric, nullable=True)
 
     def __repr__(self):
-        return '<Books {}>'.format(self.body)
+        return '<Authors {}>'.format(self.body)
 
 
 class References(db.Model):
@@ -61,7 +61,7 @@ class Sources(db.Model):
     targets = db.relationship('References')
 
     def __repr__(self):
-        return '<Source {}>'.format(self.body)
+        return '<Sources {}>'.format(self.body)
 
 
 # The source scripture
@@ -85,3 +85,6 @@ class Targets(db.Model):
     color = db.Column(db.String(250), nullable=False)
 
     sources = db.relationship('References')
+
+    def __repr__(self):
+        return '<Targets {}>'.format(self.body)
