@@ -1,5 +1,4 @@
 from flask import render_template, request
-
 from app import app, db
 from sqlalchemy import func
 from app.models import Books, Authors, References, Sources, Targets
