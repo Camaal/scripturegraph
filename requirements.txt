@@ -7,3 +7,4 @@ networkx
 gunicorn
 psycopg2
 python-dotenv
+alembic
