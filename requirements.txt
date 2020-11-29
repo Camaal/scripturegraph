@@ -3,3 +3,4 @@ sqlalchemy
 flask
 networkx
 gunicorn
+psycopg2
