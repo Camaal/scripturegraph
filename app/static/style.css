@@ -449,10 +449,10 @@ sup{
     padding: 4px;
 }
 
-.viridis .min{
+.viridis > .min{
     text-align: left;
 }
 
-.viridis .max{
+.viridis > .max{
     text-align: right;
 }
