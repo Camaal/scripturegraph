@@ -135,24 +135,24 @@
     //   sf.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
     //     console.log(e.type, e.data.node.label, e.data.captor);
     //   });
-    //   sf.bind('overNode clickNode', function(e) {
-    //       const element = document.getElementById(e.data.node.id);
-    //       element.classList.add("highlight");
-    //           element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-    //   });
-    //   sf.bind('outNode', function (e) {
-    //       const element = document.getElementById(e.data.node.id);
-    //       element.classList.remove("highlight");
-    //   })
-    //   sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
-    //     console.log(e.type, e.data.edge, e.data.captor);
-    //   });
-    //   sf.bind('clickStage', function(e) {
-    //     console.log(e.type, e.data.captor);
-    //   });
-    //   sf.bind('doubleClickStage rightClickStage', function(e) {
-    //     console.log(e.type, e.data.captor);
-    //   });
+      sf.bind('overNode clickNode', function(e) {
+          const element = document.getElementById(e.data.node.id);
+          element.classList.add("highlight");
+              element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+      });
+      sf.bind('outNode', function (e) {
+          const element = document.getElementById(e.data.node.id);
+          element.classList.remove("highlight");
+      })
+      // sf.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
+      //   console.log(e.type, e.data.edge, e.data.captor);
+      // });
+      // sf.bind('clickStage', function(e) {
+      //   console.log(e.type, e.data.captor);
+      // });
+      // sf.bind('doubleClickStage rightClickStage', function(e) {
+      //   console.log(e.type, e.data.captor);
+      // });
 
       // sf.startForceAtlas2({worker: true, barnesHutOptimize: false});
 </script>
