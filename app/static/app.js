@@ -44,7 +44,6 @@ $(document).ready(function () {
         })
     });
     $('.bookFilter').on('click', function (){
-        $('#source_text').html("<img src='{{ url_for('static', filename='loading.gif') }}'>");
 
         var book_id = $(this).attr('book_id');
 
