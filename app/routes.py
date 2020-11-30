@@ -153,11 +153,11 @@ def filter_source():
     return render_template('source.html', fschapters=fschapters, fsverses=fsverses, fchapterdegrees=fchapterdegrees)
 
 
-@app.route('/filter_bookName', methods=['POST'])
+@app.route('/filter_book_name', methods=['POST'])
 def filter_bookName():
     defaultsbookname = db.session.query(Sources.bookName).filter_by(book=request.form['book']).first()
 
-    return render_template('source_bookName.html', defaultsbookname=defaultsbookname)
+    return render_template('source_book_name.html', defaultsbookname=defaultsbookname)
 
 
 @app.route('/filter_target', methods=['POST'])

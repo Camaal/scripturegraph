@@ -58,7 +58,7 @@ $(document).ready(function () {
         });
 
         let getSourceBookName = $.ajax({
-            url: '/filter_bookName',
+            url: '/filter_book_name',
             type: 'POST',
             data: {book: book_id}
         });
