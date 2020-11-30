@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
     // Modal about
-    const modal = document.getElementById("about");
-    const btn = document.getElementById("about_modal");
-    const span = document.getElementsByClassName("close")[0];
+    let modal = document.getElementById("about");
+    let btn = document.getElementById("about_modal");
+    let span = document.getElementsByClassName("close")[0];
 
     btn.onclick = function() {
       modal.style.display = "block";
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     // Hide/Show sidenav
     $('.menu').on('click', function (){
-        const x = document.getElementById("sidenav");
+        let x = document.getElementById("sidenav");
         if (x.style.display === "none") {
             x.style.display = "grid";
         } else {
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     // Main navigation functions
     $('.authorFilter').on('click', function (){
-        const author_name = $(this).attr('author_name');
+        let author_name = $(this).attr('author_name');
 
         let getBookByAuthor = $.ajax({
             url: '/filter_book_menu',
@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
     $('.bookFilter').on('click', function (){
 
-        const book_id = $(this).attr('book_id');
+        let book_id = $(this).attr('book_id');
 
         let getSourceByBook = $.ajax({
             url: '/filter_source',
@@ -89,7 +89,7 @@ $(document).ready(function () {
     });
     $('.verseFilter').on('click', function (){
 
-        const verse_id = $(this).attr('verse_id');
+        let verse_id = $(this).attr('verse_id');
 
         let getSourceByBook = $.ajax({
             url: '/filter_target',
@@ -103,11 +103,11 @@ $(document).ready(function () {
 
     });
 
-    const authorContainer = document.getElementById('author_menu');
-    const authorbtns = authorContainer.getElementsByClassName('authorFilter');
+    let authorContainer = document.getElementById('author_menu');
+    let authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            let current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -115,11 +115,11 @@ $(document).ready(function () {
         });
     }
 
-    const bookContainer = document.getElementById('book_menu');
-    const bookbtns = bookContainer.getElementsByClassName('bookFilter');
+    let bookContainer = document.getElementById('book_menu');
+    let bookbtns = bookContainer.getElementsByClassName('bookFilter');
     for (let i = 0; i < bookbtns.length; i++){
         bookbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            let current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -127,11 +127,11 @@ $(document).ready(function () {
         });
     }
 
-    const chapterContainer = document.getElementById('chapter_menu');
-    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    let chapterContainer = document.getElementById('chapter_menu');
+    let chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
-            const current = document.getElementsByClassName('active');
+            let current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }

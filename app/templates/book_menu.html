@@ -17,7 +17,7 @@
             $('#source_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
             $('#author_menu').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
-            const book_id = $(this).attr('book_id');
+            let book_id = $(this).attr('book_id');
 
             let getSourceByBook = $.ajax({
                 url: '/filter_source',
@@ -60,8 +60,8 @@
             });
         });
 
-        const bookContainer = document.getElementById('book_menu');
-        const bookbtns = bookContainer.getElementsByClassName('bookFilter');
+        let bookContainer = document.getElementById('book_menu');
+        let bookbtns = bookContainer.getElementsByClassName('bookFilter');
         for (let i = 0; i < bookbtns.length; i++){
             bookbtns[i].addEventListener('click',function () {
                 const current = document.getElementsByClassName('active');
