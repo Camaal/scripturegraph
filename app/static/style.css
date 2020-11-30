@@ -441,9 +441,18 @@ sup{
 .viridis{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-content: space-between;
+    align-content: center;
     font-size: .875em;
+    color: #ffffff;
     background: #4a7d70;
     background-image: linear-gradient(90deg, #440154, #482475, #414487, #355f8d, #2a788e, #21908d, #22a884, #42be71, #7ad151, #bddf26, #bddf26);
-    padding: 8px;
+    padding: 4px;
+}
+
+.viridis .min{
+    text-align: left;
+}
+
+.viridis .max{
+    text-align: right;
 }
