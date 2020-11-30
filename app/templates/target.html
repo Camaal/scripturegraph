@@ -4,21 +4,21 @@
     {% for item in ftverses%}
     <h6 class="character">{{item.author}}</h6>
     <span id="{{item.id}}" class="scripture">
-         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
+         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
             {{item.text}}
          </span>
     </span>
-    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
+    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
     {% endfor %}
 
     {% for item in fsverses%}
     <h6 class="character">{{item.author}}</h6>
     <span id="{{item.id}}" class="scripture">
-         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
+         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
             {{item.text}}
          </span>
     </span>
-    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
+    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
     {% endfor %}
   </div>
 </div>

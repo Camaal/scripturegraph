@@ -32,7 +32,7 @@
                     <span class="scripture">
                            <span>
                               <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.red_letter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
+                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
                            </span>
                     </span>
                     {% endif %}
@@ -48,20 +48,20 @@
             {% for item in joins%}
                     <h6 class="character">{{item.author}}</h6>
                     <span id="{{item.id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
+                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
+                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
             {% endfor %}
           {% for item in source_joins%}
                     <h6 class="character">{{item.author}}</h6>
                     <span id="{{item.id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.red_letter == 'TRUE' %} jesus_words {% endif %}">
+                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.book_name}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
+                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
             {% endfor %}
         </div>
       </div>

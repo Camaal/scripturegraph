@@ -62,8 +62,8 @@ def getNeighborNetwork(verse):
 
     # Nodes
     for n in neighbor_net.nodes:
-        node_name = db.session.query(Sources.book_name, Sources.chapter, Sources.verse, Sources.norm_degree,
-                                     Sources.red_letter) \
+        node_name = db.session.query(Sources.bookName, Sources.chapter, Sources.verse, Sources.normDegree,
+                                     Sources.redLetter) \
             .filter(Sources.id == n).first()
 
         if node_name[4] == "TRUE":

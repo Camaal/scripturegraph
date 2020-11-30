@@ -4,9 +4,9 @@ from app import db
 class Books(db.Model):
     __tablename__ = "books"
 
-    book_name = db.Column(db.String(250), nullable=False)
+    bookName = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
-    genre_name = db.Column(db.String(250), nullable=False)
+    genreName = db.Column(db.String(250), nullable=False)
     book = db.Column(db.Integer, primary_key=True)
 
     def __repr__(self):
@@ -18,13 +18,13 @@ class Authors(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(250), nullable=False)
-    book_name = db.Column(db.String(250), nullable=False)
+    bookName = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
-    genre_name = db.Column(db.String(250), nullable=False)
+    genreName = db.Column(db.String(250), nullable=False)
     book = db.Column(db.Integer, primary_key=True)
     chapter = db.Column(db.Integer, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    norm_degree = db.Column(db.Numeric, nullable=True)
+    normDegree = db.Column(db.Numeric, nullable=True)
 
     def __repr__(self):
         return '<Authors {}>'.format(self.body)
@@ -45,17 +45,17 @@ class Sources(db.Model):
     __tablename__ = "source"
 
     id = db.Column(db.Integer, primary_key=True)
-    red_letter = db.Column(db.String(250), nullable=False)
+    redLetter = db.Column(db.String(250), nullable=False)
     author = db.Column(db.String(250), nullable=False)
-    book_name = db.Column(db.String(250), nullable=False)
+    bookName = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
-    genre_name = db.Column(db.String(250), nullable=False)
+    genreName = db.Column(db.String(250), nullable=False)
     book = db.Column(db.Integer, nullable=False)
     chapter = db.Column(db.Integer, nullable=False)
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    norm_degree = db.Column(db.Numeric, nullable=True)
+    normDegree = db.Column(db.Numeric, nullable=True)
     color = db.Column(db.String(250), nullable=False)
 
     targets = db.relationship('References')
@@ -71,17 +71,17 @@ class Targets(db.Model):
     __tablename__ = "target"
 
     id = db.Column(db.Integer, primary_key=True)
-    red_letter = db.Column(db.String(250), nullable=False)
+    redLetter = db.Column(db.String(250), nullable=False)
     author = db.Column(db.String(250), nullable=False)
-    book_name = db.Column(db.String(250), nullable=False)
+    bookName = db.Column(db.String(250), nullable=False)
     testament = db.Column(db.String(2), nullable=False)
-    genre_name = db.Column(db.String(250), nullable=False)
+    genreName = db.Column(db.String(250), nullable=False)
     book = db.Column(db.Integer, nullable=False)
     chapter = db.Column(db.Integer, nullable=False)
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    norm_degree = db.Column(db.Numeric, nullable=True)
+    normDegree = db.Column(db.Numeric, nullable=True)
     color = db.Column(db.String(250), nullable=False)
 
     sources = db.relationship('References')
