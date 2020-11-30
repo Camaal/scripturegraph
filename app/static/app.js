@@ -44,6 +44,7 @@ $(document).ready(function () {
         })
     });
     $('.bookFilter').on('click', function (){
+        $('#source_text').html("<img src='{{ url_for('static', filename='loading.gif') }}'>");
 
         var book_id = $(this).attr('book_id');
 
@@ -87,6 +88,7 @@ $(document).ready(function () {
             $('#chapter_menu').html(data);
         });
     });
+
     $('.verseFilter').on('click', function (){
 
         var verse_id = $(this).attr('verse_id');
