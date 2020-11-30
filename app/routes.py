@@ -187,6 +187,6 @@ def filter_target():
 @app.route('/filter_author_menu', methods=['POST'])
 def filter_author_menu():
     filteredauthors = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=int(request.form['book']))
+        Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=request.form['book'])
 
     return render_template('author_menu.html', filteredauthors=filteredauthors)
