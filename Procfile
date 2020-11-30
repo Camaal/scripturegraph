@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn scripturegraph:app --preload
+web: flask db upgrade; gunicorn scripturegraph:app
