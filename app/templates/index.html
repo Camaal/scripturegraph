@@ -224,9 +224,9 @@
     $(document).ready(function () {
 
         $('.verseFilter').on('click', function (){
-            let verse_id = $(this).attr('verse_id');
+            var verse_id = $(this).attr('verse_id');
 
-            let getSourceByBook = $.ajax({
+            var getSourceByBook = $.ajax({
                 url: '/filter_target',
                 type: 'POST',
                 data: {id: verse_id}

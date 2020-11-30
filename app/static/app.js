@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
     // Modal about
-    let modal = document.getElementById("about");
-    let btn = document.getElementById("about_modal");
-    let span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("about");
+    var btn = document.getElementById("about_modal");
+    var span = document.getElementsByClassName("close")[0];
 
     btn.onclick = function() {
       modal.style.display = "block";
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     // Hide/Show sidenav
     $('.menu').on('click', function (){
-        let x = document.getElementById("sidenav");
+        var x = document.getElementById("sidenav");
         if (x.style.display === "none") {
             x.style.display = "grid";
         } else {
@@ -31,9 +31,9 @@ $(document).ready(function () {
 
     // Main navigation functions
     $('.authorFilter').on('click', function (){
-        let author_name = $(this).attr('author_name');
+        var author_name = $(this).attr('author_name');
 
-        let getBookByAuthor = $.ajax({
+        var getBookByAuthor = $.ajax({
             url: '/filter_book_menu',
             type: 'POST',
             data: {author: author_name}
@@ -45,9 +45,9 @@ $(document).ready(function () {
     });
     $('.bookFilter').on('click', function (){
 
-        let book_id = $(this).attr('book_id');
+        var book_id = $(this).attr('book_id');
 
-        let getSourceByBook = $.ajax({
+        var getSourceByBook = $.ajax({
             url: '/filter_source',
             type: 'POST',
             data: {book: book_id}
@@ -57,7 +57,7 @@ $(document).ready(function () {
             $('#source_text').html(data);
         });
 
-        let getSourceBookName = $.ajax({
+        var getSourceBookName = $.ajax({
             url: '/filter_book_name',
             type: 'POST',
             data: {book: book_id}
@@ -67,7 +67,7 @@ $(document).ready(function () {
             $('#sourceBookName').html(data);
         });
 
-        let getAuthors = $.ajax({
+        var getAuthors = $.ajax({
             url: '/filter_author_menu',
             type: 'POST',
             data: {book: book_id}
@@ -77,7 +77,7 @@ $(document).ready(function () {
             $('#author_menu').html(data);
         });
 
-        let getChapters = $.ajax({
+        var getChapters = $.ajax({
             url: '/filter_chapter_menu',
             type: 'POST',
             data: {book: book_id}
@@ -89,9 +89,9 @@ $(document).ready(function () {
     });
     $('.verseFilter').on('click', function (){
 
-        let verse_id = $(this).attr('verse_id');
+        var verse_id = $(this).attr('verse_id');
 
-        let getSourceByBook = $.ajax({
+        var getSourceByBook = $.ajax({
             url: '/filter_target',
             type: 'POST',
             data: {id: verse_id}
@@ -103,11 +103,11 @@ $(document).ready(function () {
 
     });
 
-    let authorContainer = document.getElementById('author_menu');
-    let authorbtns = authorContainer.getElementsByClassName('authorFilter');
+    var authorContainer = document.getElementById('author_menu');
+    var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
-            let current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -115,11 +115,11 @@ $(document).ready(function () {
         });
     }
 
-    let bookContainer = document.getElementById('book_menu');
-    let bookbtns = bookContainer.getElementsByClassName('bookFilter');
+    var bookContainer = document.getElementById('book_menu');
+    var bookbtns = bookContainer.getElementsByClassName('bookFilter');
     for (let i = 0; i < bookbtns.length; i++){
         bookbtns[i].addEventListener('click',function () {
-            let current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
@@ -127,11 +127,11 @@ $(document).ready(function () {
         });
     }
 
-    let chapterContainer = document.getElementById('chapter_menu');
-    let chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    var chapterContainer = document.getElementById('chapter_menu');
+    var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
-            let current = document.getElementsByClassName('active');
+            var current = document.getElementsByClassName('active');
             if (current.length > 0){
                 current[0].className = current[0].className.replace(' active', '');
             }
