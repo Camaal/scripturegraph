@@ -11,8 +11,8 @@
 
 {% block script %}
 <script type="application/javascript">
-  var chapterContainer = document.getElementById('chapter_menu');
-    var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+  const chapterContainer = document.getElementById('chapter_menu');
+    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
             const current = document.getElementsByClassName('active');

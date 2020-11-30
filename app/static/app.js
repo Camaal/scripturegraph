@@ -103,8 +103,8 @@ $(document).ready(function () {
 
     });
 
-    var authorContainer = document.getElementById('author_menu');
-    var authorbtns = authorContainer.getElementsByClassName('authorFilter');
+    const authorContainer = document.getElementById('author_menu');
+    const authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
         authorbtns[i].addEventListener('click',function () {
             const current = document.getElementsByClassName('active');
@@ -115,8 +115,8 @@ $(document).ready(function () {
         });
     }
 
-    var bookContainer = document.getElementById('book_menu');
-    var bookbtns = bookContainer.getElementsByClassName('bookFilter');
+    const bookContainer = document.getElementById('book_menu');
+    const bookbtns = bookContainer.getElementsByClassName('bookFilter');
     for (let i = 0; i < bookbtns.length; i++){
         bookbtns[i].addEventListener('click',function () {
             const current = document.getElementsByClassName('active');
@@ -127,8 +127,8 @@ $(document).ready(function () {
         });
     }
 
-    var chapterContainer = document.getElementById('chapter_menu');
-    var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+    const chapterContainer = document.getElementById('chapter_menu');
+    const chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
     for (let i = 0; i < chapterbtns.length; i++){
         chapterbtns[i].addEventListener('click',function () {
             const current = document.getElementsByClassName('active');
