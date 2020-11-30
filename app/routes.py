@@ -154,7 +154,7 @@ def filter_source():
 
 
 @app.route('/filter_book_name', methods=['POST'])
-def filter_bookName():
+def filter_book_name():
     defaultsbookname = db.session.query(Sources.bookName).filter_by(book=request.form['book']).first()
 
     return render_template('source_book_name.html', defaultsbookname=defaultsbookname)

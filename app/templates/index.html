@@ -3,218 +3,182 @@
 {% block content %}
 <div id="sourceBookName">
   <h1>{{defaultbookname}}</h1>
-<!--  <div class="color-scale">-->
-<!--      <div class="min">1</div>-->
-<!--      <div class="max">436</div>-->
-<!--  </div>-->
+  <!--  <div class="color-scale">-->
+  <!--      <div class="min">1</div>-->
+  <!--      <div class="max">436</div>-->
+  <!--  </div>-->
 </div>
 <div class="parallel">
   <div id="chapter_menu" menu_name="chapter">
-        <ul>
-            {% for chapter in chapterDegrees %}
-            <li class="chapterItem">
+    <ul>
+      {% for chapter in chapterDegrees %}
+      <li class="chapterItem">
 
-                <a href="#ch{{chapter.chapter}}" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
-                    <div class="name">{{chapter.chapter}}</div>
-                </a>
-                <div class="degreeNumber" style="background-color: rgb{{chapter.total | chapterColor}};">{{chapter.total | numberFormat}}</div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="collection">
-      <div class="verses">
-        <div id="source_text">
-            {% for i in range(1, dchapters+1)%}
-                <h4 id="ch{{i}}">Chapter {{i}}</h4>
-                {% for verse in dverses%}
-                    {% if verse.chapter==i%}
-                    <span class="scripture">
+        <a href="#ch{{chapter.chapter}}" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
+          <div class="name">{{chapter.chapter}}</div>
+        </a>
+        <div class="degreeNumber" style="background-color: rgb{{chapter.total | chapterColor}};">{{chapter.total |
+          numberFormat}}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="collection">
+    <div class="verses">
+      <div id="source_text">
+        {% for i in range(1, dchapters+1)%}
+        <h4 id="ch{{i}}">Chapter {{i}}</h4>
+        {% for verse in dverses%}
+        {% if verse.chapter==i%}
+        <span class="scripture">
                            <span>
                               <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
+                               <a href="#"
+                                  class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}"
+                                  verse_id="{{verse.id}}"
+                                  style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup
+                                   style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
                            </span>
                     </span>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
       </div>
     </div>
-    <div id="graph-container" class="collection-target">
-      <div id="graph"></div>
-      <div class="verses">
-        <div id="target_text" class="cross-references">
-            {% for item in joins%}
-                    <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.id}}" class="scripture">
+  </div>
+  <div id="graph-container" class="collection-target">
+    <div id="graph"></div>
+    <div class="verses">
+      <div id="target_text" class="cross-references">
+        {% for item in joins%}
+        <h6 class="character">{{item.author}}</h6>
+        <span id="{{item.id}}" class="scripture">
                          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
-            {% endfor %}
-          {% for item in source_joins%}
-                    <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.id}}" class="scripture">
+        <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross
+          references</h6>
+        {% endfor %}
+        {% for item in source_joins%}
+        <h6 class="character">{{item.author}}</h6>
+        <span id="{{item.id}}" class="scripture">
                          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
                             {{item.text}}<sup>{{item.degree}}</sup>
                          </span>
                     </span>
-                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
-            {% endfor %}
-        </div>
+        <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross
+          references</h6>
+        {% endfor %}
       </div>
-      <script>
-          // Add a method to the graph model that returns an
-          // object with every neighbors of a node inside:
-          sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-              var k,
-                  neighbors = {},
-                  index = this.allNeighborsIndex[nodeId] || {};
-
-              for (k in index)
-                  neighbors[k] = this.nodesIndex[k];
-
-              return neighbors;
-          });
-
-
-          var obj = JSON.parse('{{ data|safe }}');
-          var s = new sigma({
-              graph: obj,
-              renderers: [{
-                  container: 'graph',
-                  type: 'canvas',
-              }],
-              settings: {
-                  arrowSizeRatio: 4,
-                  batchEdgesDrawing: true,
-                  defaultEdgeColor: "rgba(255,255,255,0.2)",
-                  defaultEdgeHoverColor: "rgba(255,255,255,0.5)",
-                  defaultEdgeLabelColor: "#FFFFFF",
-                  defaultEdgeType: "dotted",
-                  defaultHoverLabelBGColor: "#FFFFFF",
-                  defaultLabelBGColor: "#ddd",
-                  defaultLabelColor: "#FFFFFF",
-                  defaultLabelHoverColor: "#2a2a35",
-                  defaultLabelSize: 14,
-                  defaultNodeColor: "#fff",
-                  drawEdgeLabels: false,
-                  drawEdges: true,
-                  edgeColor:'source',
-                  edgeHoverColor: 'default',
-                  enableEdgeHovering: true,
-                  enableHovering: false,
-                  font: 'Source Sans Pro',
-                  labelThreshold: 4,
-                  maxEdgeSize: 0.5,
-                  maxNodeSize: 7,
-                  minArrowSize: 5,
-                  minEdgeSize: 0.2,
-                  minNodeSize: 1,
-                  singleHover: false,
-                  webglEdgesBatchSize: 5,
-              },
-              function(s) {
-                  // We first need to save the original colors of our
-                  // nodes and edges, like this:
-                  s.graph.nodes().forEach(function(n) {
-                      n.originalColor = n.color;
-                  });
-                  s.graph.edges().forEach(function(e) {
-                      e.originalColor = e.color;
-                  });
-
-                  // When a node is clicked, we check for each node
-                  // if it is a neighbor of the clicked one. If not,
-                  // we set its color as grey, and else, it takes its
-                  // original color.
-                  // We do the same for the edges, and we only keep
-                  // edges that have both extremities colored.
-                  s.bind('clickNode', function(e) {
-                      var nodeId = e.data.node.id,
-                          toKeep = s.graph.neighbors(nodeId);
-                      toKeep[nodeId] = e.data.node;
-
-                      s.graph.nodes().forEach(function(n) {
-                          if (toKeep[n.id])
-                              n.color = n.originalColor;
-                          else
-                              n.color = '#eee';
-                      });
-
-                      s.graph.edges().forEach(function(e) {
-                          if (toKeep[e.source] && toKeep[e.target])
-                              e.color = e.originalColor;
-                          else
-                              e.color = '#eee';
-                      });
-
-                      // Since the data has been modified, we need to
-                      // call the refresh method to make the colors
-                      // update effective.
-                      s.refresh();
-                  });
-
-                  // When the stage is clicked, we just color each
-                  // node and edge with its original color.
-                  s.bind('clickStage', function(e) {
-                      s.graph.nodes().forEach(function(n) {
-                          n.color = n.originalColor;
-                      });
-
-                      s.graph.edges().forEach(function(e) {
-                          e.color = e.originalColor;
-                      });
-
-                      // Same as in the previous event:
-                      s.refresh();
-                  });
-              }
-          });
-
-          var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-
-          dragListener.bind('startdrag', function(event) {
-            console.log(event);
-          });
-          dragListener.bind('drag', function(event) {
-            console.log(event);
-          });
-          dragListener.bind('drop', function(event) {
-            console.log(event);
-          });
-          dragListener.bind('dragend', function(event) {
-            console.log(event);
-          });
-
-          // Bind the events:
-          s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
-            console.log(e.type, e.data.node.label, e.data.captor);
-          });
-          s.bind('overNode clickNode', function(e) {
-            var element = document.getElementById(e.data.node.id);
-                  element.classList.add("highlight");
-                  element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-          });
-          s.bind('outNode', function (e) {
-              var element = document.getElementById(e.data.node.id);
-                  element.classList.remove("highlight");
-          })
-          s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
-            console.log(e.type, e.data.edge, e.data.captor);
-          });
-          s.bind('clickStage', function(e) {
-            console.log(e.type, e.data.captor);
-          });
-          s.bind('doubleClickStage rightClickStage', function(e) {
-            console.log(e.type, e.data.captor);
-          });
-
-          // s.startForceAtlas2({worker: true, barnesHutOptimize: false});
-      </script>
     </div>
+    <script>
+        var obj = JSON.parse('{{ fdata | safe }}');
+        var sf = new sigma({
+            graph: obj,
+            renderers: [{
+                container: 'graph',
+                type: 'canvas',
+            }],
+            settings: {
+                labelSizeRatio: 2,
+                batchEdgesDrawing: false,
+                defaultEdgeColor: "rgba(255,255,255,0.3)",
+                defaultEdgeHoverColor: "rgba(255,255,255,1)",
+                defaultEdgeLabelColor: "#FFFFFF",
+                defaultEdgeType: "dotted",
+                defaultHoverLabelBGColor: "#FFFFFF",
+                defaultLabelBGColor: "#ddd",
+                defaultLabelColor: "#FFFFFF",
+                defaultLabelHoverColor: "#2a2a35",
+                defaultLabelSize: 12,
+                defaultNodeColor: "#fff",
+                drawEdgeLabels: false,
+                drawEdges: true,
+                edgeColor: 'source',
+                edgeHoverColor: 'default',
+                enableEdgeHovering: true,
+                enableHovering: true,
+                font: 'Source Sans Pro',
+                labelThreshold: 5,
+                maxNodeSize: 20,
+                minNodeSize: 2,
+                minEdgeSize: 0.2,
+                maxEdgeSize: 1.5,
+                minArrowSize: 5,
+                singleHover: true,
+                webglEdgesBatchSize: 5,
+            },
+            function(sf) {
+                // We first need to save the original colors of our
+                // nodes and edges, like this:
+                sf.graph.nodes().forEach(function (n) {
+                    n.originalColor = n.color;
+                });
+                sf.graph.edges().forEach(function (e) {
+                    e.originalColor = e.color;
+                });
+
+                // When a node is clicked, we check for each node
+                // if it is a neighbor of the clicked one. If not,
+                // we set its color as grey, and else, it takes its
+                // original color.
+                // We do the same for the edges, and we only keep
+                // edges that have both extremities colored.
+                sf.bind('clickNode', function (e) {
+                    const nodeId = e.data.node.id,
+                        toKeep = sf.graph.neighbors(nodeId);
+                    toKeep[nodeId] = e.data.node;
+
+                    sf.graph.nodes().forEach(function (n) {
+                        if (toKeep[n.id])
+                            n.color = n.originalColor;
+                        else
+                            n.color = '#eee';
+                    });
+
+                    sf.graph.edges().forEach(function (e) {
+                        if (toKeep[e.source] && toKeep[e.target])
+                            e.color = e.originalColor;
+                        else
+                            e.color = '#eee';
+                    });
+
+                    // Since the data has been modified, we need to
+                    // call the refresh method to make the colors
+                    // update effective.
+                    sf.refresh();
+                });
+
+                // When the stage is clicked, we just color each
+                // node and edge with its original color.
+                sf.bind('clickStage', function (e) {
+                    sf.graph.nodes().forEach(function (n) {
+                        n.color = n.originalColor;
+                    });
+
+                    sf.graph.edges().forEach(function (e) {
+                        e.color = e.originalColor;
+                    });
+
+                    // Same as in the previous event:
+                    sf.refresh();
+                });
+            }
+        });
+        // Bind the events:
+        sf.bind('overNode clickNode', function (e) {
+            const element = document.getElementById(e.data.node.id);
+            element.classList.add("highlight");
+            element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+        });
+        sf.bind('outNode', function (e) {
+            const element = document.getElementById(e.data.node.id);
+            element.classList.remove("highlight");
+        });
+    </script>
+  </div>
 </div>
 
 {% endblock %}
@@ -223,8 +187,8 @@
 <script type="application/javascript">
     $(document).ready(function () {
 
-        $('.verseFilter').on('click', function (){
-            const verse_id = $(this).attr('verse_id');
+        $('.verseFilter').on('click', function () {
+            let verse_id = $(this).attr('verse_id');
 
             let getSourceByBook = $.ajax({
                 url: '/filter_target',
