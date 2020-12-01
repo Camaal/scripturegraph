@@ -16,7 +16,7 @@
         $('.bookFilter').on('click', function (){
             $('#source_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
-            var book_id = $(this).attr('book_id');
+            var book_id = parseInt($(this).attr('book_id'));
 
             var getSourceByBook = $.ajax({
                 url: '/filter_source',

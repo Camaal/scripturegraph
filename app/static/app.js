@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
     $('.bookFilter').on('click', function (){
 
-        var book_id = $(this).attr('book_id');
+        var book_id = parseInt($(this).attr('book_id'));
 
         var getSourceByBook = $.ajax({
             url: '/filter_source',
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     $('.verseFilter').on('click', function (){
 
-        var verse_id = $(this).attr('verse_id');
+        var verse_id = parseInt($(this).attr('verse_id'));
 
         var getSourceByBook = $.ajax({
             url: '/filter_target',
