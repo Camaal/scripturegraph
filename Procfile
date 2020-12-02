@@ -1,1 +1,1 @@
-web: gunicorn scripturegraph:app --preload --timeout 60
+web: gunicorn scripturegraph:app
