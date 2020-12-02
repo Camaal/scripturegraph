@@ -22,108 +22,108 @@
     {% endfor %}
   </div>
 </div>
-<!--<script>-->
-<!--    var obj = JSON.parse('{{ fdata | safe }}');-->
-<!--    var sf = new sigma({-->
-<!--        graph: obj,-->
-<!--        renderers: [{-->
-<!--            container: 'graph',-->
-<!--            type: 'canvas',-->
-<!--        }],-->
-<!--        settings: {-->
-<!--          labelSizeRatio: 2,-->
-<!--          batchEdgesDrawing: false,-->
-<!--          defaultEdgeColor: "rgba(255,255,255,0.3)",-->
-<!--          defaultEdgeHoverColor: "rgba(255,255,255,1)",-->
-<!--          defaultEdgeLabelColor: "#FFFFFF",-->
-<!--          defaultEdgeType: "dotted",-->
-<!--          defaultHoverLabelBGColor: "#FFFFFF",-->
-<!--          defaultLabelBGColor: "#ddd",-->
-<!--          defaultLabelColor: "#FFFFFF",-->
-<!--          defaultLabelHoverColor: "#2a2a35",-->
-<!--          defaultLabelSize: 12,-->
-<!--          defaultNodeColor: "#fff",-->
-<!--          drawEdgeLabels: false,-->
-<!--          drawEdges: true,-->
-<!--          edgeColor:'source',-->
-<!--          edgeHoverColor: 'default',-->
-<!--          enableEdgeHovering: true,-->
-<!--          enableHovering: true,-->
-<!--          font: 'Source Sans Pro',-->
-<!--          labelThreshold: 5,-->
-<!--          maxNodeSize: 20,-->
-<!--          minNodeSize: 2,-->
-<!--          minEdgeSize: 0.2,-->
-<!--          maxEdgeSize: 1.5,-->
-<!--          minArrowSize: 5,-->
-<!--          singleHover: true,-->
-<!--          webglEdgesBatchSize: 5,-->
-<!--        },-->
-<!--        function(sf) {-->
-<!--            // We first need to save the original colors of our-->
-<!--            // nodes and edges, like this:-->
-<!--            sf.graph.nodes().forEach(function (n) {-->
-<!--                n.originalColor = n.color;-->
-<!--            });-->
-<!--            sf.graph.edges().forEach(function (e) {-->
-<!--                e.originalColor = e.color;-->
-<!--            });-->
+<script>
+    var obj = JSON.parse('{{ fdata | safe }}');
+    var sf = new sigma({
+        graph: obj,
+        renderers: [{
+            container: 'graph',
+            type: 'canvas',
+        }],
+        settings: {
+          labelSizeRatio: 2,
+          batchEdgesDrawing: false,
+          defaultEdgeColor: "rgba(255,255,255,0.3)",
+          defaultEdgeHoverColor: "rgba(255,255,255,1)",
+          defaultEdgeLabelColor: "#FFFFFF",
+          defaultEdgeType: "dotted",
+          defaultHoverLabelBGColor: "#FFFFFF",
+          defaultLabelBGColor: "#ddd",
+          defaultLabelColor: "#FFFFFF",
+          defaultLabelHoverColor: "#2a2a35",
+          defaultLabelSize: 12,
+          defaultNodeColor: "#fff",
+          drawEdgeLabels: false,
+          drawEdges: true,
+          edgeColor:'source',
+          edgeHoverColor: 'default',
+          enableEdgeHovering: true,
+          enableHovering: true,
+          font: 'Source Sans Pro',
+          labelThreshold: 5,
+          maxNodeSize: 20,
+          minNodeSize: 2,
+          minEdgeSize: 0.2,
+          maxEdgeSize: 1.5,
+          minArrowSize: 5,
+          singleHover: true,
+          webglEdgesBatchSize: 5,
+        },
+        function(sf) {
+            // We first need to save the original colors of our
+            // nodes and edges, like this:
+            sf.graph.nodes().forEach(function (n) {
+                n.originalColor = n.color;
+            });
+            sf.graph.edges().forEach(function (e) {
+                e.originalColor = e.color;
+            });
 
-<!--            // When a node is clicked, we check for each node-->
-<!--            // if it is a neighbor of the clicked one. If not,-->
-<!--            // we set its color as grey, and else, it takes its-->
-<!--            // original color.-->
-<!--            // We do the same for the edges, and we only keep-->
-<!--            // edges that have both extremities colored.-->
-<!--            sf.bind('clickNode', function (e) {-->
-<!--                const nodeId = e.data.node.id,-->
-<!--                    toKeep = sf.graph.neighbors(nodeId);-->
-<!--                toKeep[nodeId] = e.data.node;-->
+            // When a node is clicked, we check for each node
+            // if it is a neighbor of the clicked one. If not,
+            // we set its color as grey, and else, it takes its
+            // original color.
+            // We do the same for the edges, and we only keep
+            // edges that have both extremities colored.
+            sf.bind('clickNode', function (e) {
+                const nodeId = e.data.node.id,
+                    toKeep = sf.graph.neighbors(nodeId);
+                toKeep[nodeId] = e.data.node;
 
-<!--                sf.graph.nodes().forEach(function (n) {-->
-<!--                    if (toKeep[n.id])-->
-<!--                        n.color = n.originalColor;-->
-<!--                    else-->
-<!--                        n.color = '#eee';-->
-<!--                });-->
+                sf.graph.nodes().forEach(function (n) {
+                    if (toKeep[n.id])
+                        n.color = n.originalColor;
+                    else
+                        n.color = '#eee';
+                });
 
-<!--                sf.graph.edges().forEach(function (e) {-->
-<!--                    if (toKeep[e.source] && toKeep[e.target])-->
-<!--                        e.color = e.originalColor;-->
-<!--                    else-->
-<!--                        e.color = '#eee';-->
-<!--                });-->
+                sf.graph.edges().forEach(function (e) {
+                    if (toKeep[e.source] && toKeep[e.target])
+                        e.color = e.originalColor;
+                    else
+                        e.color = '#eee';
+                });
 
-<!--                // Since the data has been modified, we need to-->
-<!--                // call the refresh method to make the colors-->
-<!--                // update effective.-->
-<!--                sf.refresh();-->
-<!--            });-->
+                // Since the data has been modified, we need to
+                // call the refresh method to make the colors
+                // update effective.
+                sf.refresh();
+            });
 
-<!--            // When the stage is clicked, we just color each-->
-<!--            // node and edge with its original color.-->
-<!--            sf.bind('clickStage', function (e) {-->
-<!--                sf.graph.nodes().forEach(function (n) {-->
-<!--                    n.color = n.originalColor;-->
-<!--                });-->
+            // When the stage is clicked, we just color each
+            // node and edge with its original color.
+            sf.bind('clickStage', function (e) {
+                sf.graph.nodes().forEach(function (n) {
+                    n.color = n.originalColor;
+                });
 
-<!--                sf.graph.edges().forEach(function (e) {-->
-<!--                    e.color = e.originalColor;-->
-<!--                });-->
+                sf.graph.edges().forEach(function (e) {
+                    e.color = e.originalColor;
+                });
 
-<!--                // Same as in the previous event:-->
-<!--                sf.refresh();-->
-<!--            });-->
-<!--        }-->
-<!--    });-->
-<!--    // Bind the events:-->
-<!--      sf.bind('overNode clickNode', function(e) {-->
-<!--          const element = document.getElementById(e.data.node.id);-->
-<!--          element.classList.add("highlight");-->
-<!--              element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});-->
-<!--      });-->
-<!--      sf.bind('outNode', function (e) {-->
-<!--          const element = document.getElementById(e.data.node.id);-->
-<!--          element.classList.remove("highlight");-->
-<!--      });-->
+                // Same as in the previous event:
+                sf.refresh();
+            });
+        }
+    });
+    // Bind the events:
+      sf.bind('overNode clickNode', function(e) {
+          const element = document.getElementById(e.data.node.id);
+          element.classList.add("highlight");
+              element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+      });
+      sf.bind('outNode', function (e) {
+          const element = document.getElementById(e.data.node.id);
+          element.classList.remove("highlight");
+      });
 </script>

@@ -99,7 +99,7 @@ def index():
     tauthors = db.session.query(Targets.author).join(References) \
         .filter(References.source == defaultsource).distinct()
 
-    data = getNeighborNetwork(defaultsource)
+    # data = getNeighborNetwork(defaultsource)
 
     # Return the data to index.html
     return render_template('index.html',
@@ -118,7 +118,7 @@ def index():
                            joins=joins,
                            source_joins=source_joins,
                            tauthors=tauthors,
-                           data=data
+                           #data=data
                            )
 
 
