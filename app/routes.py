@@ -80,24 +80,24 @@ def index():
                                Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
-    tbooks = db.session.query(Targets.book, Targets.bookName, Targets.chapter, Targets.author) \
-        .distinct().join(References).filter(References.source == defaultsource).order_by(Targets.book).distinct()
+    # tbooks = db.session.query(Targets.book, Targets.bookName, Targets.chapter, Targets.author) \
+    #     .distinct().join(References).filter(References.source == defaultsource).order_by(Targets.book).distinct()
 
     # List book, book name, chapter, verse, text and degree for cross-references related to Gen 1:1
-    joins = db.session.query(Targets.id, Targets.author, Targets.bookName, Targets.book, Targets.chapter,
-                             Targets.verse, Targets.text,
-                             Targets.degree, Targets.color, Targets.normDegree, Targets.redLetter).join(References) \
-        .filter(References.source == defaultsource).all()
-
-    source_joins = db.session.query(Sources.id, Sources.author, Sources.bookName, Sources.book, Sources.chapter,
-                                    Sources.verse,
-                                    Sources.text, Sources.degree, Sources.color, Sources.normDegree,
-                                    Sources.redLetter).join(References) \
-        .filter(References.target == defaultsource).all()
+    # joins = db.session.query(Targets.id, Targets.author, Targets.bookName, Targets.book, Targets.chapter,
+    #                          Targets.verse, Targets.text,
+    #                          Targets.degree, Targets.color, Targets.normDegree, Targets.redLetter).join(References) \
+    #     .filter(References.source == defaultsource).all()
+    #
+    # source_joins = db.session.query(Sources.id, Sources.author, Sources.bookName, Sources.book, Sources.chapter,
+    #                                 Sources.verse,
+    #                                 Sources.text, Sources.degree, Sources.color, Sources.normDegree,
+    #                                 Sources.redLetter).join(References) \
+    #     .filter(References.target == defaultsource).all()
 
     # List authors related to Gen 1:1
-    tauthors = db.session.query(Targets.author).join(References) \
-        .filter(References.source == defaultsource).distinct()
+    # tauthors = db.session.query(Targets.author).join(References) \
+    #     .filter(References.source == defaultsource).distinct()
 
     # data = getNeighborNetwork(defaultsource)
 
@@ -114,10 +114,10 @@ def index():
                            authorDegrees=authorDegrees,
                            dchapters=dchapters,
                            dverses=dverses,
-                           tbooks=tbooks,
-                           joins=joins,
-                           source_joins=source_joins,
-                           tauthors=tauthors
+                           # tbooks=tbooks,
+                           # joins=joins,
+                           # source_joins=source_joins,
+                           # tauthors=tauthors
                            # data=data
                            )
 
