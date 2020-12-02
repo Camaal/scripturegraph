@@ -118,7 +118,7 @@ def index():
                            joins=joins,
                            source_joins=source_joins,
                            tauthors=tauthors,
-                           #data=data
+                           data=data
                            )
 
 
