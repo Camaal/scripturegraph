@@ -1,1 +1,1 @@
-web: gunicorn scripturegraph:app --preload
+web: gunicorn scripturegraph:app --preload --timeout 10 --max-requests 1200
