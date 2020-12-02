@@ -1,1 +1,1 @@
-web: gunicorn scripturegraph:app
+web: gunicorn scripturegraph:app --preload
