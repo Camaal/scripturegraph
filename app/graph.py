@@ -13,7 +13,7 @@ for edge in in_file:
     g.add_edge(edge[0], edge[1])
 
 # Show the degree for each node
-node_degree = [n for n in g.degree()]
+# node_degree = [n for n in g.degree()]
 
 
 # def degreeColor(value):
