@@ -52,6 +52,7 @@ def flat_list(l):
 def index():
     defaultbookname = 'Genesis'
     defaultbook = 1
+    defaultchapter = 1
     defaultsource = 1001001
 
     # List all books in order they were written
@@ -77,7 +78,7 @@ def index():
 
     # List chapters, verses, and text for a given book
     dverses = db.session.query(Sources.bookName, Sources.chapter, Sources.verse, Sources.text, Sources.degree,
-                               Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook)
+                               Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook, chapter=defaultchapter)
 
     # List book, book name, and chapter for cross-references related to Gen 1:1
     # tbooks = db.session.query(Targets.book, Targets.bookName, Targets.chapter, Targets.author) \
@@ -107,6 +108,7 @@ def index():
                            defaultbookname=defaultbookname,
                            defaultbook=defaultbook,
                            defaultsource=defaultsource,
+                           defaultchapter=defaultchapter,
                            books=books,
                            authors=authors,
                            bookDegrees=bookDegrees,
@@ -141,16 +143,23 @@ def filter_chapter_menu():
 
 @app.route('/filter_source', methods=['POST'])
 def filter_source():
-    fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
-        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
+    filterbook = request.form['book']
+    filterchapter = 1
 
-    fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=request.form['book']).count()
+    fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
+        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=filterbook)
+
+    fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=filterbook).count()
 
     fsverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
                                 Sources.normDegree, Sources.id, Sources.redLetter).filter_by(
-        book=request.form['book'])
+        book=filterbook, chapter=filterchapter)
 
-    return render_template('source.html', fschapters=fschapters, fsverses=fsverses, fchapterdegrees=fchapterdegrees)
+    return render_template('source.html',
+                           filerchapter=filterchapter,
+                           fschapters=fschapters,
+                           fsverses=fsverses,
+                           fchapterdegrees=fchapterdegrees)
 
 
 @app.route('/filter_book_name', methods=['POST'])

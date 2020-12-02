@@ -1,15 +1,11 @@
-{% for i in range(1, fschapters+1)%}
-    <h4 id="ch{{i}}">Chapter {{i}}</h4>
-    {% for verse in fsverses%}
-        {% if verse.chapter==i%}
-        <span class="scripture">
-               <span>
-                  <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-                   <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
-               </span>
-        </span>
-        {% endif %}
-    {% endfor %}
+<h4 id="ch{{filterchapter}}">Chapter {{filterchapter}}</h4>
+{% for verse in fsverses%}
+    <span class="scripture">
+           <span>
+              <span class="verse_num" data-degree="{{verse.degree}}">{{verse.verse}}</span>
+               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
+           </span>
+    </span>
 {% endfor %}
 
 {% block script %}
