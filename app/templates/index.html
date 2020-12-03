@@ -38,14 +38,26 @@
     </div>
     <div id="graph-container" class="collection-target">
       <div class="instructions">
-        <h5>How to use this visualization</h5>
+        <p>Biblegraph is a data visualization of 340,000 cross references between different parts of the King James
+          Version (KJV) of the Bible. It’s designed to read much like the traditional Bible, but leverages the number
+          of cross references for each verse to highlight importance. The number of references are listed alongside each
+          book, author, chapter, and verse.</p>
+
+        <p>The minimum and maximum number of cross references for each book, author, chapter, or
+          verse have been mapped to the color scale below. Items with a low number of cross references use a darker
+          purple, while items with more references appear brighter.</p>
+
+        <div class="viridis">
+          <div class="min">min</div>
+          <div class="max">max</div>
+        </div>
+
+        <h5>Getting Started:</h5>
         <ol>
-          <li>Select a book from the menu.</li>
-          <li>Filter books by Author (optional).</li>
-          <li>The first chapter of the book will load by default.</li>
+          <li>Select a book or filter the books by Author.</li>
           <li>Select a chapter.</li>
-          <li>Select a verse within the chapter to explore its network graph of cross-references.</li>
-          <li>Press "Start Over" to reset the visualization.</li>
+          <li>Select a verse to visualize its cross-references.</li>
+          <li>Press <em>"Start Over"</em> to restart the visualization.</li>
         </ol>
       </div>
     </div>
