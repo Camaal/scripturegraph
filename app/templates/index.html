@@ -13,8 +13,7 @@
         <ul>
             {% for chapter in chapterDegrees %}
             <li class="chapterItem">
-
-                <a href="#ch{{chapter.chapter}}" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
+                <a href="#ch{{chapter.chapter}}" class="chapterFilter" book_id="{{chapter.book}}" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
                     <div class="name">{{chapter.chapter}}</div>
                 </a>
                 <div class="degreeNumber" style="background-color: rgb{{chapter.total | chapterColor}};">{{chapter.total | numberFormat}}</div>
@@ -38,29 +37,7 @@
       </div>
     </div>
     <div id="graph-container" class="collection-target">
-      <div id="graph"></div>
-      <div class="verses">
-        <div id="target_text" class="cross-references">
-            <!--{% for item in joins%}
-                    <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
-                            {{item.text}}
-                         </span>
-                    </span>
-                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
-            {% endfor %}
-          {% for item in source_joins%}
-                    <h6 class="character">{{item.author}}</h6>
-                    <span id="{{item.id}}" class="scripture">
-                         <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
-                            {{item.text}}<sup>{{item.degree}}</sup>
-                         </span>
-                    </span>
-                    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross references</h6>
-            {% endfor %}-->
-        </div>
-      </div>
+      <div class="instructions">Select a verse.</div>
     </div>
 </div>
 
@@ -69,6 +46,22 @@
 {% block script %}
 <script type="application/javascript">
     $(document).ready(function () {
+
+        $('.chapterFilter').on('click', function (){
+
+            var book_id = parseInt($(this).attr('book_id'));
+            var chapter_id = parseInt($(this).attr('chapter_id'));
+
+            var getSourceByBook = $.ajax({
+                url: '/filter_source',
+                type: 'POST',
+                data: {book: book_id, chapter: chapter_id}
+            });
+
+            getSourceByBook.done(function (data) {
+                $('#source_text').html(data);
+            });
+        });
 
         $('.verseFilter').on('click', function (){
             var verse_id = parseInt($(this).attr('verse_id'));

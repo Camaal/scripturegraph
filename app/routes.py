@@ -70,8 +70,8 @@ def index():
         .group_by(Sources.author).order_by(func.sum(Sources.degree).desc()).all()
 
     # Sum degree for each chapter
-    chapterDegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
-        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=defaultbook)
+    chapterDegrees = db.session.query(Sources.book, Sources.chapter, func.sum(Sources.degree).label('total')) \
+        .group_by(Sources.book, Sources.chapter).order_by(Sources.chapter).filter_by(book=defaultbook)
 
     # List distinct chapters for a given book
     dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=defaultbook).count()
@@ -135,8 +135,8 @@ def filter_book_menu():
 
 @app.route('/filter_chapter_menu', methods=['POST'])
 def filter_chapter_menu():
-    filteredchapters = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
-        Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
+    filteredchapters = db.session.query(Sources.book, Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
+        Sources.book, Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
 
     return render_template('chapter_menu.html', filteredchapters=filteredchapters)
 
@@ -144,7 +144,12 @@ def filter_chapter_menu():
 @app.route('/filter_source', methods=['POST'])
 def filter_source():
     filterbook = request.form['book']
-    filterchapter = 1
+
+    if int(request.form['chapter']) == 0:
+        filterchapter = 1
+    else:
+        filterchapter = request.form['chapter']
+
 
     fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
         .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=filterbook)
@@ -156,7 +161,7 @@ def filter_source():
         book=filterbook, chapter=filterchapter)
 
     return render_template('source.html',
-                           filerchapter=filterchapter,
+                           filterchapter=filterchapter,
                            fschapters=fschapters,
                            fsverses=fsverses,
                            fchapterdegrees=fchapterdegrees)

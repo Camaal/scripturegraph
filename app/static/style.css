@@ -449,3 +449,9 @@ sup{
 .viridis > .max{
     text-align: right;
 }
+
+.instructions{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}

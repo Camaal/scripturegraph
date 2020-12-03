@@ -1,7 +1,7 @@
 <ul>
   {% for chapter in filteredchapters %}
   <li class="chapterItem">
-    <a href="#ch{{chapter.chapter}}" class="chapterFilter" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
+    <a href="#ch{{chapter.chapter}}" class="chapterFilter" book_id="{{chapter.book}}" chapter_id="{{chapter.chapter}}" style="color: #1c1c1c;">
       <div class="name">{{chapter.chapter}}</div>
     </a>
     <div class="degreeNumber" style="background-color: rgb{{chapter.total | chapterColor}};">{{chapter.total | numberFormat}}</div>
@@ -11,17 +11,38 @@
 
 {% block script %}
 <script type="application/javascript">
-  var chapterContainer = document.getElementById('chapter_menu');
-    var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
-    for (let i = 0; i < chapterbtns.length; i++){
-        chapterbtns[i].addEventListener('click',function () {
-            var current = document.getElementsByClassName('active');
-            if (current.length > 0){
-                current[0].className = current[0].className.replace(' active', '');
-            }
-            this.className += ' active';
+    $(document).ready(function () {
+
+        $('.chapterFilter').on('click', function (){
+            $('#source_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+
+            var book_id = parseInt($(this).attr('book_id'));
+            var chapter_id = parseInt($(this).attr('chapter_id'));
+
+            var getSourceByBook = $.ajax({
+                url: '/filter_source',
+                type: 'POST',
+                data: {book: book_id, chapter: chapter_id}
+            });
+
+            getSourceByBook.done(function (data) {
+                $('#source_text').html(data);
+            });
         });
-    }
+
+        var chapterContainer = document.getElementById('chapter_menu');
+        var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+        for (let i = 0; i < chapterbtns.length; i++){
+            chapterbtns[i].addEventListener('click',function () {
+                var current = document.getElementsByClassName('active');
+                if (current.length > 0){
+                    current[0].className = current[0].className.replace(' active', '');
+                }
+                this.className += ' active';
+            });
+        }
+    });
+
 
 </script>
 {% endblock %}

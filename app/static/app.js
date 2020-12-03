@@ -104,6 +104,22 @@ $(document).ready(function () {
 
     });
 
+    $('.chapterFilter').on('click', function (){
+
+        var book_id = parseInt($(this).attr('book_id'));
+        var chapter_id = parseInt($(this).attr('chapter_id'));
+
+        var getSourceByBook = $.ajax({
+            url: '/filter_source',
+            type: 'POST',
+            data: {book: book_id, chapter: chapter_id}
+        });
+
+        getSourceByBook.done(function (data) {
+            $('#source_text').html(data);
+        });
+    });
+
     var authorContainer = document.getElementById('author_menu');
     var authorbtns = authorContainer.getElementsByClassName('authorFilter');
     for (let i = 0; i < authorbtns.length; i++){
