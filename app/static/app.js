@@ -46,11 +46,12 @@ $(document).ready(function () {
     $('.bookFilter').on('click', function (){
 
         var book_id = parseInt($(this).attr('book_id'));
+        var chapter_id = 1
 
         var getSourceByBook = $.ajax({
             url: '/filter_source',
             type: 'POST',
-            data: {book: book_id}
+            data: {book: book_id, chapter: chapter_id}
         });
 
         getSourceByBook.done(function (data) {
