@@ -16,10 +16,10 @@
         $('.bookFilter').on('click', function (){
             $('#source_text').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
-            var book_id = parseInt($(this).attr('book_id'));
-            var chapter_id = 1
+            const book_id = parseInt($(this).attr('book_id'));
+            const chapter_id = 1
 
-            var getSourceByBook = $.ajax({
+            const getSourceByBook = $.ajax({
                 url: '/filter_source',
                 type: 'POST',
                 data: {book: book_id, chapter: chapter_id}
@@ -29,7 +29,7 @@
                 $('#source_text').html(data);
             });
 
-            var getSourceBookName = $.ajax({
+            const getSourceBookName = $.ajax({
                 url: '/filter_book_name',
                 type: 'POST',
                 data: {book: book_id}
@@ -39,7 +39,7 @@
                 $('#sourceBookName').html(data);
             });
 
-            var getAuthors = $.ajax({
+            const getAuthors = $.ajax({
                 url: '/filter_author_menu',
                 type: 'POST',
                 data: {book: book_id}
@@ -49,7 +49,7 @@
                 $('#author_menu').html(data);
             });
 
-            var getChapters = $.ajax({
+            const getChapters = $.ajax({
                 url: '/filter_chapter_menu',
                 type: 'POST',
                 data: {book: book_id}
@@ -60,8 +60,8 @@
             });
         });
 
-        var bookContainer = document.getElementById('book_menu');
-        var bookbtns = bookContainer.getElementsByClassName('bookFilter');
+        const bookContainer = document.getElementById('book_menu');
+        const bookbtns = bookContainer.getElementsByClassName('bookFilter');
         for (let i = 0; i < bookbtns.length; i++){
             bookbtns[i].addEventListener('click',function () {
                 const current = document.getElementsByClassName('active');
