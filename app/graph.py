@@ -5,7 +5,7 @@ from app import db
 from app.models import References, Sources
 
 fh = open("app/static/data/bible.csv", "r")
-g = net.read_edgelist(fh, nodetype=str, data=(("weight", int),))
+g = net.read_edgelist(fh)
 
 # Create a network using sources and targets in DB
 # in_file = db.session.query(References.source, References.target).all()
