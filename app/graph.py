@@ -4,13 +4,16 @@ from itertools import permutations
 from app import db
 from app.models import References, Sources
 
-# Create a network using sources and targets in DB
-in_file = db.session.query(References.source, References.target).all()
-g = net.Graph()
+elist = open("static/data/bible.edgelist", "rb")
+g = net.read_edgelist(elist, nodetype=str, data=(("weight", float),))
 
-for edge in in_file:
+# Create a network using sources and targets in DB
+# in_file = db.session.query(References.source, References.target).all()
+#g = net.Graph()
+
+#for edge in in_file:
     # Use the first and second value to define the edges
-    g.add_edge(edge[0], edge[1])
+    #g.add_edge(edge[0], edge[1])
 
 # Show the degree for each node
 # node_degree = [n for n in g.degree()]
