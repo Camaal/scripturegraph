@@ -34,13 +34,14 @@
     </div>
     <div id="graph-container" class="collection-target">
       <div class="instructions">
-        <p>Biblegraph is a data visualization of 340,000 cross references between different parts of the King James
-          Version (KJV) of the Bible. It’s designed to read much like the traditional Bible, but leverages the number
-          of cross references for each verse to highlight importance. The number of references are listed alongside each
+        <h4>Overview</h4>
+        <p>Biblegraph is a data visualization of 340,000 cross-references between different parts of the King James
+          Version (KJV) of the Bible. It is designed to read much like the traditional Bible, but also highlights areas
+          based on the number of cross-references for each verse. The number of references are listed alongside each
           book, author, chapter, and verse.</p>
 
-        <p>The minimum and maximum number of cross references for each book, author, chapter, or
-          verse have been mapped to the color scale below. Items with a low number of cross references use a darker
+        <p>The minimum and maximum number of cross-references for each book, author, chapter, or
+          verse have been mapped to the color scale below. Items with a low number of cross-references use a darker
           purple, while items with more references appear brighter.</p>
 
         <div class="viridis">
@@ -52,7 +53,7 @@
         <ol>
           <li>Select a book or filter the books by Author.</li>
           <li>Select a chapter.</li>
-          <li>Select a verse to visualize its cross-references.</li>
+          <li>Select a verse to visualize its graph of cross-references.</li>
           <li>Press <em>"Start Over"</em> to restart the visualization.</li>
         </ol>
       </div>
@@ -67,10 +68,10 @@
 
         $('.chapterFilter').on('click', function (){
 
-            var book_id = parseInt($(this).attr('book_id'));
-            var chapter_id = parseInt($(this).attr('chapter_id'));
+            const book_id = parseInt($(this).attr('book_id'));
+            const chapter_id = parseInt($(this).attr('chapter_id'));
 
-            var getSourceByBook = $.ajax({
+            const getSourceByBook = $.ajax({
                 url: '/filter_source',
                 type: 'POST',
                 data: {book: book_id, chapter: chapter_id}
@@ -82,9 +83,9 @@
         });
 
         $('.verseFilter').on('click', function (){
-            var verse_id = parseInt($(this).attr('verse_id'));
+            const verse_id = parseInt($(this).attr('verse_id'));
 
-            var getSourceByBook = $.ajax({
+            const getSourceByBook = $.ajax({
                 url: '/filter_target',
                 type: 'POST',
                 data: {id: verse_id}
