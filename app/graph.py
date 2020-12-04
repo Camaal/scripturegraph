@@ -4,7 +4,7 @@ from itertools import permutations
 from app import db
 from app.models import References, Sources
 
-fh = open("static/data/bible.csv", "r")
+fh = open("app/static/data/bible.csv", "r")
 g = net.read_weighted_edgelist(fh, data=(("weight", float),))
 
 # Create a network using sources and targets in DB
