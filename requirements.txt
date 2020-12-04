@@ -1,5 +1,4 @@
 matplotlib
-flask_sqlalchemy
 sqlalchemy
 flask_migrate
 flask
