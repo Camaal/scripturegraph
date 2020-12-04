@@ -158,7 +158,7 @@ a:active {
     padding-top: 28px;
 }
 
-ul{
+ul,ol{
     margin: 0;
     padding: 0;
 }
