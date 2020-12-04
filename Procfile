@@ -1,1 +1,1 @@
-web: gunicorn --workers=4 --threads=2 scripturegraph:app --preload
+web: gunicorn scripturegraph:app --preload
