@@ -4,7 +4,7 @@ from itertools import permutations
 from app import db
 from app.models import References, Sources
 
-elist = open("static/data/bible.edgelist", "rb")
+elist = open("static/data/bible.edgelist", "r")
 g = net.read_edgelist(elist, nodetype=str, data=(("weight", float),))
 
 # Create a network using sources and targets in DB
