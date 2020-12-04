@@ -454,10 +454,8 @@ sup{
 .instructions{
     display: grid;
     align-items: center;
-    justify-items: center;
 }
 
 .license{
-    text-align: center;
     font-size: .875em;
 }
