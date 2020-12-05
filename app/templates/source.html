@@ -13,6 +13,9 @@
     $(document).ready(function () {
 
         $('.verseFilter').on('click', function (){
+
+            $( this ).toggleClass( "highlight" );
+
             $('#graph-container').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
             const verse_id = parseInt($(this).attr('verse_id'));
 

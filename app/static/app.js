@@ -91,6 +91,8 @@ $(document).ready(function () {
 
     $('.verseFilter').on('click', function (){
 
+        $( this ).toggleClass( "highlight" );
+
         const verse_id = parseInt($(this).attr('verse_id'));
 
         const getSourceByBook = $.ajax({
