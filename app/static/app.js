@@ -91,8 +91,6 @@ $(document).ready(function () {
 
     $('.verseFilter').on('click', function (){
 
-        $( this ).toggleClass( "highlight" );
-
         const verse_id = parseInt($(this).attr('verse_id'));
 
         const getSourceByBook = $.ajax({
@@ -103,6 +101,7 @@ $(document).ready(function () {
 
         getSourceByBook.done(function (data) {
             $('#graph-container').html(data);
+            $( this ).toggleClass( "highlight" );
         })
 
     });
