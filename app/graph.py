@@ -1,6 +1,6 @@
 import json
 import networkx as net
-from itertools import permutations
+from itertools import combinations
 from app import db
 from app.models import References, Sources
 
@@ -31,7 +31,7 @@ def getNeighborNetwork(verse):
     node_neighbors = [n for n in g.neighbors(verse)]
 
     # Get permutations of edges between neighbors
-    perm = permutations(node_neighbors, 2)
+    perm = combinations(node_neighbors, 2)
 
     # Loop over each neighbor and add it to a new graph
     for n in g.neighbors(verse):
