@@ -18,7 +18,7 @@ for edge in in_file:
 # Show the degree for each node
 # node_degree = [n for n in g.degree()]
 
-graphsize = sys.getsizeof(g.edge) + sys.getsizeof(g.node)
+graphsize = sys.getsizeof(g.edges) + sys.getsizeof(g.nodes)
 print(graphsize)
 
 # def degreeColor(value):
