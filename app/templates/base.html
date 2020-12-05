@@ -8,6 +8,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7RB48FP15X"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'G-7RB48FP15X');
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+          'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-NLVG448');</script>
+  <!-- End Google Tag Manager -->
   <script src="{{ url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
   <script src="{{ url_for('static', filename='app.js') }}"></script>
   <script src="{{ url_for('static', filename='sigma.min.js') }}"></script>
@@ -21,6 +48,12 @@
   {% block script %}{% endblock %}
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLVG448"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <!--<div id="top-nav-container">
     <div class="top-nav-list">
         <div class="top-nav-item left"><a class="menu"><span class="material-icons">menu</span></a></div>
@@ -134,8 +167,10 @@
 
         <h3>Special Thanks:</h3>
         <ul>
-          <li><a href="https://www.kaggle.com/oswinrh/bible" target="_blank">Oswin Rahadiyan Hartono's Bible Corpus</a></li>
-          <li><a href="http://www.openbible.info/labs/cross-references/" target="_blank">Open Bible's Cross References</a></li>
+          <li><a href="https://www.kaggle.com/oswinrh/bible" target="_blank">Oswin Rahadiyan Hartono's Bible Corpus</a>
+          </li>
+          <li><a href="http://www.openbible.info/labs/cross-references/" target="_blank">Open Bible's Cross
+            References</a></li>
           <li><a href="https://networkx.org/" target="_blank">NetworkX</a></li>
           <li>Webster's Bible (WBT)</li>
           <li>World English Bible (WEB)</li>
@@ -143,8 +178,14 @@
         </ul>
 
         <p>
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-          <br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Biblegraph</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.biblegraph.net" property="cc:attributionName" rel="cc:attributionURL">Camaal Moten</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License"
+                                                                                         style="border-width:0"
+                                                                                         src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"/></a>
+          <br/><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Biblegraph</span> by <a
+                xmlns:cc="http://creativecommons.org/ns#" href="https://www.biblegraph.net"
+                property="cc:attributionName" rel="cc:attributionURL">Camaal Moten</a> is licensed under a <a
+                rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+          Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
         </p>
       </div>
     </div>
