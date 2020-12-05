@@ -1,5 +1,6 @@
 import json
 import sys
+import logging
 
 import networkx as net
 from itertools import combinations
@@ -14,12 +15,11 @@ for edge in in_file:
     # Use the first and second value to define the edges
     g.add_edge(edge[0], edge[1])
 
-gSize = sys.getsizeof(g.edge) + sys.getsizeof(g.node)
-print(gSize)
-
 # Show the degree for each node
 # node_degree = [n for n in g.degree()]
 
+graphsize = sys.getsizeof(g.edge) + sys.getsizeof(g.node)
+print(graphsize)
 
 # def degreeColor(value):
 #     norm = mpl.colors.Normalize(vmin=0, vmax=1)
