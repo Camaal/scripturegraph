@@ -101,7 +101,6 @@ $(document).ready(function () {
 
         getSourceByBook.done(function (data) {
             $('#graph-container').html(data);
-            $( this ).toggleClass( "highlight" );
         })
 
     });
