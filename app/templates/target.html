@@ -2,7 +2,7 @@
 <div class="verses">
   <div id="target_text" class="cross-references">
     {% for item in ftverses%}
-    <h6 class="character">{{item.author}} | {{item.genreName}} | {{item.testament}}</h6>
+    <h6 class="character">{{item.author}}</h6>
     <span id="{{item.id}}" class="scripture">
          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
             {{item.text}}
@@ -12,7 +12,7 @@
     {% endfor %}
 
     {% for item in fsverses%}
-    <h6 class="character">{{item.author}} | {{item.genreName}} | {{item.testament}}</h6>
+    <h6 class="character">{{item.author}}</h6>
     <span id="{{item.id}}" class="scripture">
          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
             {{item.text}}
