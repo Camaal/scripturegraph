@@ -1,5 +1,6 @@
 import logging
 import os
+import redis
 import requests
 from flask import render_template, request
 from app import app, db
@@ -8,6 +9,9 @@ from app.models import Books, Authors, References, Sources, Targets
 import matplotlib as mpl
 import matplotlib.cm as cm
 from app.graph import getNeighborNetwork
+
+# Connect to Redis
+r = redis.from_url(os.environ.get("REDIS_URL"))
 
 # Environment variables are defined in app.yaml.
 GA_TRACKING_ID = os.environ['GA_TRACKING_ID']
