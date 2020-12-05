@@ -1,3 +1,6 @@
+import logging
+import os
+import requests
 from flask import render_template, request
 from app import app, db
 from sqlalchemy import func
@@ -5,6 +8,34 @@ from app.models import Books, Authors, References, Sources, Targets
 import matplotlib as mpl
 import matplotlib.cm as cm
 from app.graph import getNeighborNetwork
+
+# Environment variables are defined in app.yaml.
+GA_TRACKING_ID = os.environ['G-7RB48FP15X']
+
+
+def track_event(category, action, label=None, value=0):
+    data = {
+        'v': '1',  # API Version.
+        'tid': GA_TRACKING_ID,  # Tracking ID / Property ID.
+        # Anonymous Client Identifier. Ideally, this should be a UUID that
+        # is associated with particular user, device, or browser instance.
+        'cid': '555',
+        't': 'event',  # Event hit type.
+        'ec': category,  # Event category.
+        'ea': action,  # Event action.
+        'el': label,  # Event label.
+        'ev': value,  # Event value, must be an integer
+        'ua': 'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
+    }
+
+    response = requests.post(
+        'https://www.google-analytics.com/collect', data=data)
+
+    # If the request fails, this will raise a RequestException. Depending
+    # on your application's needs, this may be a non-error and can be caught
+    # by the caller.
+    response.raise_for_status()
+
 
 @app.template_filter()
 def numberFormat(value):
@@ -43,8 +74,8 @@ def verseColor(value):
     return format(m.to_rgba(value, bytes=True, alpha=1))
 
 
-def flat_list(l):
-    return ["%s" % v for v in l]
+# def flat_list(l):
+#     return ["%s" % v for v in l]
 
 
 @app.route('/')
@@ -54,6 +85,10 @@ def index():
     defaultbook = 1
     defaultchapter = 1
     defaultsource = 1001001
+
+    track_event(
+        category='Initializing',
+        action='Started at the home page')
 
     # List all books in order they were written
     books = db.session.query(Books.bookName).distinct().order_by(Books.book)
@@ -78,7 +113,8 @@ def index():
 
     # List chapters, verses, and text for a given book
     dverses = db.session.query(Sources.bookName, Sources.chapter, Sources.verse, Sources.text, Sources.degree,
-                               Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook, chapter=defaultchapter)
+                               Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook,
+                                                                                        chapter=defaultchapter)
 
     return render_template('index.html',
                            title='Home',
@@ -98,6 +134,12 @@ def index():
 
 @app.route('/filter_book_menu', methods=['POST'])
 def filter_book_menu():
+    track_event(
+        category='Navigating',
+        action='Used author menu to filter books',
+        label=request.form['author']
+    )
+
     filteredbooks = db.session.query(Sources.book, Sources.bookName, func.sum(Sources.degree).label('total')) \
         .group_by(Sources.book, Sources.bookName).order_by(func.sum(Sources.degree).desc()) \
         .filter_by(author=request.form['author'])
@@ -107,7 +149,14 @@ def filter_book_menu():
 
 @app.route('/filter_chapter_menu', methods=['POST'])
 def filter_chapter_menu():
-    filteredchapters = db.session.query(Sources.book, Sources.chapter, func.sum(Sources.degree).label('total')).group_by(
+    track_event(
+        category='Navigating',
+        action='Used book menu to filter chapter',
+        label=request.form['book']
+    )
+
+    filteredchapters = db.session.query(Sources.book, Sources.chapter,
+                                        func.sum(Sources.degree).label('total')).group_by(
         Sources.book, Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
 
     return render_template('chapter_menu.html', filteredchapters=filteredchapters)
@@ -115,13 +164,18 @@ def filter_chapter_menu():
 
 @app.route('/filter_source', methods=['POST'])
 def filter_source():
+    track_event(
+        category='Reading',
+        action='Loaded a chapter based on a book selection',
+        label=request.form['chapter']
+    )
+
     filterbook = request.form['book']
 
     if int(request.form['chapter']) == 0:
         filterchapter = 1
     else:
         filterchapter = request.form['chapter']
-
 
     fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
         .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=filterbook)
@@ -148,6 +202,12 @@ def filter_book_name():
 
 @app.route('/filter_target', methods=['POST'])
 def filter_target():
+    track_event(
+        category='Reading',
+        action='Loaded cross-references based on a verse selection',
+        label=request.form['id']
+    )
+
     ftbooks = db.session.query(Targets.book, Targets.bookName, Targets.chapter, Targets.author).distinct().join(
         References).filter(References.source == request.form['id']).order_by(Targets.book).distinct()
 
@@ -176,3 +236,12 @@ def filter_author_menu():
         Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=request.form['book'])
 
     return render_template('author_menu.html', filteredauthors=filteredauthors)
+
+
+@app.errorhandler(500)
+def server_error(e):
+    logging.exception('An error occurred during a request.')
+    return """
+    An internal error occurred: <pre>{}</pre>
+    See logs for full stacktrace.
+    """.format(e), 500
