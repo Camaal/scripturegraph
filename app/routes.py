@@ -78,10 +78,6 @@ def verseColor(value):
     return format(m.to_rgba(value, bytes=True, alpha=1))
 
 
-# def flat_list(l):
-#     return ["%s" % v for v in l]
-
-
 @app.route('/')
 @app.route('/index', methods=['POST'])
 def index():

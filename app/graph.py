@@ -1,4 +1,6 @@
 import json
+import sys
+
 import networkx as net
 from itertools import combinations
 from app import db
@@ -11,6 +13,9 @@ g = net.Graph()
 for edge in in_file:
     # Use the first and second value to define the edges
     g.add_edge(edge[0], edge[1])
+
+gSize = sys.getsizeof(g.edge) + sys.getsizeof(g.node)
+print(gSize)
 
 # Show the degree for each node
 # node_degree = [n for n in g.degree()]
@@ -78,20 +83,20 @@ def getNeighborNetwork(verse):
             "x": pos[n][0],
             "y": pos[n][1],
             "size": node_size[n] * 10,
-            "color": ncolor,
-            # "color": "rgba"+str(color)
+            "color": ncolor
         })
 
     # Edges
+    # ['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
+
     for i, e in enumerate(neighbor_net.edges):
         data['edges'].append({
             "id": str(i),
             "source": str(e[0]),
             "target": str(e[1]),
-            # "color": "rgba(255,255,255,0.007)",
             "size": 10,
-            "type": "tapered",  # ['line','curve','arrow','curvedArrow','dashed','dotted','parallel','tapered']
-            "edgeColor": 'default',
+            "type": "tapered",
+            "edgeColor": 'default'
         })
 
     return json.dumps(data)
