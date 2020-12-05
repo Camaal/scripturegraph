@@ -10,7 +10,7 @@ import matplotlib.cm as cm
 from app.graph import getNeighborNetwork
 
 # Environment variables are defined in app.yaml.
-GA_TRACKING_ID = os.environ['G-7RB48FP15X']
+GA_TRACKING_ID = os.environ['GA_TRACKING_ID']
 
 
 def track_event(category, action, label=None, value=0):

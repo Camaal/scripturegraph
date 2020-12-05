@@ -23,8 +23,8 @@
   </div>
 </div>
 <script>
-    var obj = JSON.parse('{{ fdata | safe }}');
-    var sf = new sigma({
+    let obj = JSON.parse('{{ fdata | safe }}');
+    let sf = new sigma({
         graph: obj,
         renderers: [{
             container: 'graph',
