@@ -212,6 +212,7 @@ def filter_target():
         References).filter(References.source == request.form['id']).order_by(Targets.book).distinct()
 
     ftverses = db.session.query(Targets.id, Targets.author, Targets.bookName, Targets.book, Targets.chapter,
+                                Targets.genreName, Targets.testament,
                                 Targets.verse, Targets.text,
                                 Targets.degree, Targets.color, Targets.normDegree, Targets.redLetter).join(References) \
         .filter(References.source == request.form['id']).all()
