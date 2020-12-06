@@ -218,6 +218,7 @@ def filter_target():
         .filter(References.source == request.form['id']).all()
 
     fsverses = db.session.query(Sources.id, Sources.author, Sources.bookName, Sources.book, Sources.chapter,
+                                Sources.genreName, Sources.testament,
                                 Sources.verse, Sources.text,
                                 Sources.degree, Sources.color, Sources.normDegree, Sources.redLetter).join(References) \
         .filter(References.target == request.form['id']).all()
