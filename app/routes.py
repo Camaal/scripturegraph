@@ -106,15 +106,15 @@ def index():
 
     # Sum degree for each chapter
     chapterDegrees = db.session.query(Sources.book, Sources.chapter, func.sum(Sources.degree).label('total')) \
-        .group_by(Sources.book, Sources.chapter).order_by(Sources.chapter).filter_by(book=defaultbook)
+        .group_by(Sources.book, Sources.chapter).order_by(Sources.chapter).filter(Sources.book == defaultbook)
 
     # List distinct chapters for a given book
-    dchapters = db.session.query(Sources.chapter).distinct().filter_by(book=defaultbook).count()
+    dchapters = db.session.query(Sources.chapter).distinct().filter(Sources.book == defaultbook).count()
 
     # List chapters, verses, and text for a given book
     dverses = db.session.query(Sources.bookName, Sources.chapter, Sources.verse, Sources.text, Sources.degree,
-                               Sources.color, Sources.normDegree, Sources.id).filter_by(book=defaultbook,
-                                                                                        chapter=defaultchapter)
+                               Sources.color, Sources.normDegree, Sources.id).filter(Sources.book == defaultbook,
+                                                                                     Sources.chapter == defaultchapter)
 
     return render_template('index.html',
                            title='Home',
@@ -142,7 +142,7 @@ def filter_book_menu():
 
     filteredbooks = db.session.query(Sources.book, Sources.bookName, func.sum(Sources.degree).label('total')) \
         .group_by(Sources.book, Sources.bookName).order_by(func.sum(Sources.degree).desc()) \
-        .filter_by(author=request.form['author'])
+        .filter(Sources.author == request.form['author'])
 
     return render_template('book_menu.html', filteredbooks=filteredbooks)
 
@@ -157,7 +157,7 @@ def filter_chapter_menu():
 
     filteredchapters = db.session.query(Sources.book, Sources.chapter,
                                         func.sum(Sources.degree).label('total')).group_by(
-        Sources.book, Sources.chapter).order_by(Sources.chapter).filter_by(book=request.form['book'])
+        Sources.book, Sources.chapter).order_by(Sources.chapter).filter(Sources.book == request.form['book'])
 
     return render_template('chapter_menu.html', filteredchapters=filteredchapters)
 
@@ -178,13 +178,13 @@ def filter_source():
         filterchapter = request.form['chapter']
 
     fchapterdegrees = db.session.query(Sources.chapter, func.sum(Sources.degree).label('total')) \
-        .group_by(Sources.chapter).order_by(Sources.chapter).filter_by(book=filterbook)
+        .group_by(Sources.chapter).order_by(Sources.chapter).filter(Sources.book == filterbook)
 
-    fschapters = db.session.query(Sources.chapter).distinct().filter_by(book=filterbook).count()
+    fschapters = db.session.query(Sources.chapter).distinct().filter(Sources.book == filterbook).count()
 
     fsverses = db.session.query(Sources.chapter, Sources.verse, Sources.text, Sources.degree, Sources.color,
-                                Sources.normDegree, Sources.id, Sources.redLetter).filter_by(
-        book=filterbook, chapter=filterchapter)
+                                Sources.normDegree, Sources.id, Sources.redLetter).filter(
+        Sources.book == filterbook, Sources.chapter == filterchapter)
 
     return render_template('source.html',
                            filterchapter=filterchapter,
@@ -195,7 +195,7 @@ def filter_source():
 
 @app.route('/filter_book_name', methods=['POST'])
 def filter_book_name():
-    defaultsbookname = db.session.query(Sources.bookName).filter_by(book=request.form['book']).first()
+    defaultsbookname = db.session.query(Sources.bookName).filter(Sources.book == request.form['book']).first()
 
     return render_template('source_book_name.html', defaultsbookname=defaultsbookname)
 
@@ -234,7 +234,7 @@ def filter_target():
 @app.route('/filter_author_menu', methods=['POST'])
 def filter_author_menu():
     filteredauthors = db.session.query(Sources.author, func.sum(Sources.degree).label('total')).group_by(
-        Sources.author).order_by(func.sum(Sources.degree).desc()).filter_by(book=request.form['book'])
+        Sources.author).order_by(func.sum(Sources.degree).desc()).filter(Sources.book == request.form['book'])
 
     return render_template('author_menu.html', filteredauthors=filteredauthors)
 
