@@ -31,7 +31,7 @@
         });
 
         var chapterContainer = document.getElementById('chapter_menu');
-        vzr chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
+        var chapterbtns = chapterContainer.getElementsByClassName('chapterFilter');
         for (let i = 0; i < chapterbtns.length; i++){
             chapterbtns[i].addEventListener('click',function () {
                 var current = document.getElementsByClassName('active');
