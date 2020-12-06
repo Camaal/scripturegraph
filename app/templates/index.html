@@ -73,10 +73,10 @@
 
         $('.chapterFilter').on('click', function (){
 
-            const book_id = parseInt($(this).attr('book_id'));
-            const chapter_id = parseInt($(this).attr('chapter_id'));
+            var book_id = parseInt($(this).attr('book_id'));
+            var chapter_id = parseInt($(this).attr('chapter_id'));
 
-            const getSourceByBook = $.ajax({
+            var getSourceByBook = $.ajax({
                 url: '/filter_source',
                 type: 'POST',
                 data: {book: book_id, chapter: chapter_id}
@@ -88,9 +88,9 @@
         });
 
         $('.verseFilter').on('click', function (){
-            const verse_id = parseInt($(this).attr('verse_id'));
+            var verse_id = parseInt($(this).attr('verse_id'));
 
-            const getSourceByBook = $.ajax({
+            var getSourceByBook = $.ajax({
                 url: '/filter_target',
                 type: 'POST',
                 data: {id: verse_id}

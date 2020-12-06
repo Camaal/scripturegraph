@@ -15,9 +15,9 @@
         $('.verseFilter').on('click', function (){
 
             $('#graph-container').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
-            const verse_id = parseInt($(this).attr('verse_id'));
+            var verse_id = parseInt($(this).attr('verse_id'));
 
-            const getSourceByBook = $.ajax({
+            var getSourceByBook = $.ajax({
                 url: '/filter_target',
                 type: 'POST',
                 data: {id: verse_id}
