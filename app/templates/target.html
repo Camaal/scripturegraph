@@ -1,27 +1,40 @@
 <div id="graph"></div>
 <div class="verses">
-  <div id="target_text" class="cross-references">
-    {% for item in ftverses%}
-    <h6 class="character">{{item.author}} | {{item.genreName}} | {{item.testament}}</h6>
-    <span id="{{item.id}}" class="scripture">
+    <div id="target_text" class="cross-references">
+        {% for item in ftverses %}
+            <h6 class="character">
+                <div>{{ item.author }}</div>
+                <div class="genre">Target | {{ item.testament }} - {{ item.genreName }}</div>
+            </h6>
+            <span id="{{ item.id }}" class="scripture">
          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
-            {{item.text}}
+            {{ item.text }}
          </span>
     </span>
-    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross-references</h6>
-    {% endfor %}
+            <h6 class="reference-name">
+                <div>{{ item.bookName }} {{ item.chapter }}: {{ item.verse }}</div>
+                <div class="genre">{{ item.degree }} cross-references</div>
+            </h6>
+        {% endfor %}
 
-    {% for item in fsverses%}
-    <h6 class="character">{{item.author}} | {{item.genreName}} | {{item.testament}}</h6>
-    <span id="{{item.id}}" class="scripture">
+        {% for item in fsverses %}
+            <h6 class="character">
+                <div>{{ item.author }}</div>
+                <div class="genre">Source | {{ item.testament }} - {{ item.genreName }}</div>
+            </h6>
+            <span id="{{ item.id }}" class="scripture">
          <span class="{% if item.degree >= 50 %} above_avg {% endif %} {% if item.redLetter == 'TRUE' %} jesus_words {% endif %}">
-            {{item.text}}
+            {{ item.text }}
          </span>
     </span>
-    <h6 class="reference-name">{{item.bookName}} {{item.chapter}}: {{item.verse}} | {{item.degree}} cross-references</h6>
-    {% endfor %}
-  </div>
+            <h6 class="reference-name">
+                <div>{{ item.bookName }} {{ item.chapter }}: {{ item.verse }}</div>
+                <div class="genre">{{ item.degree }} cross-references</div>
+            </h6>
+        {% endfor %}
+    </div>
 </div>
+
 <script>
     var obj = JSON.parse('{{ fdata | safe }}');
     var sf = new sigma({
@@ -31,33 +44,33 @@
             type: 'canvas',
         }],
         settings: {
-          labelSizeRatio: 2,
-          batchEdgesDrawing: false,
-          defaultEdgeColor: "rgba(255,255,255,0.1)",
-          defaultEdgeHoverColor: "rgba(255,255,255,.7)",
-          defaultEdgeLabelColor: "#FFFFFF",
-          defaultEdgeType: "dotted",
-          defaultHoverLabelBGColor: "#FFFFFF",
-          defaultLabelBGColor: "#ddd",
-          defaultLabelColor: "#FFFFFF",
-          defaultLabelHoverColor: "#2a2a35",
-          defaultLabelSize: 12,
-          defaultNodeColor: "#fff",
-          drawEdgeLabels: false,
-          drawEdges: true,
-          edgeColor:'source',
-          edgeHoverColor: 'default',
-          enableEdgeHovering: true,
-          enableHovering: true,
-          font: 'Source Sans Pro',
-          labelThreshold: 5,
-          maxNodeSize: 20,
-          minNodeSize: 2,
-          minEdgeSize: 0.2,
-          maxEdgeSize: 1.5,
-          minArrowSize: 5,
-          singleHover: true,
-          webglEdgesBatchSize: 5,
+            labelSizeRatio: 2,
+            batchEdgesDrawing: false,
+            defaultEdgeColor: "rgba(0,0,0,0.1)",
+            defaultEdgeHoverColor: "rgba(0,0,0,.7)",
+            defaultEdgeLabelColor: "#000",
+            defaultEdgeType: "dotted",
+            defaultHoverLabelBGColor: "#ddd",
+            defaultLabelBGColor: "#ddd",
+            defaultLabelColor: "#000",
+            defaultLabelHoverColor: "#2a2a35",
+            defaultLabelSize: 12,
+            defaultNodeColor: "#000",
+            drawEdgeLabels: false,
+            drawEdges: true,
+            edgeColor: 'source',
+            edgeHoverColor: 'default',
+            enableEdgeHovering: true,
+            enableHovering: true,
+            font: 'Barlow',
+            labelThreshold: 5,
+            maxNodeSize: 20,
+            minNodeSize: 2,
+            minEdgeSize: 0.2,
+            maxEdgeSize: .4,
+            minArrowSize: 5,
+            singleHover: true,
+            webglEdgesBatchSize: 100,
         },
         function(sf) {
             // We first need to save the original colors of our
@@ -117,13 +130,13 @@
         }
     });
     // Bind the events:
-      sf.bind('overNode clickNode', function(e) {
-          const element = document.getElementById(e.data.node.id);
-          element.classList.add("highlight");
-              element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-      });
-      sf.bind('outNode', function (e) {
-          const element = document.getElementById(e.data.node.id);
-          element.classList.remove("highlight");
-      });
+    sf.bind('overNode clickNode', function (e) {
+        const element = document.getElementById(e.data.node.id);
+        element.classList.add("highlight");
+        element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+    });
+    sf.bind('outNode', function (e) {
+        const element = document.getElementById(e.data.node.id);
+        element.classList.remove("highlight");
+    });
 </script>

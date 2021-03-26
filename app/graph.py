@@ -1,26 +1,28 @@
 import json
-
 import networkx as net
 from itertools import combinations
 from app import db
 from app.models import References, Sources
 
-# Create a network using sources and targets in DB
+
+# Low memory graph class
+class ThinGraph(net.Graph):
+    all_edge_dict = {"weight": 1}
+
+    def single_edge_dict(self):
+        return self.all_edge_dict
+
+    edge_attr_dict_factory = single_edge_dict
+
+
+# Create a network using source and target in references table
 in_file = db.session.query(References.source, References.target).all()
 g = net.Graph()
 
 for edge in in_file:
     # Use the first and second value to define the edges
     g.add_edge(edge[0], edge[1])
-
-# Show the degree for each node
-# node_degree = [n for n in g.degree()]
-
-# def degreeColor(value):
-#     norm = mpl.colors.Normalize(vmin=0, vmax=1)
-#     cmap = cm.viridis
-#     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-#     return format(m.to_rgba(value, bytes=True))
+    g.add_edge(edge[1], edge[0])
 
 
 def getNeighborNetwork(verse):
@@ -41,6 +43,8 @@ def getNeighborNetwork(verse):
     for i in list(perm):
         if g.has_edge(i[0], i[1]):
             neighbor_net.add_edge(i[0], i[1])
+        elif g.has_edge(i[1], i[0]):
+            neighbor_net.add_edge(i[1], i[0])
         else:
             pass
 
@@ -67,9 +71,9 @@ def getNeighborNetwork(verse):
             .filter(Sources.id == n).first()
 
         if node_name[4] == "TRUE":
-            ncolor = "rgba(183, 18, 27, 1.00)"
+            ncolor = "rgba(183, 18, 27, .5)"
         else:
-            ncolor = "rgba(255,255,255,0.3)"
+            ncolor = "rgba(0,0,0,.3)"
 
         # color = degreeColor(node_name[3])
         data['nodes'].append({
@@ -89,8 +93,8 @@ def getNeighborNetwork(verse):
             "id": str(i),
             "source": str(e[0]),
             "target": str(e[1]),
-            "size": 10,
-            "type": "tapered",
+            "size": 1,
+            "type": "line",
             "edgeColor": 'default'
         })
 

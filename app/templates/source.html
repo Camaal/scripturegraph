@@ -1,32 +1,35 @@
-<h4 id="ch{{filterchapter}}">Chapter {{filterchapter}}</h4>
-{% for verse in fsverses%}
+<h4 id="ch{{ filterchapter }}">Chapter {{ filterchapter }}</h4>
+{% for verse in fsverses %}
     <span class="scripture">
            <span>
-              <span class="verse_num v_{{verse.verse}}" data-degree="{{verse.degree}}">{{verse.verse}}</span>
-               <a href="#" class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}" verse_id="{{verse.id}}" style="text-decoration: none; color:#1c1c1c;">{{verse.text}}</a><sup style="color: rgb{{verse.degree | verseColor}}">{{verse.degree}}</sup>
+              <span class="verse_num v_{{ verse.verse }}" data-degree="{{ verse.degree }}">{{ verse.verse }}</span>
+               <a href="#"
+                  class="verseFilter {% if verse.degree >= 50 %} above_avg {% endif %} {% if verse.redLetter == 'TRUE' %} jesus_words {% endif %}"
+                  verse_id="{{ verse.id }}" style="text-decoration: none; color:#1c1c1c;">{{ verse.text }}</a><sup
+                   style="color: rgb{{ verse.degree | verseColor }}">{{ verse.degree }}</sup>
            </span>
     </span>
 {% endfor %}
 
 {% block script %}
-<script type="application/javascript">
-    $(document).ready(function () {
+    <script type="application/javascript">
+        $(document).ready(function () {
 
-        $('.verseFilter').on('click', function (){
+            $('.verseFilter').on('click', function () {
 
-            $('#graph-container').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
-            var verse_id = parseInt($(this).attr('verse_id'));
+                $('#graph-container').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+                var verse_id = parseInt($(this).attr('verse_id'));
 
-            var getSourceByBook = $.ajax({
-                url: '/filter_target',
-                type: 'POST',
-                data: {id: verse_id}
+                var getSourceByBook = $.ajax({
+                    url: '/filter_target',
+                    type: 'POST',
+                    data: {id: verse_id}
+                });
+
+                getSourceByBook.done(function (data) {
+                    $('#graph-container').html(data);
+                })
             });
-
-            getSourceByBook.done(function (data) {
-                $('#graph-container').html(data);
-            })
         });
-    });
-</script>
+    </script>
 {% endblock %}

@@ -3,12 +3,19 @@
 <head>
   <title>Welcome to Biblegraph</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7RB48FP15X"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var url = 'http://127.0.0.1:5001/GUI-is-still-open';
+        fetch(url, { mode: 'no-cors'});
+        setInterval(function(){ fetch(url, { mode: 'no-cors'});}, 5000)();
+
+    });
+  </script>
   <script>
       window.dataLayer = window.dataLayer || [];
 
@@ -65,7 +72,7 @@
 </div>-->
 <div class="container">
   <div id="sidenav" class="sidenav">
-    <div class="logo" id="about_modal"><h6>Biblegraph (KJV)</h6></div>
+    <div class="logo" id="about_modal"><h6>Biblegraph (WEB)</h6></div>
     <div class="section-title"><h6>Books</h6></div>
     <div id="book_menu" menu_name="book">
       <ul>
@@ -96,7 +103,7 @@
         {% endfor %}
       </ul>
     </div>
-    <a class="resetBtn" href="/">start over</a>
+{#    <a class="resetBtn" href="/">start over</a>#}
   </div>
   <div class="content">
     {% block content %}{% endblock %}
@@ -110,8 +117,7 @@
       <div class="modal-text">
         <h3>What Is It?</h3>
 
-        <p>Biblegraph is a data visualization of 340,000 cross-references between different parts of the King James
-          Version (KJV) of the Bible. It is designed to read much like the traditional Bible, but also highlights areas
+        <p>Biblegraph is a data visualization of 495,702 cross-references between different parts of the World English Bible (WEB). It is designed to read much like the traditional Bible, but also highlights areas
           based on the number of cross-references for each verse. The number of references are listed alongside each
           book, author, chapter, and verse.</p>
 
@@ -121,7 +127,7 @@
           <div class="max">max</div>
         </div>
 
-        <p>I also mapped the minimum and maximum number of cross-references associated with a book, author, chapter, or
+        <p>I also mapped the average and total number of cross-references associated with a book, author, chapter, or
           verse to a Viridis color scale. Items with a low number of cross-references use a darker purple, while items
           with more references appear brighter.</p>
 

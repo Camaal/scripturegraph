@@ -24,25 +24,25 @@ class Authors(db.Model):
     book = db.Column(db.Integer, primary_key=True)
     chapter = db.Column(db.Integer, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    normDegree = db.Column(db.Numeric, nullable=True)
+    normDegree = db.Column(db.Float, nullable=True)
 
     def __repr__(self):
         return '<Authors {}>'.format(self.body)
 
 
 class References(db.Model):
-    __tablename__ = "references"
+    __tablename__ = "cross_references"
 
     id = db.Column(db.Integer, primary_key=True)
-    source = db.Column(db.Integer, db.ForeignKey('source.id'))
-    target = db.Column(db.Integer, db.ForeignKey('target.id'))
+    source = db.Column(db.Integer, db.ForeignKey('bgsource.id'))
+    target = db.Column(db.Integer, db.ForeignKey('bgtarget.id'))
 
     def __repr__(self):
         return '<References {}>'.format(self.body)
 
 
 class Sources(db.Model):
-    __tablename__ = "source"
+    __tablename__ = "bgsource"
 
     id = db.Column(db.Integer, primary_key=True)
     redLetter = db.Column(db.String(250), nullable=False)
@@ -55,8 +55,7 @@ class Sources(db.Model):
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    normDegree = db.Column(db.Numeric, nullable=True)
-    color = db.Column(db.String(250), nullable=False)
+    normDegree = db.Column(db.Float, nullable=True)
 
     targets = db.relationship('References')
 
@@ -68,7 +67,7 @@ class Sources(db.Model):
 
 
 class Targets(db.Model):
-    __tablename__ = "target"
+    __tablename__ = "bgtarget"
 
     id = db.Column(db.Integer, primary_key=True)
     redLetter = db.Column(db.String(250), nullable=False)
@@ -81,8 +80,7 @@ class Targets(db.Model):
     verse = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text, nullable=False)
     degree = db.Column(db.Integer, nullable=False)
-    normDegree = db.Column(db.Numeric, nullable=True)
-    color = db.Column(db.String(250), nullable=False)
+    normDegree = db.Column(db.Float, nullable=True)
 
     sources = db.relationship('References')
 
